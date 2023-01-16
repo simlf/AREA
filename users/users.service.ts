@@ -23,11 +23,11 @@ export class UsersService {
     return this.userModel.findOne({ username });
   }
 
-  update(username: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.updateOne({ username }, { $set: updateUserDto })
-  }
+  // update(username: string, updateUserDto: UpdateUserDto) {
+  //   return this.userModel.updateOne({ username }, { $set: updateUserDto })
+  // }
 
-  remove(username: string) {
-    return this.userModel.deleteOne({ username })
-  }
+  // remove(username: string) {
+  //   return this.userModel.deleteOne({ username })
+  // }
 }

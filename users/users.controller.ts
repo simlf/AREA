@@ -22,13 +22,13 @@ export class UsersController {
     return this.usersService.findOne(username);
   }
 
-  @Patch(':username')
-  update(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(username, updateUserDto);
-  }
+  // @Patch(':username')
+  // update(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
+  //   return this.usersService.update(username, updateUserDto);
+  // }
 
-  @Delete(':username')
-  remove(@Param('username') username: string) {
-    return this.usersService.remove(username);
-  }
+  // @Delete(':username')
+  // remove(@Param('username') username: string) {
+  //   return this.usersService.remove(username);
+  // }
 }
