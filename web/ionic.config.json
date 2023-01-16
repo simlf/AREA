@@ -1,7 +1,0 @@
-{
-  "name": "AreaTest",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
