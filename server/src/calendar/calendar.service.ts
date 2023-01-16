@@ -1,19 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from '../typeorm/entities/User';
-import { UserDetails } from '../utils/types';
+import { HttpService } from '@nestjs/axios';
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import { catchError, map } from 'rxjs';
 
 @Injectable()
 export class CalendarService {
-  // This is a repository of the User entity that we can use to query the database
-  constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
-  ) {}
+    constructor(private readonly httpService: HttpService) {}
 
-  // This method is used by the serializer to find the user in the database
-  async findUser(id: number) {
-    const user = await this.userRepository.findOneBy({ id });
-    return user;
-  }
+    async getCalendarsList(id: string) {
+        return this.httpService
+        .get('https://www.googleapis.com/calendar/v3/users/me/calendarList', { headers: {"Authorization" : `OAuth2 ${id}`} })
+        .pipe(
+        map((res) => res.data?.kind))
+        .pipe(
+            catchError(() => {
+            throw new ForbiddenException('API not available');
+            }),
+        );;
+    }
 }

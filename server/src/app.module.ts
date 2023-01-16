@@ -7,10 +7,14 @@ import { AuthModule } from './auth/auth.module';
 import { User } from './typeorm/entities/User';
 import { CalendarController } from './calendar/calendar.controller';
 import { CalendarModule } from './calendar/calendar.module';
+import { CalendarService } from './calendar/calendar.service';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     AuthModule,
+    CalendarModule,
+    HttpModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -23,9 +27,8 @@ import { CalendarModule } from './calendar/calendar.module';
       // synchronize: false,
     }),
     PassportModule.register({ session: true }),
-    CalendarModule,
   ],
   controllers: [AppController, CalendarController],
-  providers: [AppService],
+  providers: [AppService, CalendarService],
 })
 export class AppModule {}

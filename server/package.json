@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/axios": "^1.0.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/mapped-types": "*",
@@ -28,6 +29,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.0",
     "express-session": "^1.17.3",
+    "googleapis": "^110.0.0",
     "mysql2": "^2.3.3",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
