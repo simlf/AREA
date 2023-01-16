@@ -105,3 +105,8 @@ dist
 
 # angular dir
 .angular/
+
+# build file
+
+www/
+android/
