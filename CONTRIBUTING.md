@@ -7,6 +7,7 @@ You must prefix all your commits with a gitmoji :
     - Add a new feature -> :sparkles:
     - Fix a bug -> :bug:
     - Factorize code -> :recycle:
+    - Remove useless code -> :coffin:
 
 Please specify shortly (in english) what your commit is doing (this will be useful for the reviews).
 
