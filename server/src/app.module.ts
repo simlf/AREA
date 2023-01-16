@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { User } from './typeorm/entities/User';
+import { CalendarController } from './calendar/calendar.controller';
+import { CalendarModule } from './calendar/calendar.module';
 
 @Module({
   imports: [
@@ -21,8 +23,9 @@ import { User } from './typeorm/entities/User';
       // synchronize: false,
     }),
     PassportModule.register({ session: true }),
+    CalendarModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, CalendarController],
   providers: [AppService],
 })
 export class AppModule {}
