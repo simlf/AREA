@@ -13,7 +13,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
     super({
       clientID: '226121897457-6u9ludlu2ol8842ubhac91a6qb3haut5.apps.googleusercontent.com',
       clientSecret: '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',
-      callbackURL: 'http://localhost:3000/api/auth/google/redirect',
+      callbackURL: 'http://localhost:8080/api/auth/google/redirect',
       scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar.readonly'],
     });
   }
