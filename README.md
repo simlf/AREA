@@ -22,15 +22,21 @@ The project can be easily run using Docker Compose. To get started, make sure yo
 2.  Start the containers: `docker-compose up`
 3.  The web app will be running at [http://localhost:8001](http://localhost:8001/)
 
-Note: You may need to update the environment variables in the `docker-compose.yml` file to match your specific setup.
+#### Notes:
 
-To stop the containers, simply run `docker-compose down`.
+- You may need to update the environment variables in the `docker-compose.yml` file to match your specific setup.
 
-You can also run the app in background by running `docker-compose up -d`.
+- Every time you add a new package to your `package.json` file or make any changes to it or the `.env` file, please consider rebuilding the docker image using `docker-compose down && docker-compose up --build`.
 
-To see the logs of the containers, use `docker-compose logs -f`.
+- To stop the containers, simply run `docker-compose down`.
 
-You can change the ports exposed in the `docker-compose.yml` file.
+- You can also run the app in background by running `docker-compose up -d`.
+
+- To see the logs of the containers, use `docker-compose logs -f`.
+
+- You can change the ports exposed in the `docker-compose.yml` file.
+
+- To open the container inside your shell, you can run `docker exec -it myapp_backend sh`. But keep in mind that you won't be able to execute commands like `vim` or `emacs`.
 
 ## Using Nest.js with NPM
 
