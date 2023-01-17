@@ -1,73 +1,68 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# AREA
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+AREA is an app that allows you to easily connect various services together, similar to IFTT. With AREA, you can automate tasks and streamline your workflow by creating custom "recipes" that link different services together.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
 
-## Installation
+-   Easy to use interface for creating and managing recipes
+-   Support for a wide variety of popular services such as Gmail, League of Legends, Twitter, etc.
+-   Triggers and actions can be customized to fit your specific needs
+-   Ability to chain multiple actions together to create complex recipes
 
-```bash
-$ npm install
-```
+## Usage
 
-## Running the app
+### Using Docker Compose
 
-```bash
-# development
-$ npm run start
+The project can be easily run using Docker Compose. To get started, make sure you have Docker and Docker Compose installed on your machine.
 
-# watch mode
-$ npm run start:dev
+1.  Build the Docker images: `docker-compose build`
+2.  Start the containers: `docker-compose up`
+3.  The web app will be running at [http://localhost:8001](http://localhost:8001/)
 
-# production mode
-$ npm run start:prod
-```
+Note: You may need to update the environment variables in the `docker-compose.yml` file to match your specific setup.
 
-## Test
+To stop the containers, simply run `docker-compose down`.
 
-```bash
-# unit tests
-$ npm run test
+You can also run the app in background by running `docker-compose up -d`.
 
-# e2e tests
-$ npm run test:e2e
+To see the logs of the containers, use `docker-compose logs -f`.
 
-# test coverage
-$ npm run test:cov
-```
+You can change the ports exposed in the `docker-compose.yml` file.
 
-## Support
+## Using Nest.js with NPM
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+The project is built with [Nest.js](https://nestjs.com/) and can be easily run with NPM. To get started, make sure you have Node.js and NPM installed on your machine.
 
-## Stay in touch
+1.  Navigate to the server directory: `cd server`
+3.  Install the dependencies: `npm install`
+4.  Start the server: `npm run start`
+5.  The app will be running at [http://localhost:8000](http://localhost:8000/)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+To run the app in development mode, use `npm run start:dev`.
+
+To run the tests, use `npm run test`.
+
+You can change the ports exposed in the `.env` file.
+
+Make sure you have the correct version of Node installed, check the `.nvmrc` or `.node-version` for the version.
+
+## Getting Started
+
+1.  Download and install the AREA app on your device
+2.  Sign in or create an account
+3.  Browse the available services and select the ones you want to use
+4.  Create a new recipe and select the trigger and action(s) you want to use
+5.  Save and activate your recipe
+
+## Examples of use
+
+-   Automatically send a tweet every time a new item is added to your RSS feed
+-   Send a text message to your phone when an email from a specific sender arrives in your inbox
+-   Automatically save attachments from specific emails to your cloud storage account
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License.
