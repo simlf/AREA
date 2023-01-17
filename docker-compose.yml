@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  server:
+    container_name: myapp_server
+    restart: always
+    build: './server'
+    # TODO: Add environment variables
+    environment:
+      - HOST
+      - SERVER_PORT
+      - DB_USERNAME
+      - DB_NAME
+      - DB_HOST
+      - DB_PORT
+    env_file:
+      - .env
+    ports:
+      - '${SERVER_PORT}:${SERVER_PORT}'
+    networks:
+      - server
+    volumes:
+      - ./server/logs:/app/logs
+    links:
+      - db
+    depends_on:
+      - db
+
+  db:
+    container_name: myapp_db
+    restart: always
+    image: 'mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    networks:
+      - server
+    volumes:
+      - myapp_db_data:/var/lib/mysql
+
+networks:
+  server:
+
+volumes:
+  myapp_db_data:
