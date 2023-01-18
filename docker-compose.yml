@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   server:
-    container_name: myapp_server
+    container_name: area_server
     restart: always
     build: './server'
     # TODO: Add environment variables
@@ -27,7 +27,7 @@ services:
       - db
 
   db:
-    container_name: myapp_db
+    container_name: area_db
     restart: always
     image: 'mysql'
     environment:
@@ -38,10 +38,10 @@ services:
     networks:
       - server
     volumes:
-      - myapp_db_data:/var/lib/mysql
+      - area_db_data:/var/lib/mysql
 
 networks:
   server:
 
 volumes:
-  myapp_db_data:
+  area_db_data:
