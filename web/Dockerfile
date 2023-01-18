@@ -14,4 +14,4 @@ RUN ionic build
 
 EXPOSE 8001
 
-CMD [ "ionic", "serve" ]
+CMD [ "ionic", "serve", "-p 8001" ]
