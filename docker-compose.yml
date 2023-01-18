@@ -20,7 +20,7 @@ services:
     networks:
       - server
     volumes:
-      - ./server/logs:/app/logs
+      - ./server:/server
     links:
       - db
     depends_on:
