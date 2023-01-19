@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -38,5 +39,4 @@ export class HomePage implements OnInit {
       this.currentBreakpoint = Breakpoints.HandsetPortrait;
     }
   }
-
 }
