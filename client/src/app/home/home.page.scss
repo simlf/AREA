@@ -1,0 +1,37 @@
+.menuWeb {
+  width: 1450px;
+  height: 131px;
+  left: 0px;
+  top: -31px;
+  border: 5px solid blue;
+}
+
+.menuWeb img.logo {
+  position: absolute;
+  width: 227.03px;
+  height: 72.2px;
+  left: 23.97px;
+  top: 3px;
+}
+
+.menuWeb img.background {
+  width: 54.5em;
+  height: 9.5em;
+  left: 0px;
+  top: 1em;
+}
+
+.menuHandsetPortrait img.iconeMenu {
+  padding-left: 19%;
+}
+
+.menuHandsetPortrait {
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  height: 65px;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px 10px 0 0;
+  padding: 14px;
+}

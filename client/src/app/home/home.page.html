@@ -1,0 +1,11 @@
+<div [ngSwitch]="currentBreakpoint">
+  <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
+    <img src="../../assets/LogoArea.png" class="logo">
+    <img src="../../assets/menuHeader.png" class="background">
+  </div>
+  <div class="menuHandsetPortrait" *ngSwitchCase="Breakpoints.HandsetPortrait">
+    <img src="../../assets/logoAutomatisation.png" class="iconeMenu">
+    <img src="../../assets/logoCreate.png" class="iconeMenu">
+    <img src="../../assets/logoLogin.png" class="iconeMenu">
+  </div>
+</div>
