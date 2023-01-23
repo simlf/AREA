@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>createIntegration</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div [ngSwitch]="currentBreakpoint">
+  <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
+      <img src="../../assets/LogoArea.png" class="logo-web">
+      <img src="../../assets/menuHeader.png" class="background">
+      <p class="menuTitle"><a href="create-integration">Créer</a></p>
+      <div class="vl"></div>
+      <p class="menuTitle"><a href="integration">Vos intégrations</a></p>
+      <p id="rcorners"></p>
+  </div>
+  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
+    <img src="../../assets/LogoAreaBlack.png" class="logo-handset">
+    <div class="menuHandsetPortrait">
+      <a href="home"><img src="../../assets/logoAutomatisation.png" class="iconeMenu"></a>
+      <a href="create-integration"><img src="../../assets/logoCreate.png" class="iconeMenu"></a>
+      <img src="../../assets/logoLogin.png" class="iconeMenu">
+    </div>
+  </div>
+</div>
 
-<ion-content>
-
-</ion-content>
+<router-outlet></router-outlet>
