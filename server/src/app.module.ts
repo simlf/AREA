@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { UserEntity } from './users/entity/UserEntity';
 import { HttpModule } from '@nestjs/axios';
 import { UsersModule } from './users/users.module';
+import { DiscordAuthEntity } from './auth/entities/DiscordAuthEntity';
+import { DiscordModule } from './auth/discord/discord.module';
 
 @Module({
   imports: [
@@ -19,10 +21,10 @@ import { UsersModule } from './users/users.module';
       username: 'root',
       password: 'root',
       database: 'area_database',
-      entities: [UserEntity],
+      entities: [UserEntity, DiscordAuthEntity],
       synchronize: true,
     }),
-    // PassportModule.register({ session: true }),
+    DiscordModule,
   ],
   controllers: [
     AppController,
