@@ -1,33 +1,62 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from '../typeorm/entities/User';
-import { UserDetails } from '../utils/types';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { UsersService } from 'src/users/users.service';
+import { JwtService } from '@nestjs/jwt';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { RegistrationStatus } from './interfaces/registration-status.interface';
+import { LoginUserDto } from 'src/users/dto/login-user.dto';
+import { LoginStatus } from './interfaces/login-status.interface';
+import { UserDto } from 'src/users/dto/user.dto';
+import { JwtPayload } from './jwt.strategy';
+
 
 @Injectable()
 export class AuthService {
-  // This is a repository of the User entity that we can use to query the database
-  constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
-  ) {}
+    constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService,  ) {}
 
-  // Create a new user if it doesn't exist, otherwise return the existing user
-  async validateUser(details: UserDetails) {
-    console.log('AuthService');
-    console.log(details);
-    const user = await this.userRepository.findOneBy({ email: details.email });
-    console.log(user);
-    if (user) return user;
-    console.log('User not found. Creating...');
-    const newUser = this.userRepository.create(details);
-    return this.userRepository.save(newUser);
-  }
+    async register(userDto: CreateUserDto): Promise<RegistrationStatus> {
+        let status: RegistrationStatus = {
+            success: true,
+            message: 'user registered',
+        };
+        try {
+            await this.usersService.create(userDto);
+        } catch (err) {
+            status = {
+                success: false,
+                message: err,
+            };
+        }
+        return status;
+    }
 
-  // This method is used by the serializer to find the user in the database
-  async findUser(id: number) {
-    const user = await this.userRepository.findOneBy({ id });
-    return user;
-  }
+    async login(loginUserDto: LoginUserDto): Promise<LoginStatus> {
+    // find user in db
+        const user = await this.usersService.findByLogin(loginUserDto);
 
-  // async getAccesToken(: string) {
+        // generate and sign token
+        const token = this._createToken(user);
+
+        return {
+            username: user.username, ...token,
+        };
+    }
+
+    private _createToken({ username }: UserDto): any {
+        const user: JwtPayload = { username };
+        const accessToken = this.jwtService.sign(user);
+        return {
+            expiresIn: 1500000,
+            // expiresIn: process.env.EXPIRESIN,
+            accessToken,
+        };
+    }
+
+    async validateUser(payload: JwtPayload): Promise<UserDto> {
+        const user = await this.usersService.findByPayload(payload);
+        if (!user) {
+            throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
+        }
+        return user;
+    }
+
 }

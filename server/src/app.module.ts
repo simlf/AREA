@@ -4,16 +4,21 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { User } from './typeorm/entities/User';
-import { CalendarController } from './calendar/calendar.controller';
-import { CalendarModule } from './calendar/calendar.module';
-import { CalendarService } from './calendar/calendar.service';
+import { UserEntity } from './typeorm/entities/UserEntity';
+// import { CalendarController } from './calendar/calendar.controller';
+// import { CalendarModule } from './calendar/calendar.module';
+// import { CalendarService } from './calendar/calendar.service';
 import { HttpModule } from '@nestjs/axios';
+import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
+// import { UsersService } from './users/users.service';
+// import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     AuthModule,
-    CalendarModule,
+    UsersModule,
+    // CalendarModule,
     HttpModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -24,14 +29,21 @@ import { HttpModule } from '@nestjs/axios';
       password: '',
       database: 'docker_nest',
       // database: 'google_oauth2_app2',
-      autoLoadEntities: true,
-      // entities: [User],
+      // autoLoadEntities: true,
+      entities: [UserEntity],
       synchronize: true,
       // synchronize: false,
     }),
-    PassportModule.register({ session: true }),
+    // PassportModule.register({ session: true }),
   ],
-  controllers: [AppController, CalendarController],
-  providers: [AppService, CalendarService],
+  controllers: [
+    AppController,
+    // CalendarController
+  ],
+  providers: [
+    AppService,
+    // UsersService,
+    // CalendarService
+  ],
 })
 export class AppModule {}
