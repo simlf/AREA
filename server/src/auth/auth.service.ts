@@ -5,8 +5,8 @@ import { CreateUserDto } from 'src/users/dto/user.create.dto';
 import { RegistrationStatus } from './interfaces/registration-status.interface';
 import { LoginUserDto } from 'src/users/dto/user-login.dto';
 import { LoginStatus } from './interfaces/login-status.interface';
+import { JwtPayload } from './interfaces/payload.interface';
 import { UserDto } from 'src/users/dto/user.dto';
-import { JwtPayload } from './jwt.strategy';
 
 
 @Injectable()

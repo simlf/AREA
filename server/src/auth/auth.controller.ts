@@ -1,9 +1,12 @@
-import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post, Get, UseGuards, Req } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
 import { AuthService } from './auth.service';
 import { RegistrationStatus } from './interfaces/registration-status.interface';
 import { CreateUserDto } from 'src/users/dto/user.create.dto';
 import { LoginStatus } from './interfaces/login-status.interface';
 import { LoginUserDto } from 'src/users/dto/user-login.dto';
+import { JwtPayload } from './interfaces/payload.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -24,5 +27,9 @@ export class AuthController {
         return await this.authService.login(loginUserDto);
     }
 
-
+    @Get('whoami')
+    @UseGuards(AuthGuard())
+    public async testAuth(@Req() req: any): Promise<JwtPayload> {
+        return req.user;
+    }
 }
