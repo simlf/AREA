@@ -4,16 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { User } from './typeorm/entities/User';
-import { CalendarController } from './calendar/calendar.controller';
-import { CalendarModule } from './calendar/calendar.module';
-import { CalendarService } from './calendar/calendar.service';
+import { UserEntity } from './users/entity/UserEntity';
 import { HttpModule } from '@nestjs/axios';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     AuthModule,
-    CalendarModule,
+    UsersModule,
     HttpModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -24,14 +22,18 @@ import { HttpModule } from '@nestjs/axios';
       password: '',
       database: 'docker_nest',
       // database: 'google_oauth2_app2',
-      autoLoadEntities: true,
-      // entities: [User],
+      // autoLoadEntities: true,
+      entities: [UserEntity],
       synchronize: true,
       // synchronize: false,
     }),
-    PassportModule.register({ session: true }),
+    // PassportModule.register({ session: true }),
   ],
-  controllers: [AppController, CalendarController],
-  providers: [AppService, CalendarService],
+  controllers: [
+    AppController,
+  ],
+  providers: [
+    AppService,
+  ],
 })
 export class AppModule {}

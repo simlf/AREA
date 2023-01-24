@@ -1,5 +1,5 @@
-export type UserDetails = {
-  email: string;
-  displayName: string;
-  accessToken: string;
-};
+// export type UserDetails = {
+//   email: string;
+//   displayName: string;
+//   accessToken: string;
+// };
