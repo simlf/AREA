@@ -11,7 +11,8 @@ import { UserDto } from 'src/users/dto/user.dto';
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService,  ) {}
+    constructor(private readonly usersService: UsersService,
+    private readonly jwtService: JwtService) {}
 
     async register(userDto: CreateUserDto): Promise<RegistrationStatus> {
         let status: RegistrationStatus = {
