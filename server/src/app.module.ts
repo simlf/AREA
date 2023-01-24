@@ -7,6 +7,9 @@ import { AuthModule } from './auth/auth.module';
 import { UserEntity } from './users/entity/UserEntity';
 import { HttpModule } from '@nestjs/axios';
 import { UsersModule } from './users/users.module';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
@@ -14,11 +17,11 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     HttpModule,
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'area_db',
-      username: 'root',
-      password: 'root',
-      database: 'area_database',
+      type: process.env.DB_TYPE as any,
+      host: process.env.DB_HOST,
+      username: process.env.DB_USER,
+      password: process.env.MYSQL_ROOT_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
       entities: [UserEntity],
       synchronize: true,
     }),
