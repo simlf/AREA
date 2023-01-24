@@ -1,5 +1,6 @@
 import * as bcryptjs from 'bcryptjs';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { DiscordAuthEntity } from 'src/auth/entities/DiscordAuthEntity';
+import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -14,6 +15,9 @@ export class UserEntity {
 
   @Column()
   password: string;
+
+  @OneToOne(() => DiscordAuthEntity, (discordAuth) => discordAuth.user)
+  discordAuth: Relation<DiscordAuthEntity>;
 
   @BeforeInsert()
   async hashPassword() {
