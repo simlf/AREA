@@ -30,7 +30,6 @@ import { UsersService } from 'src/users/users.service';
         AuthController
     ],
     providers: [
-        // UsersService,
         AuthService,
         JwtStrategy,
     ],

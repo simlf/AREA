@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../typeorm/entities/UserEntity';
+import { UserEntity } from './entity/UserEntity';
 import { UsersService } from './users.service';
 // import { SessionSerializer } from './utils/Serializer';
 

@@ -1,5 +1,5 @@
 import { UserDto } from "src/users/dto/user.dto";
-import { UserEntity } from "src/typeorm/entities/UserEntity";
+import { UserEntity } from "src/users/entity/UserEntity";
 
 export const toUserDto = (data: UserEntity): UserDto => {
     const { id, email, username } = data;

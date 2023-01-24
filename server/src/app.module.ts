@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { UserEntity } from './typeorm/entities/UserEntity';
+import { UserEntity } from './users/entity/UserEntity';
 // import { CalendarController } from './calendar/calendar.controller';
 // import { CalendarModule } from './calendar/calendar.module';
 // import { CalendarService } from './calendar/calendar.service';

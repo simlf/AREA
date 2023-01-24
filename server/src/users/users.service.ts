@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { LoginUserDto } from 'src/users/dto/login-user.dto';
+import { CreateUserDto } from 'src/users/dto/user.create.dto';
+import { LoginUserDto } from 'src/users/dto/user-login.dto';
 import { UserDto } from 'src/users/dto/user.dto';
-import { UserEntity as UserEntity } from 'src/typeorm/entities/UserEntity';
+import { UserEntity as UserEntity } from 'src/users/entity/UserEntity';
 import { toUserDto } from 'src/utils/mapper';
 import { comparePasswords } from 'src/utils/utils';
 import { Repository } from 'typeorm';
@@ -19,8 +19,8 @@ export class UsersService {
         return toUserDto(user);
     }
 
-    async findByLogin({ email, password }: LoginUserDto): Promise<UserDto> {
-        const user = await this.userRepo.findOne({ where: { email } });
+    async findByLogin({ username, password }: LoginUserDto): Promise<UserDto> {
+        const user = await this.userRepo.findOne({ where: { username } });
 
         if (!user) {
             throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);

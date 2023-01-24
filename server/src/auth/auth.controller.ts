@@ -1,9 +1,9 @@
 import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegistrationStatus } from './interfaces/registration-status.interface';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from 'src/users/dto/user.create.dto';
 import { LoginStatus } from './interfaces/login-status.interface';
-import { LoginUserDto } from 'src/users/dto/login-user.dto';
+import { LoginUserDto } from 'src/users/dto/user-login.dto';
 
 @Controller('auth')
 export class AuthController {
