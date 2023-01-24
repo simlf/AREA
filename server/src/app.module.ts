@@ -5,20 +5,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserEntity } from './users/entity/UserEntity';
-// import { CalendarController } from './calendar/calendar.controller';
-// import { CalendarModule } from './calendar/calendar.module';
-// import { CalendarService } from './calendar/calendar.service';
 import { HttpModule } from '@nestjs/axios';
-import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
-// import { UsersService } from './users/users.service';
-// import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     AuthModule,
     UsersModule,
-    // CalendarModule,
     HttpModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -38,12 +31,9 @@ import { UsersModule } from './users/users.module';
   ],
   controllers: [
     AppController,
-    // CalendarController
   ],
   providers: [
     AppService,
-    // UsersService,
-    // CalendarService
   ],
 })
 export class AppModule {}
