@@ -5,7 +5,30 @@
       <p class="menuTitle"><a href="create-integration">Créer</a></p>
       <div class="vl"></div>
       <p class="menuTitle"><a href="integration">Vos intégrations</a></p>
-      <p id="rcorners"></p>
+      <div class="flex-rectangle"></div>
+      <strong><p class="creation-automatisation">Créer votre propre automatisation</p></strong>
+      <strong><p class="perso-automatisation">Personnaliser votre automatisation</p></strong>
+      <select name="Lorsque" class='lorsque-box' >
+        <option value="Choix 1" >Choix : 1</option>
+        <option value="Choix 2" >Choix : 2</option>
+        <option value="Choix 3" >Choix : 3</option>
+        <option value="Choix 4" >Choix : 4</option>
+
+      </select>
+      <select name="Alors" class='alors-box' >
+        <option value="Donc 1" >Donc : 1</option>
+        <option value="Donc 2" >Donc : 2</option>
+        <option value="Donc 3" >Donc : 3</option>
+        <option value="Donc 4" >Donc : 4</option>
+
+      </select>
+      <select name="Couleur" class='color-box' >
+        <option value="Couleur 1" >Couleur : 1</option>
+        <option value="Couleur 2" >Couleur : 2</option>
+        <option value="Couleur 3" >Couleur : 3</option>
+        <option value="Couleur 4" >Couleur : 4</option>
+
+      </select>
   </div>
   <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
     <img src="../../assets/LogoAreaBlack.png" class="logo-handset">
