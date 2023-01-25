@@ -1,13 +1,11 @@
 <div [ngSwitch]="currentBreakpoint">
     <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
       <!-- <img src="../../assets/LogoArea.png" class="logo-web"> -->
-      <div class="bglandingpage">
-      </div>
+      <div class="bglandingpage"></div>
     </div>
 
     <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
-      <div class="bglandingpage">
-      </div>
+      <img src="../../assets/bglandingpage.png" class="bglandingpageMobile">
     </div>
 </div>
 
