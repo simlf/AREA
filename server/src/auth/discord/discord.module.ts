@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DiscordAuthEntity } from '../entities/DiscordAuthEntity';
 import { UserEntity } from 'src/users/entity/UserEntity';
 import { AuthModule } from '../auth.module';
+import { AuthService } from '../auth.service';
+import { DiscordStrategy } from '../utils/DiscordStrategy';
+import { DiscordAuthGuard } from '../utils/Guards';
 
 @Module({
     imports: [
@@ -20,7 +23,13 @@ import { AuthModule } from '../auth.module';
         DiscordController,
     ],
     providers: [
+        DiscordAuthGuard,
+        DiscordStrategy,
         DiscordService,
+        {
+            provide: 'AUTH_SERVICE',
+            useClass: AuthService,
+        }
     ],
 })
 

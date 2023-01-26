@@ -30,6 +30,7 @@ export class AuthController {
     @Get('whoami')
     @UseGuards(AuthGuard())
     public async testAuth(@Req() req: any): Promise<JwtPayload> {
+        console.log(req.user);
         return req.user;
     }
 }

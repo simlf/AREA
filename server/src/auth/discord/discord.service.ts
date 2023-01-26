@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserDto } from 'src/users/dto/user.dto';
 import { toDiscordDto } from 'src/utils/mapper';
@@ -7,13 +7,22 @@ import { DiscordAuthEntity } from 'src/auth/entities/DiscordAuthEntity';
 import { CreateDiscordDto } from './dto/discord.create.dto';
 import { DiscordDto } from './dto/discord.dto';
 import { UsersService } from 'src/users/users.service';
+import { DiscordStrategy } from '../utils/DiscordStrategy';
 
 @Injectable()
 export class DiscordService {
     constructor(
         private readonly usersService: UsersService,
+        private readonly discordStrategy: DiscordStrategy,
         @InjectRepository(DiscordAuthEntity) private readonly discordAuthRepo: Repository<DiscordAuthEntity>,
     ){}
+
+    // async validate(): Promise<any> {
+    //     // await this.discordStrategy.validate();
+    // }
+    // async validateUser(discordId: string): Promise<any> {
+    //     const user = await.this.userService
+    // }
 
     async createDiscordAuth({ username }: UserDto, createDiscordDto: CreateDiscordDto): Promise<DiscordDto> {
         const { accessToken, refreshToken, discordId } = createDiscordDto;
