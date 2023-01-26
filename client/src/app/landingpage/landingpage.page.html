@@ -1,7 +1,8 @@
 <div [ngSwitch]="currentBreakpoint">
-    <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
+  <div *ngSwitchCase="Breakpoints.Web">
+    <div class="menuWeb">
       <div class="bglandingpage">
-      <img src="../../assets/bglandingpage.png" class="bglandingpage">
+        <img src="../../assets/backgroundLanding.jpg" class="bglandingpage">
         <div class="container">
           <div class="logo-container">
             <img src="../../assets/LogoArea.png" class="logo-web">
@@ -12,12 +13,12 @@
           </div>
         </div>
       </div>
-      <div class="card-background"></div>
     </div>
-
-    <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
-      <img src="../../assets/bglandingpage.png" class="bglandingpageMobile">
-    </div>
+    <div class="card-background"></div>
+  </div>
+  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
+    <img src="../../assets/bglandingpage.png" class="bglandingpageMobile">
+  </div>
 </div>
 
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>
