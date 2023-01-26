@@ -29,9 +29,7 @@ export class HomePage implements OnInit {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
-    this.AppService.getWhoami().subscribe((data) => {
-      console.log(data);
-    });
+    this.AppService.getWhoami();
   }
 
 
