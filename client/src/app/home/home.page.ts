@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { AppService } from './home.service';
 
 
 @Component({
@@ -22,13 +23,17 @@ export class HomePage implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private AppService: AppService) { }
 
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
+    this.AppService.getWhoami().subscribe((data) => {
+      console.log(data);
+    });
   }
+
 
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
