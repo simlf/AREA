@@ -1,9 +1,13 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Inscription</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div [ngSwitch]="currentBreakpoint">
+  <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
+    <div class="bglandingpage">
+    </div>
+  </div>
 
-<ion-content>
+  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
+    <div class="bglandingpage">
+    </div>
+  </div>
+</div>
 
-</ion-content>
+<router-outlet></router-outlet> 
