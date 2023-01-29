@@ -7,9 +7,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InscriptionPage implements OnInit {
 
-  constructor() { }
+  Breakpoints = Breakpoints;
+  currentBreakpoint:string = '';
 
-  ngOnInit() {
+  readonly breakpoint$ = this.breakpointObserver
+    .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
+    .pipe(
+      tap(value => console.log(value)),
+      distinctUntilChanged()
+    );
+
+  constructor(private breakpointObserver: BreakpointObserver) { }
+
+  ngOnInit(): void {
+    this.breakpoint$.subscribe(() =>
+      this.breakpointChanged()
+    );
   }
 
+  private breakpointChanged() {
+    if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
+      this.currentBreakpoint = Breakpoints.Web;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.HandsetPortrait)) {
+      this.currentBreakpoint = Breakpoints.HandsetPortrait;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.TabletPortrait)) {
+      this.currentBreakpoint = Breakpoints.HandsetPortrait;
+    }
+  }
 }

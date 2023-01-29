@@ -6,10 +6,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connexion.page.scss'],
 })
 export class ConnexionPage implements OnInit {
+  
+  Breakpoints = Breakpoints;
+  currentBreakpoint:string = '';
 
-  constructor() { }
+  readonly breakpoint$ = this.breakpointObserver
+    .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
+    .pipe(
+      tap(value => console.log(value)),
+      distinctUntilChanged()
+    );
 
-  ngOnInit() {
+  constructor(private breakpointObserver: BreakpointObserver) { }
+
+  ngOnInit(): void {
+    this.breakpoint$.subscribe(() =>
+      this.breakpointChanged()
+    );
   }
 
+  private breakpointChanged() {
+    if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
+      this.currentBreakpoint = Breakpoints.Web;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.HandsetPortrait)) {
+      this.currentBreakpoint = Breakpoints.HandsetPortrait;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.TabletPortrait)) {
+      this.currentBreakpoint = Breakpoints.HandsetPortrait;
+    }
+  }
 }
