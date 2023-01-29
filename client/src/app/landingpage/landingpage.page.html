@@ -13,11 +13,21 @@
           </div>
         </div>
       </div>
+      <div class="card-background">
+        <integration-list class="integration-list-web" *ngSwitchCase="Breakpoints.Web"></integration-list>  
+        <div class="footer-background">
+          <p>Join Us</p>
+          <img src="../../assets/backgroundLanding.jpg" class="bglandingpage">
+        </div>
+      </div>
     </div>
-    <div class="card-background"></div>
   </div>
   <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
     <img src="../../assets/bglandingpage.png" class="bglandingpageMobile">
+    <img src="../../assets/LogoArea.png" class="logo-mobile">
+    <h1>Embarquez pour le<br>futur</h1>
+    <button class="mobile-button" routerLink="/home" style="object-fit:cover;position:absolute;top: 58%;">Connexion</button>
+    <button class="mobile-button" routerLink="/home" style="object-fit:cover;position:absolute;top: 70%;">Inscription</button>
   </div>
 </div>
 

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { LandingpagePageRoutingModule } from './landingpage-routing.module';
+import { IntegrationListComponent } from './card.component';
 
 import { LandingpagePage } from './landingpage.page';
 
@@ -15,6 +16,6 @@ import { LandingpagePage } from './landingpage.page';
     IonicModule,
     LandingpagePageRoutingModule
   ],
-  declarations: [LandingpagePage]
+  declarations: [LandingpagePage, IntegrationListComponent]
 })
 export class LandingpagePageModule {}

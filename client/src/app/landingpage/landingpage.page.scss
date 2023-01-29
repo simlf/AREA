@@ -1,6 +1,6 @@
 .menuWeb {
   width: 1920px;
-  display: flex;
+//   display: flex;
 }
 
 img.bglandingpage {
@@ -68,14 +68,73 @@ img.logo-web {
     width: 20%;
 }
 
+img.logo-mobile {
+    padding-top: 20%;
+    position: fixed;
+    object-fit: cover;
+    width: 60%;
+}
+
+h1 {
+    position: absolute;
+    object-fit: cover;
+    padding-top: 50%;
+    font-size: 10vw;
+    font-weight: bold;
+}
+
+.mobile-button {
+    border: 4px solid #2651B1;
+    background: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 7vw;
+    // cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    box-shadow: 0 1px 8px 0 rgba(255, 255, 255);
+}
+
+.mobile-button:hover {
+    border: 4px solid #2651B1;
+    background-color: #2651B1;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    padding: 14px 28px;
+    font-size: 7vw;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    box-shadow: 0 1px 8px 0 rgba(255, 255, 255);
+}
+
 .button {
-    border: 2px solid black;
-    // background-color: none;
+    border: 4px solid #2651B1;
     background: none;
     color: white;
     padding: 14px 28px;
     font-size: 16px;
-    border-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    font-size: 1.2vw;
+}
+
+.button:hover {
+    border: 4px solid #2651B1;
+    background: #2651B1;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
     cursor: pointer;
     border-radius: 10px;
     padding: 2% 5%;
@@ -98,7 +157,6 @@ img.logo-web {
 
 .img-container {
     float: left;
-    // position:absolute;
     align-items: right;
     text-align: right;
     width: 44%;
@@ -106,17 +164,70 @@ img.logo-web {
 
 .logo-container {
     float: left;
-    // position:absolute;
     align-items: right;
     text-align: right;
     width: 56%;
 }
 
 .card-background {
+    background-color: white;
     width: 100%;
-    height: 70%;
-    border-style: solid;
-    border-color: black;
-    border-width: 4px;
+    height: 120%;
     position: absolute;
+}
+
+.imgBrawl {
+    margin-top: 40%;
+    width: 30%;
+}
+
+.description {
+    margin-top: 50%;
+}
+
+.thecard {
+    float: left;
+    margin: 5% 7% 5% 9%;
+    width: 16%;
+    height: 32%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+.thecard:hover {
+    transform: rotateY(180deg);
+}
+
+.thefront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: whitesmoke;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.3);
+    color: black;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.theback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: whitesmoke;
+    color: black;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.3);
+    text-align: center;
+    border-radius: 30px;
+    transform: rotateY(180deg);
+}
+
+.footer-background {
+    // padding-top: 8%;
+    width: 100%;
+    height: 20%;
+    // top: 208%;
+    position: relative;
+    text-align: center;
 }
