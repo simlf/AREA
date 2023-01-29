@@ -68,10 +68,171 @@ img.logo-web {
     width: 20%;
 }
 
+.button {
+    border: 2px solid black;
+    // background-color: none;
+    background: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    font-size: 1.2vw;
+}
+
+.container {
+    position:absolute;
+    margin-top: 1%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.img-container {
+    float: left;
+    // position:absolute;
+    align-items: right;
+    text-align: right;
+    width: 44%;
+}
+
 .logo-container {
-  float: left;
-  // position:absolute;
-  align-items: right;
-  text-align: right;
-  width: 56%;
+    float: left;
+    // position:absolute;
+    align-items: right;
+    text-align: right;
+    width: 56%;
+}
+
+.card-background {
+    width: 100%;
+    height: 70%;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+    position: absolute;
+}
+
+.rectangle-container {
+  // justify-content: center;
+  // align-items: center;
+  height: 100%;
+}
+
+.rectangle {
+  margin-top: 10%;
+  margin-left: 40.5%;
+  width: 20%;
+  height: 50%;
+  justify-content: center;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 3px solid black;
+  border-radius: 35px;
+}
+.new {
+  font-size: 1.25vw;
+}
+.form-control {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 5% 0.5% 0.5% 0.5%;
+  align-items: center;
+  width: 75%;
+}
+.form-control::placeholder {
+  color: rgb(51, 49, 49);
+  font-size: 1.10vw;
+}
+
+.btn-submit {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 10% 0.5% 0.5% 0.5%;
+  align-items: center;
+  width: 45%;
+  color: rgb(51, 49, 49);
+  font-size: 1.10vw;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.btn-submit:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-submit:active {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.1s ease-in-out;
+}
+
+.old {
+  font-size: 0.7vw;
+}
+
+.google {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 1px solid rgb(207, 203, 203);
+  text-align: center;
+  font-size: 0.8vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.signup-with-google {
+  width: 75%;
+  margin-left: 13%;
+  height: 10%;
+}
+
+.facebook {
+  margin-top: 1%;
+  background-color: #3b5998;
+  color: rgb(255, 255, 255);
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 1px solid #334c83;
+  text-align: center;
+  font-size: 0.78vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.icon2 {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.signup-with-fb {
+  width: 75%;
+  height: 10%;
+  margin-left: 13%;
 }
