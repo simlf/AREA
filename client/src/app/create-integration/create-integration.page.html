@@ -1,9 +1,53 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>createIntegration</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div [ngSwitch]="currentBreakpoint">
+  <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
+      <img src="../../assets/LogoArea.png" class="logo-web">
+      <img src="../../assets/menuHeader.png" class="background">
+      <div class="menuText">
+        <p class="menuTitle"><a href="create-integration">Créer</a></p>
+        <div class="vl"></div>
+        <p class="menuTitle"><a href="integration">Vos intégrations</a></p>
+      </div>
+      <div class="flex-rectangle">
+        <div class="crea-auto">
+          <strong><p class="text-crea-integration">Créer votre propre automatisation</p></strong>
+          <strong><p class="text-lorsque">Lorsque</p></strong>
+          <select name="lorsque" class='lorsque-box' >
+            <option value="Choix 1" >Choix 1</option>
+            <option value="Choix 2" >Choix 2</option>
+            <option value="Choix 3" >Choix 3</option>
+            <option value="Choix 4" >Choix 4</option>
+          </select>
+          <select name="alors" class='alors-box' >
+            <option value="Alors 1" >Alors 1</option>
+            <option value="Alors 2" >Alors 2</option>
+            <option value="Alors 3" >Alors 3</option>
+            <option value="Alors 4" >Alors 4</option>
+          </select>
+          <strong><p class="text-alors">Alors</p></strong>
+        </div>
+        <div class="perso-auto">
+          <strong><p class="text-crea-integration">Personnaliser votre automatisation</p></strong>
+          <select name="couleur" class='color-box' >
+            <option value="Couleur 1" >Couleur 1</option>
+            <option value="Couleur 2" >Couleur 2</option>
+            <option value="Couleur 3" >Couleur 3</option>
+            <option value="Couleur 4" >Couleur 4</option>
+          </select>
+          <input type="text" class="name-box" placeholder="Nom">
+          <input type="file" class="img-box" placeholder="Image" accept="image/png, image/jpg, image/jpeg">
+        </div>
+        <div class="validate-integration">
+          <ion-button color="light" shape="round">Créer</ion-button>
+        </div>
+  </div>
+  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
+    <img src="../../assets/LogoAreaBlack.png" class="logo-handset">
+    <div class="menuHandsetPortrait">
+      <a href="home"><img src="../../assets/logoAutomatisation.png" class="iconeMenu"></a>
+      <a href="create-integration"><img src="../../assets/logoCreate.png" class="iconeMenu"></a>
+      <img src="../../assets/logoLogin.png" class="iconeMenu">
+    </div>
+  </div>
+</div>
 
-<ion-content>
-
-</ion-content>
+<router-outlet></router-outlet>

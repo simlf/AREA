@@ -4,12 +4,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-connexion',
-  templateUrl: './connexion.page.html',
-  styleUrls: ['./connexion.page.scss'],
+  selector: 'app-inscription',
+  templateUrl: './inscription.page.html',
+  styleUrls: ['./inscription.page.scss'],
 })
-export class ConnexionPage implements OnInit {
-  
+export class InscriptionPage implements OnInit {
+
   Breakpoints = Breakpoints;
   currentBreakpoint:string = '';
 
