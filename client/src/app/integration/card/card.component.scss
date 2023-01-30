@@ -54,6 +54,8 @@ img.card-logo-web {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -10px;
+
 }
 
 .card-button {
@@ -63,8 +65,7 @@ img.card-logo-web {
     text-align: center;
     color: white;
     border-radius: 10px;
-    margin-right: auto;
-    margin-left: auto;
+    margin-top: -10px;
     width: 35%;
     box-shadow: 0 0 15px;
 }
@@ -85,6 +86,7 @@ a {
     border-radius: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .card-block:has(.handset) {
@@ -98,4 +100,13 @@ a {
 .card-title {
     margin-left: 25px;
     color: white;
+}
+
+.card-button.deskopt {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logoConnect.mobile {
+    padding-left: 77px;
 }

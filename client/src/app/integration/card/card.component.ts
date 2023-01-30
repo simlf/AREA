@@ -13,10 +13,10 @@ import { integration } from 'src/app/models/integration.model';
     style="background-image: url({{card.img}});">
     <h4 class="card-title">{{card.name}}</h4>
     <div *ngIf="card.connect; else templateName">
-      <img src="../../assets/connect.png" alt="connect logo" class="logoConnect">
+      <img src="../../assets/connect.png" alt="connect logo" class="logoConnect mobile">
     </div>
       <ng-template #templateName>
-    <div class="card-button">
+    <div class="card-button ">
       <a href="{{card.oauth}}"> connexion </a>
     </div>
     </ng-template>
@@ -26,10 +26,10 @@ import { integration } from 'src/app/models/integration.model';
     <h4 class="card-title-web">{{card.name}}</h4>
     <p class="card-text">{{card.description}}</p>
     <div *ngIf="card.connect; else templateName">
-    <img src="../../assets/connect.png" alt="connect logo" class="logoConnect">
+      <img src="../../assets/connect.png" alt="connect logo" class="logoConnect">
     </div>
     <ng-template #templateName>
-    <div class="card-button">
+    <div class="card-button deskopt">
       <a href="{{card.oauth}}"> connexion </a>
     </div>
     </ng-template>
