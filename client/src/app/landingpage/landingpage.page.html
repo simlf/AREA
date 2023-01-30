@@ -1,5 +1,4 @@
 <div [ngSwitch]="currentBreakpoint">
-  <!-- <div class="menuWeb"> -->
   <div *ngSwitchCase="Breakpoints.Web">
     <div class="menuWeb">
       <img src="../../assets/backgroundLanding.jpg" class="bglandingpage">
@@ -19,7 +18,10 @@
       </div>
     </div>
     <div class="ctn">
-      <p>hello world</p>
+      <img src="../../assets/footer.png" alt="footer background" class="footerBackground">
+      <p class="titleFooter">Rejoigniez nous !</p>
+      <button class="buttonFooterun" routerLink="/home">Connexion</button>
+      <button class="buttonFooterdeux" routerLink="/home">Inscription</button>
     </div>
   </div>
   <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
@@ -28,7 +30,6 @@
     <h1>Embarquez pour le<br>futur</h1>
     <button class="mobile-button" routerLink="/home" style="object-fit:cover;position:absolute;top: 58%;">Connexion</button>
     <button class="mobile-button" routerLink="/home" style="object-fit:cover;position:absolute;top: 68%;">Inscription</button>
-    <!-- <p>hello world</p> -->
   </div>
 </div>
 
