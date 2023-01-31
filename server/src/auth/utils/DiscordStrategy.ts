@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
 // import { encrypt } from '../../utils/encrypt';
 
 @Injectable()
-export class DiscordStrategy extends PassportStrategy(Strategy) {
+export class DiscordStrategy extends PassportStrategy(Strategy, 'discord') {
   constructor(
     @Inject('AUTH_SERVICE') private readonly authService: AuthService,
   ) {
@@ -26,14 +26,16 @@ export class DiscordStrategy extends PassportStrategy(Strategy) {
     profile: Profile,
     // done: Done,
   ) {
-    // const { id: discordId } = profile;
-    // const encryptedAccessToken = encrypt(accessToken).toString();
-    // const encryptedRefreshToken = encrypt(refreshToken).toString();
+
+    this.discordService.createDiscordAuth({ accessToken, refreshToken, discordId: profile.id });
     const { id, email, discriminator, avatar } = profile;
+    let user = JSON.parse(JSON.stringify(profile));
     console.log("Validate");
-    console.log(profile);
+    // console.log(profile);
+    // console.log(user);
+    console.log(user.bearer);
 
     // done(null, user);
-    return { id, email, discriminator, avatar };
+    // return { id, email, discriminator, avatar };
   }
 }

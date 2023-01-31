@@ -22,6 +22,5 @@ export class UserEntity {
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcryptjs.hash(this.password, 10);
-  }// @Column()
-  // accessToken: string;
+  }
 }
