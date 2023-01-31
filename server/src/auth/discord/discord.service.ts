@@ -33,14 +33,15 @@ export class DiscordService {
 
     async createDiscordAuth(createDiscordDto: CreateDiscordDto): Promise<DiscordDto> {
         const { accessToken, refreshToken, discordId } = createDiscordDto;
-
+        let DiscordAuthEntity;
         let discordUser = await this.findOne({ where: { discordId } });
         const user = await this.userRepo.find(
             {relations: ['discordAuth']}
-        );
-        discordUser.user = user;
+            );
+        if (discordUser)
+            DiscordAuthEntity = {accessToken, refreshToken, discordId, user}
         console.log(user);
-        return toDiscordDto(discordUser);
+        return toDiscordDto(DiscordAuthEntity);
 
         // const user = await this.usersService.findOne({ where: { id } });
         // const discordAuth: DiscordAuthEntity = await this.discordAuthRepo.create({ accessToken, refreshToken, discordId, user });
