@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionPageModule)
   },
   {
+    path: 'inscription',
+    loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule)
+  },
+  {
     path: 'create-integration',
     loadChildren: () => import('./create-integration/create-integration.module').then( m => m.CreateIntegrationPageModule)
   },
