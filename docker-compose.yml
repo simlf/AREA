@@ -5,14 +5,6 @@ services:
     container_name: area_server
     restart: always
     build: './server'
-    # TODO: Add environment variables
-    environment:
-      - HOST
-      - SERVER_PORT
-      - DB_USERNAME
-      - DB_NAME
-      - DB_HOST
-      - DB_PORT
     env_file:
       - .env
     ports:
@@ -30,9 +22,8 @@ services:
     container_name: area_db
     restart: always
     image: 'mysql'
-    environment:
-      - MYSQL_ROOT_PASSWORD
-      - MYSQL_DATABASE
+    env_file:
+      - .env
     ports:
       - '${DB_PORT}:${DB_PORT}'
     networks:

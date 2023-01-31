@@ -1,0 +1,378 @@
+.menuWeb {
+  width: 1920px;
+  display: flex;
+}
+
+img.bglandingpage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bglandingpageMobile {
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+}
+
+.menuHandsetPortrait {
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  height: 65px;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px 10px 0 0;
+  padding: 14px;
+}
+
+.overlay-handset {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+hr {
+  bottom: -4px;
+  position: absolute;
+  width: 45px;
+  left: 18%;
+  border-radius: 20px;
+  border: solid 4px white;
+}
+
+.menuTitle {
+  float: right;
+  margin: 40px 20px 0px 25px;
+}
+
+.vl {
+  border-left: 6px solid black;
+  height: 50px;
+  top: 27px;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: "roboto";
+}
+
+img.logo-web {
+    padding-top: 0.5%;
+    width: 20%;
+}
+
+.button {
+    border: 2px solid black;
+    // background-color: none;
+    background: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    font-size: 1.2vw;
+}
+
+.container {
+    position:absolute;
+    margin-top: 1%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.img-container {
+    float: left;
+    // position:absolute;
+    align-items: right;
+    text-align: right;
+    width: 44%;
+}
+
+
+.logo-container {
+    float: left;
+    // position:absolute;
+    align-items: right;
+    text-align: right;
+    width: 56%;
+}
+
+.card-background {
+    width: 100%;
+    height: 70%;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+    position: absolute;
+}
+
+.rectangle-container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.rectangle {
+  margin-top: 10%;
+  margin-left: 40.5%;
+  width: 20%;
+  height: 50%;
+  justify-content: center;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 3px solid black;
+  border-radius: 35px;
+}
+.new {
+  font-size: 1.25vw;
+}
+.form-control {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 5% 0.5% 0.5% 0.5%;
+  align-items: center;
+  width: 75%;
+}
+.form-control::placeholder {
+  color: rgb(51, 49, 49);
+  font-size: 1.10vw;
+}
+
+.btn-submit {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 10% 0.5% 0.5% 0.5%;
+  align-items: center;
+  width: 45%;
+  color: rgb(51, 49, 49);
+  font-size: 1.10vw;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.btn-submit:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-submit:active {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.1s ease-in-out;
+}
+
+.old {
+  font-size: 0.7vw;
+}
+.google {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 1px solid rgb(207, 203, 203);
+  text-align: center;
+  font-size: 0.8vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.signup-with-google {
+  width: 75%;
+  margin-left: 13%;
+  margin-top: -2%;
+  height: 10%;
+}
+
+.facebook {
+  margin-top: 1%;
+  background-color: #3b5998;
+  color: rgb(255, 255, 255);
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 1px solid #334c83;
+  text-align: center;
+  font-size: 0.78vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.icon2 {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.signup-with-fb {
+  width: 75%;
+  height: 10%;
+  margin-left: 13%;
+}
+
+
+// CSS MOBILE
+
+.rectangle-container-mob {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 30%;
+}
+
+.rectangle-mob {
+  margin-top: 10%;
+  margin-left: 25%;
+  width: 50%;
+  height: 50%;
+  justify-content: center;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 3px solid black;
+  border-radius: 35px;
+}
+.new-mob {
+  margin-left: 18%;
+  font-size: 3.5vw;
+}
+.form-control-mob {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 5% 0.5% 0.5% 11%;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+}
+.form-control::placeholder {
+  color: rgb(51, 49, 49);
+  font-size: 1.10vw;
+}
+
+.btn-submit-mob {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2% 2% 2% 2%;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 6% 0.5% 0.5% 25%;
+  align-items: center;
+  width: 45%;
+  color: rgb(51, 49, 49);
+  font-size: 2vw;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.btn-submit:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-submit:active {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.1s ease-in-out;
+}
+
+.old-mob {
+  font-size: 1.8vw;
+  margin-left: 20%;
+}
+.google-mob {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px 17px;
+  border-radius: 10px;
+  border: 1px solid rgb(207, 203, 203);
+  text-align: center;
+  font-size: 1.8vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+
+.icon-mob {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.signup-with-google-mob {
+  width: 75%;
+  margin-left: 13%;
+  height: 10%;
+}
+
+.facebook-mob {
+  margin-top: -2%;
+  background-color: #3b5998;
+  color: rgb(255, 255, 255);
+  padding: 10px 17px;
+  border-radius: 10px;
+  border: 1px solid #334c83;
+  text-align: center;
+  font-size: 1.7vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+
+.icon2-mob {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.signup-with-fb-mob {
+  width: 75%;
+  height: 10%;
+  margin-left: 13%;
+}
+
+.container-mob {
+  position:absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.logo-container-mob {
+    float: left;
+    position: absolute;
+    align-items: right;
+    text-align: right;
+    margin-top: 10%;
+    width: 56%;
+}

@@ -1,37 +1,39 @@
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as dotenv from 'dotenv';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { User } from './typeorm/entities/User';
-import { CalendarController } from './calendar/calendar.controller';
-import { CalendarModule } from './calendar/calendar.module';
-import { CalendarService } from './calendar/calendar.service';
+import { UserEntity } from './users/entity/UserEntity';
 import { HttpModule } from '@nestjs/axios';
+import { UsersModule } from './users/users.module';
+import { DiscordAuthEntity } from './auth/entities/DiscordAuthEntity';
+import { DiscordModule } from './auth/discord/discord.module';
+
+dotenv.config();
 
 @Module({
   imports: [
     AuthModule,
-    CalendarModule,
+    UsersModule,
     HttpModule,
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'host.docker.internal',
-      // host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'docker_nest',
-      // database: 'google_oauth2_app2',
-      autoLoadEntities: true,
-      // entities: [User],
+      type: process.env.DB_TYPE as any,
+      host: process.env.DB_HOST,
+      username: process.env.DB_USER,
+      password: process.env.MYSQL_ROOT_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
+      entities: [UserEntity, DiscordAuthEntity],
       synchronize: true,
-      // synchronize: false,
     }),
-    PassportModule.register({ session: true }),
+    DiscordModule,
   ],
-  controllers: [AppController, CalendarController],
-  providers: [AppService, CalendarService],
+  controllers: [
+    AppController,
+  ],
+  providers: [
+    AppService,
+  ],
 })
 export class AppModule {}

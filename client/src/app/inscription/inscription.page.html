@@ -1,0 +1,74 @@
+<div [ngSwitch]="currentBreakpoint">
+  <div *ngSwitchCase="Breakpoints.Web">
+    <div class="menuWeb">
+      <div class="bglandingpage">
+        <img src="../../assets/backgroundLanding.jpg" class="bglandingpage">
+        <div class="container">
+          <div class="logo-container">
+            <img src="../../assets/LogoArea.png" class="logo-web">
+          </div>
+          <div class="rectangle-container">
+            <div class="rectangle">
+              <strong><p class="new">Nouveau sur Area ?</p></strong>
+              <div class="form-container">
+                <form>
+                  <input type="email" id="email" class="form-control" placeholder="Email">
+                  <input type="password" id="password" class="form-control" placeholder="Mot de passe">
+                  <input type="password-verify" id="password-verifiy" class="form-control" placeholder="Confirmation">
+                  <button type="submit" class="btn-submit" onclick="location.href='home';">S'inscrire</button>
+                </form>
+              </div>
+              <strong><a href="connexion"><p class="old">Déjà un compte ? Connectez-vous</p></a></strong>
+              <div class="signup-with-google">
+                <button class="google">
+                  <img src="../../assets/logoGoogle.png" class="icon">
+                  S'inscrire avec Google
+                </button>
+              </div>
+              <div class="signup-with-fb">
+                <button class="facebook">
+                  <img src="../../assets/logoFacebook.png" class="icon2">
+                  S'inscrire avec Facebook
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
+    <img src="../../assets/bglandingpage.png" class="bglandingpageMobile">
+    <div class="logo-container-mob">
+      <img src="../../assets/LogoArea.png" class="logo-web-mob">
+    </div>
+    <div class="rectangle-container-mob">
+      <div class="rectangle-mob">
+        <strong><p class="new-mob">Nouveau sur Area ?</p></strong>
+        <div class="form-container-mob">
+          <form>
+            <input type="email" id="email" class="form-control-mob" placeholder="Email">
+            <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe">
+            <input type="password-verify" id="password-verifiy" class="form-control-mob" placeholder="Confirmation">
+            <button type="submit" class="btn-submit-mob" onclick="location.href='home';">S'inscrire</button>
+          </form>
+        </div>
+        <strong><a href="connexion"><p class="old-mob">Déjà un compte ? Connectez-vous</p></a></strong>
+        <div class="signup-with-google-mob">
+          <button class="google-mob">
+            <img src="../../assets/logoGoogle.png" class="icon-mob">
+            S'inscrire avec Google
+          </button>
+        </div>
+        <div class="signup-with-fb-mob">
+          <button class="facebook-mob">
+            <img src="../../assets/logoFacebook.png" class="icon2-mob">
+            S'inscrire avec Facebook
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
