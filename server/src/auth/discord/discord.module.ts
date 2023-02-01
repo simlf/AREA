@@ -25,10 +25,13 @@ import { DiscordAuthGuard } from '../utils/Guards';
     providers: [
         DiscordAuthGuard,
         DiscordStrategy,
-        DiscordService,
         {
             provide: 'AUTH_SERVICE',
             useClass: AuthService,
+        },
+        {
+            provide: 'DISCORD_SERVICE',
+            useClass: DiscordService,
         }
     ],
 })

@@ -19,22 +19,20 @@ export class DiscordService {
         @InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,
     ){}
 
-    // async validate(): Promise<any> {
-    //     // await this.discordStrategy.validate();
-    // }
-    // async validateUser(discordId: string): Promise<any> {
-    //     const user = await.this.userService
-    // }
-
     async findOne(options?: object): Promise<DiscordDto> {
        const discordUser =  await this.discordAuthRepo.findOne(options);
         return toDiscordDto(discordUser);
     }
 
-    async createDiscordAuth(createDiscordDto: CreateDiscordDto): Promise<DiscordDto> {
-        const { accessToken, refreshToken, discordId } = createDiscordDto;
+    async createDiscordAuth(accessToken, refreshToken, discordId): Promise<DiscordDto> {
+        console.log("createDiscordAuth");
+
+        // const { accessToken, refreshToken, discordId } = createDiscordDto;
+
         let DiscordAuthEntity;
         let discordUser = await this.findOne({ where: { discordId } });
+        console.log(discordUser);
+
         const user = await this.userRepo.find(
             {relations: ['discordAuth']}
             );

@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-discord'
 import { AuthService } from '../auth.service';
+import { DiscordService } from '../discord/discord.service';
 
 // import { Done } from 'src/utils/types';
 // import { encrypt } from '../../utils/encrypt';
@@ -10,6 +11,7 @@ import { AuthService } from '../auth.service';
 export class DiscordStrategy extends PassportStrategy(Strategy, 'discord') {
   constructor(
     @Inject('AUTH_SERVICE') private readonly authService: AuthService,
+    @Inject('DISCORD_SERVICE') private readonly discordService: DiscordService,
   ) {
     super({
       clientID: process.env.DISCORD_CLIENT_ID,
@@ -27,8 +29,8 @@ export class DiscordStrategy extends PassportStrategy(Strategy, 'discord') {
     // done: Done,
   ) {
 
-    this.discordService.createDiscordAuth({ accessToken, refreshToken, discordId: profile.id });
     const { id, email, discriminator, avatar } = profile;
+    this.discordService.createDiscordAuth(accessToken, refreshToken, profile.id);
     let user = JSON.parse(JSON.stringify(profile));
     console.log("Validate");
     // console.log(profile);
