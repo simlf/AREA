@@ -4,6 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { register } from '../models/register.model';
+import { JwtConfig, JwtInterceptor  } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-inscription',
@@ -36,6 +37,8 @@ export class InscriptionPage implements OnInit {
       this.valid = false;
       return;
     }
+    // console.log(this.bodyRegister.email);
+    // console.log(this.bodyRegister.password);
     this.http.post(this.rootURL + "/register", this.bodyRegister)
       .subscribe((res) => { console.log(res); });
     this.valid = true;

@@ -25,7 +25,7 @@ export class ConnexionPage implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient) { }
 
   auth_token_login = "";
-  // auth_token_whoami = "";
+  auth_token_whoami = "";
   // headersWhoami = new HttpHeaders({
   //   'Content-Type': 'application/json',
   //   'Authorization': `Bearer ${this.auth_token_whoami}`
@@ -33,7 +33,12 @@ export class ConnexionPage implements OnInit {
 
   headersLogin = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.auth_token_login}`
+    'Authorization': `Bearer ${this.auth_token_login}` 
+  });
+
+  headersWhoami = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.auth_token_whoami}`
   });
 
   bodyLogin: login = {
@@ -43,14 +48,15 @@ export class ConnexionPage implements OnInit {
 
   rootURL = 'http://localhost:8080/api/auth';
 
-  // getWhoami() {
-  //   this.http.get(this.rootURL + "/whoami", { headers: this.headersWhoami })
-  //     .subscribe((res) => { console.log(res); });
-  // }
+  getWhoami() {
+    this.http.get(this.rootURL + "/whoami", { headers: this.headersWhoami })
+      .subscribe((res) => { console.log(res); });
+  }
 
   postLogin() {
-    console.log(this.bodyLogin.email);
-    console.log(this.bodyLogin.password);
+    // console.log(this.bodyLogin.email);
+    // console.log(this.bodyLogin.password);
+    // console.log(this.auth_token_login);
     this.http.post(this.rootURL + "/login", this.bodyLogin, { headers: this.headersLogin })
       .subscribe((res) => { console.log(res); });
   }
