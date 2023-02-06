@@ -12,8 +12,11 @@ export class DiscordController {
     constructor(private readonly discordService: DiscordService) {}
 
     @Get('login')
-    @UseGuards(DiscordAuthGuard)
+    // @UseGuards(DiscordAuthGuard)
     login() {
+        passport.authenticate('discord', { scope: ['identify', 'email'] });
+        // passport.authenticate('discord', { failureRedirect: '/login', session: true });
+
         // passport.authenticate('discord', { scope: ['identify', 'email'] });
         // this.discordService.validate();
         console.log("Login");

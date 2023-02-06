@@ -1,17 +1,18 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Request } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-discord'
 import { AuthService } from '../auth.service';
 import { DiscordService } from '../discord/discord.service';
-
-// import { Done } from 'src/utils/types';
-// import { encrypt } from '../../utils/encrypt';
+import { request } from 'http';
+import { JwtPayload } from 'jsonwebtoken';
 
 @Injectable()
-export class DiscordStrategy extends PassportStrategy(Strategy, 'discord') {
+export class DiscordStrategy extends PassportStrategy(Strategy) {
+// export class DiscordStrategy extends PassportStrategy(Strategy, 'discord') {
   constructor(
-    @Inject('AUTH_SERVICE') private readonly authService: AuthService,
-    @Inject('DISCORD_SERVICE') private readonly discordService: DiscordService,
+    // @Inject('AUTH_SERVICE') private readonly authService: AuthService,
+    // @Inject('DISCORD_SERVICE') private readonly discordService: DiscordService,
+    private readonly discordService: DiscordService,
   ) {
     super({
       clientID: process.env.DISCORD_CLIENT_ID,
@@ -23,19 +24,23 @@ export class DiscordStrategy extends PassportStrategy(Strategy, 'discord') {
   }
 
   async validate(
+    // jwtPayload: JwtPayload,
     accessToken: string,
     refreshToken: string,
-    profile: Profile,
+    profile: any,
     // done: Done,
   ) {
-
-    const { id, email, discriminator, avatar } = profile;
+    console.log("Profile", profile);
+    // console.log("jwtPayload", jwtPayload);
+    // console.log(request);
+      // const { id, email, discriminator, avatar } = profile;
+    // this.discordService.test();
     this.discordService.createDiscordAuth(accessToken, refreshToken, profile.id);
-    let user = JSON.parse(JSON.stringify(profile));
+    // let user = JSON.parse(JSON.stringify(profile));
     console.log("Validate");
     // console.log(profile);
     // console.log(user);
-    console.log(user.bearer);
+    // console.log(user.bearer);
 
     // done(null, user);
     // return { id, email, discriminator, avatar };

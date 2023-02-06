@@ -14,7 +14,6 @@ import { DiscordStrategy } from '../utils/DiscordStrategy';
 export class DiscordService {
     constructor(
         private readonly usersService: UsersService,
-        private readonly discordStrategy: DiscordStrategy,
         @InjectRepository(DiscordAuthEntity) private readonly discordAuthRepo: Repository<DiscordAuthEntity>,
         @InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,
     ){}
@@ -26,20 +25,41 @@ export class DiscordService {
 
     async createDiscordAuth(accessToken, refreshToken, discordId): Promise<DiscordDto> {
         console.log("createDiscordAuth");
+        
+
+        // User is not found and we need to create a new user
+        let DiscordAuthEntity;
+        return toDiscordDto(DiscordAuthEntity);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // const { accessToken, refreshToken, discordId } = createDiscordDto;
 
-        let DiscordAuthEntity;
-        let discordUser = await this.findOne({ where: { discordId } });
-        console.log(discordUser);
+        // let discordUser = await this.findOne({ where: { discordId } });
+        // console.log("Discord User", discordUser);
 
-        const user = await this.userRepo.find(
-            {relations: ['discordAuth']}
-            );
-        if (discordUser)
-            DiscordAuthEntity = {accessToken, refreshToken, discordId, user}
-        console.log(user);
-        return toDiscordDto(DiscordAuthEntity);
+        // const user = await this.userRepo.find(
+        //     {relations: ['discordAuth']}
+        // );
+
+
+        // if (discordUser)
+        //     DiscordAuthEntity = {accessToken, refreshToken, discordId, user}
 
         // const user = await this.usersService.findOne({ where: { id } });
         // const discordAuth: DiscordAuthEntity = await this.discordAuthRepo.create({ accessToken, refreshToken, discordId, user });

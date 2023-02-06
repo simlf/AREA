@@ -18,6 +18,7 @@ import { DiscordAuthGuard } from '../utils/Guards';
             DiscordAuthEntity,
             UserEntity
         ]),
+        // DiscordService,
     ],
     controllers: [
         DiscordController,
@@ -25,14 +26,11 @@ import { DiscordAuthGuard } from '../utils/Guards';
     providers: [
         DiscordAuthGuard,
         DiscordStrategy,
-        {
-            provide: 'AUTH_SERVICE',
-            useClass: AuthService,
-        },
-        {
-            provide: 'DISCORD_SERVICE',
-            useClass: DiscordService,
-        }
+        // {
+        //     provide: 'AUTH_SERVICE',
+        //     useClass: AuthService,
+        // },
+        DiscordService,
     ],
 })
 
