@@ -11,7 +11,7 @@ import { login } from '../models/login.model';
   styleUrls: ['./connexion.page.scss'],
 })
 export class ConnexionPage implements OnInit {
-  
+
   Breakpoints = Breakpoints;
   currentBreakpoint:string = '';
 
@@ -26,14 +26,10 @@ export class ConnexionPage implements OnInit {
 
   auth_token_login = "";
   auth_token_whoami = "";
-  // headersWhoami = new HttpHeaders({
-  //   'Content-Type': 'application/json',
-  //   'Authorization': `Bearer ${this.auth_token_whoami}`
-  // });
 
   headersLogin = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.auth_token_login}` 
+    'Authorization': `Bearer ${this.auth_token_login}`
   });
 
   headersWhoami = new HttpHeaders({
@@ -54,9 +50,6 @@ export class ConnexionPage implements OnInit {
   }
 
   postLogin() {
-    // console.log(this.bodyLogin.email);
-    // console.log(this.bodyLogin.password);
-    // console.log(this.auth_token_login);
     this.http.post(this.rootURL + "/login", this.bodyLogin, { headers: this.headersLogin })
       .subscribe((res) => { console.log(res); });
   }

@@ -11,7 +11,7 @@
             <div class="rectangle">
               <strong><p class="new">Nouveau sur Area ?</p></strong>
               <div class="form-container">
-                
+
                 <form #form="ngForm" (ngSubmit)="postRegister()">
                   <input type="email" name="email" id="email" class="form-control" placeholder="Email" [(ngModel)]="bodyRegister.email">
                   <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="bodyRegister.password">
@@ -72,5 +72,3 @@
     </div>
   </div>
 </div>
-
-<!-- <router-outlet></router-outlet> -->
