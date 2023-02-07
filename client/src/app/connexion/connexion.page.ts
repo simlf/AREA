@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { login } from '../models/login.model';
 
 @Component({
   selector: 'app-connexion',
@@ -9,7 +11,7 @@ import { distinctUntilChanged, tap } from 'rxjs/operators';
   styleUrls: ['./connexion.page.scss'],
 })
 export class ConnexionPage implements OnInit {
-  
+
   Breakpoints = Breakpoints;
   currentBreakpoint:string = '';
 
@@ -20,7 +22,37 @@ export class ConnexionPage implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient) { }
+
+  auth_token_login = "";
+  auth_token_whoami = "";
+
+  headersLogin = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.auth_token_login}`
+  });
+
+  headersWhoami = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.auth_token_whoami}`
+  });
+
+  bodyLogin: login = {
+    email: '',
+    password: ''
+  };
+
+  rootURL = 'http://localhost:8080/api/auth';
+
+  getWhoami() {
+    this.http.get(this.rootURL + "/whoami", { headers: this.headersWhoami })
+      .subscribe((res) => { console.log(res); });
+  }
+
+  postLogin() {
+    this.http.post(this.rootURL + "/login", this.bodyLogin, { headers: this.headersLogin })
+      .subscribe((res) => { console.log(res); });
+  }
 
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>

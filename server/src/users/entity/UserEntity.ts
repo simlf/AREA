@@ -11,9 +11,6 @@ export class UserEntity {
   email: string;
 
   @Column()
-  username: string;
-
-  @Column()
   password: string;
 
   @OneToOne(() => DiscordAuthEntity, (discordAuth) => discordAuth.user)
@@ -22,6 +19,5 @@ export class UserEntity {
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcryptjs.hash(this.password, 10);
-  }// @Column()
-  // accessToken: string;
+  }
 }
