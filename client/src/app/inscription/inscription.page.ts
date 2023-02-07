@@ -29,7 +29,7 @@ export class InscriptionPage implements OnInit {
     password: '',
     email: ''
   };
-  
+
   rootURL = 'http://localhost:8080/api/auth';
 
   postRegister() {
@@ -41,6 +41,7 @@ export class InscriptionPage implements OnInit {
     // console.log(this.bodyRegister.password);
     this.http.post(this.rootURL + "/register", this.bodyRegister)
       .subscribe((res) => { console.log(res); });
+
     this.valid = true;
     return;
   }
