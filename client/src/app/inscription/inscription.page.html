@@ -17,7 +17,7 @@
                   <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="bodyRegister.password">
                   <input type="confirmPassword" name="confirmPassword" id="password-verifiy" class="form-control" placeholder="Confirmation" [(ngModel)]="confirmPassword">
                   <p *ngIf="valid == false">Invalid Password, retry !</p>
-                  <button type="submit" class="btn-submit">S'inscrire</button>
+                  <button type="submit" class="btn-submit" onclick="location.href='home';">S'inscrire</button>
                 </form>
               </div>
               <strong><a href="connexion"><p class="old">Déjà un compte ? Connectez-vous</p></a></strong>
@@ -48,10 +48,10 @@
       <div class="rectangle-mob">
         <strong><p class="new-mob">Nouveau sur Area ?</p></strong>
         <div class="form-container-mob">
-          <form>
-            <input type="email" id="email" class="form-control-mob" placeholder="Email">
-            <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe">
-            <input type="confirmPassword" id="password-verifiy" class="form-control-mob" placeholder="Confirmation">
+          <form #form="ngForm" (ngSubmit)="postRegister()">
+            <input type="email" id="email" class="form-control-mob" placeholder="Email" [(ngModel)]="bodyRegister.email">
+            <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe" [(ngModel)]="bodyRegister.password">
+            <input type="confirmPassword" id="password-verifiy" class="form-control-mob" placeholder="Confirmation" [(ngModel)]="confirmPassword">
             <button type="submit" class="btn-submit-mob" onclick="location.href='home';">S'inscrire</button>
           </form>
         </div>
