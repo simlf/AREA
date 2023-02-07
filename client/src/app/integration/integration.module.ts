@@ -8,6 +8,8 @@ import { IntegrationPageRoutingModule } from './integration-routing.module';
 
 import { IntegrationPage } from './integration.page';
 
+import { CardComponent } from './card/card.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { IntegrationPage } from './integration.page';
     IonicModule,
     IntegrationPageRoutingModule
   ],
-  declarations: [IntegrationPage]
+  declarations: [IntegrationPage, CardComponent]
 })
 export class IntegrationPageModule {}

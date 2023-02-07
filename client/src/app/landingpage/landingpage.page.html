@@ -1,0 +1,36 @@
+<div [ngSwitch]="currentBreakpoint">
+  <div *ngSwitchCase="Breakpoints.Web">
+    <div class="menuWeb">
+      <img src="../../assets/backgroundLanding.jpg" class="bglandingpage">
+      <div class="container">
+        <div class="logo-container">
+          <img src="../../assets/LogoArea.png" class="logo-web">
+        </div>
+        <div class="img-container">
+          <button class="button" routerLink="/home">Connexion</button>
+          <button class="button" routerLink="/home">Inscription</button>
+        </div>
+      </div>
+    </div>
+    <div class="big">
+      <div class="card-background">
+        <integration-list class="integration-list-web" *ngSwitchCase="Breakpoints.Web"></integration-list>  
+      </div>
+    </div>
+    <div class="ctn">
+      <img src="../../assets/footer.png" alt="footer background" class="footerBackground">
+      <p class="titleFooter">Rejoigniez nous !</p>
+      <button class="buttonFooterun" routerLink="/home">Connexion</button>
+      <button class="buttonFooterdeux" routerLink="/home">Inscription</button>
+    </div>
+  </div>
+  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
+    <img src="../../assets/bglandingpage.png" class="bglandingpageMobile">
+    <img src="../../assets/LogoArea.png" class="logo-mobile">
+    <h1>Embarquez pour le<br>futur</h1>
+    <button class="mobile-button" routerLink="/home" style="object-fit:cover;position:absolute;top: 58%;">Connexion</button>
+    <button class="mobile-button" routerLink="/home" style="object-fit:cover;position:absolute;top: 68%;">Inscription</button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

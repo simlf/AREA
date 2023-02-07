@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'create-integration',
     loadChildren: () => import('./create-integration/create-integration.module').then( m => m.CreateIntegrationPageModule)
   },
+  {
+    path: 'landingpage',
+    loadChildren: () => import('./landingpage/landingpage.module').then( m => m.LandingpagePageModule)
+  },
 ];
 
 @NgModule({
