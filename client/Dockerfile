@@ -14,4 +14,4 @@ RUN ionic build
 
 EXPOSE 8081
 
-CMD [ "ionic", "serve", "-p 8081"]
+CMD ["ionic", "serve", "-p 8081"]

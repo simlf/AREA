@@ -1,7 +1,7 @@
 {
   "name": "google-oauth2-tutorial",
   "version": "0.0.1",
-  "description": "",
+  "description": "<p align=\"center\">\r   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo-small.svg\" width=\"200\" alt=\"Nest Logo\" /></a>\r </p>",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -37,7 +37,6 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.3.3",
     "passport": "^0.6.0",
-    "passport-discord": "^0.1.4",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
@@ -86,5 +85,9 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
   }
 }
