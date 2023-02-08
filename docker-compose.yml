@@ -31,8 +31,22 @@ services:
     volumes:
       - area_db_data:/var/lib/mysql
 
+  client_web:
+    container_name: area_client_web
+    restart: always
+    build: './client'
+    env_file:
+      - .env
+    ports:
+      - '${CLIENT_WEB_PORT}:${CLIENT_WEB_PORT}'
+    networks:
+      - client_web
+    volumes:
+      - ./client_web:/client_web
+
 networks:
   server:
+  client_web:
 
 volumes:
   area_db_data:
