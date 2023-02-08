@@ -12,6 +12,6 @@ COPY . .
 
 RUN ionic build
 
-EXPOSE 8100
+EXPOSE 8081
 
-CMD [ "ionic", "serve", "-p 8001"]
+CMD [ "ionic", "serve", "-p 8081"]
