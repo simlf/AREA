@@ -77,7 +77,7 @@
               "browserTarget": "app:build:production"
             },
             "development": {
-              "browserTarget": "app:build:development"
+              "browserTarget": "app:build:development", "port": 8081
             },
             "ci": {
               "progress": false
