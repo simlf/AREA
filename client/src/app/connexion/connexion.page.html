@@ -11,13 +11,13 @@
             <div class="rectangle">
               <strong><p class="new">Nouveau sur Area ?</p></strong>
               <div class="form-container">
-                <form>
-                  <input type="email" id="email" class="form-control" placeholder="Email">
-                  <input type="password" id="password" class="form-control" placeholder="Mot de passe">
+                <form #form="ngForm" (ngSubmit)="postLogin()">
+                  <input type="email" name="email" id="email" class="form-control" placeholder="Email" [(ngModel)]="bodyLogin.email">
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="bodyLogin.password">
                   <button type="submit" class="btn-submit" onclick="location.href='home';">Se connecter</button>
                 </form>
               </div>
-              <strong><a href="connexion"><p class="old">Pas de compte ? Inscrivez-vous</p></a></strong>
+              <strong><a href="inscription"><p class="old">Pas de compte ? Inscrivez-vous</p></a></strong>
               <div class="signup-with-google">
                 <button class="google">
                   <img src="../../assets/logoGoogle.png" class="icon">
@@ -45,11 +45,11 @@
       <div class="rectangle-mob">
         <strong><p class="new-mob">Bienvenue dans l'Area</p></strong>
         <div class="form-container-mob">
-          <form>
-            <input type="email" id="email" class="form-control-mob" placeholder="Email">
-            <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe">
+          <form #form="ngForm" (ngSubmit)="postLogin()">
+            <input type="email" id="email" class="form-control-mob" placeholder="Email" [(ngModel)]="bodyLogin.email">
+            <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe" [(ngModel)]="bodyLogin.email">
             <input type="password-verify" id="password-verifiy" class="form-control-mob" placeholder="Confirmation">
-            <button type="submit" class="btn-submit-mob" onclick="location.href='home';">S'inscrire</button>
+            <button type="submit" class="btn-submit-mob">S'inscrire</button>
           </form>
         </div>
         <strong><a href="connexion"><p class="old-mob">Pas de compte ? Inscrivez-vous</p></a></strong>

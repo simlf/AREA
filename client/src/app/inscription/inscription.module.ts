@@ -8,12 +8,20 @@ import { InscriptionPageRoutingModule } from './inscription-routing.module';
 
 import { InscriptionPage } from './inscription.page';
 
+import {ReactiveFormsModule} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 @NgModule({
   imports: [
+    HttpClientModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    InscriptionPageRoutingModule
+    InscriptionPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [InscriptionPage]
 })

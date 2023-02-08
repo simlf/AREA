@@ -11,9 +11,6 @@ export class UserEntity {
   email: string;
 
   @Column()
-  username: string;
-
-  @Column()
   password: string;
 
   @OneToOne(() => DiscordAuthEntity, (discordAuth) => discordAuth.user)

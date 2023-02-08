@@ -1,0 +1,287 @@
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+ }
+
+.menuWeb {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+img.bglandingpage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bglandingpageMobile {
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+}
+
+.menuHandsetPortrait {
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  height: 65px;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px 10px 0 0;
+  padding: 14px;
+}
+
+.overlay-handset {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+hr {
+  bottom: -4px;
+  position: absolute;
+  width: 45px;
+  left: 18%;
+  border-radius: 20px;
+  border: solid 4px white;
+}
+
+.menuTitle {
+  float: right;
+  margin: 40px 20px 0px 25px;
+}
+
+.vl {
+  border-left: 6px solid black;
+  height: 50px;
+  top: 27px;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: "roboto";
+}
+
+img.logo-web {
+    padding-top: 0.5%;
+    width: 20%;
+}
+
+img.logo-mobile {
+    padding-top: 20%;
+    position: fixed;
+    object-fit: cover;
+    width: 60%;
+}
+
+h1 {
+    position: absolute;
+    object-fit: cover;
+    padding-top: 50%;
+    font-size: 10vw;
+    font-weight: bold;
+}
+
+.mobile-button {
+    border: 4px solid #2651B1;
+    background: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 7vw;
+    // cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    box-shadow: 0 5px 15px 0 rgba(255, 255, 255);
+}
+
+.mobile-button:hover {
+    border: 4px solid #2651B1;
+    background-color: #2651B1;
+    color: rgb(0, 0, 0);
+    padding: 14px 28px;
+    font-size: 7vw;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    box-shadow: 0 5px 15px 0 rgba(255, 255, 255);
+}
+
+.button {
+    border: 2px solid black;
+    background: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    font-size: 1.2vw;
+}
+
+.button:hover {
+    border: 2px solid black;
+    background: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin: 2% 2% 2% 2%;
+    text-align: right;
+    display: inline-block;
+    font-size: 1.2vw;
+}
+
+.container {
+    position:absolute;
+    margin-top: 1%;
+    width: 100%;
+}
+
+.img-container {
+    float: left;
+    align-items: right;
+    text-align: right;
+    width: 44%;
+}
+
+.logo-container {
+    float: left;
+    align-items: right;
+    text-align: right;
+    width: 56%;
+}
+
+.card-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.imgBrawl {
+    margin-top: 40%;
+    width: 30%;
+}
+
+.description {
+    margin-top: 50%;
+}
+
+.thecard {
+    float: left;
+    margin: 6% 7% 2% 11%;
+    width: 14%;
+    height: 30%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+.thecard:hover {
+    transform: rotateY(180deg);
+}
+
+.thefront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: whitesmoke;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.3);
+    color: black;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.theback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: whitesmoke;
+    color: black;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.3);
+    text-align: center;
+    border-radius: 30px;
+    transform: rotateY(180deg);
+}
+
+.ctn {
+    margin-top: 60%;
+    height: 50%;
+    position: absolute;
+    width: 100%;
+}
+
+.big {
+    width: 100%;
+    height: 100%;
+}
+
+.footerBackground {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.buttonFooterun {
+    position: absolute;
+    display: block;
+    bottom: 120px;
+    border: 6px solid rgb(38, 81, 177);
+    background: none;
+    color: white;
+    border-radius: 10px;
+    padding: 1% 3%;
+    font-size: 1.6vw;
+    margin-left: 400px;
+    box-shadow: 0 0 50px rgb(255 255 255 / 50%);
+}
+
+.buttonFooterdeux {
+    position: absolute;
+    display: block;
+    bottom: 120px;
+    border: 6px solid rgba(38, 81, 177, 1);
+    background: none;
+    color: white;
+    border-radius: 10px;
+    padding: 1% 3%;
+    font-size: 1.6vw;
+    margin-left: 1200px;
+    box-shadow: 0 0 50px rgb(255 255 255 / 50%);
+}
+
+.buttonFooterdeux:hover, .buttonFooterun:hover {
+    box-shadow: 0 0 100px rgb(255 255 255 / 75%);
+}
+
+.titleFooter {
+    position: absolute;
+    display: flex;
+    color: white;
+    margin-left: 41%;
+    font-family: "roboto";
+    font-size: 3em;
+    font-weight: 800;
+    bottom: 240px;
+}

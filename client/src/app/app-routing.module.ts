@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AndroidApkComponent } from './android-apk/android-apk.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,14 @@ const routes: Routes = [
     path: 'create-integration',
     loadChildren: () => import('./create-integration/create-integration.module').then( m => m.CreateIntegrationPageModule)
   },
+  {
+    path: 'landingpage',
+    loadChildren: () => import('./landingpage/landingpage.module').then( m => m.LandingpagePageModule)
+  },
+  {
+    path: 'client.apk',
+    component: AndroidApkComponent
+  }
 ];
 
 @NgModule({
@@ -39,4 +48,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

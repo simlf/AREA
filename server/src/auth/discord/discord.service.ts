@@ -27,7 +27,9 @@ export class DiscordService {
 
     async createDiscordAuth(accessToken, refreshToken, discordId): Promise<DiscordDto> {
         console.log("createDiscordAuth");
-        let userId: string = "5cc1d3e9-9283-4727-b12b-fbeeca26b774"
+
+        let userId: string = "dd7ce234-4420-4567-a321-c8f94cb57ad0"
+
         let DiscordAuthEntity;
         const user = await this.userRepo.findOne({where: {id: userId}});
         DiscordAuthEntity = {accessToken, refreshToken, discordId, userId, user};
@@ -38,8 +40,8 @@ export class DiscordService {
         return toDiscordDto(DiscordAuthEntity);
     }
 
-    async getDiscordAuth({ username }: UserDto): Promise<DiscordDto> {
-        const user = await this.usersService.findOne({ where: { username } });
+    async getDiscordAuth({ email }: UserDto): Promise<DiscordDto> {
+        const user = await this.usersService.findOne({ where: { email } });
         const discordAuth = await this.discordAuthRepo.findOne({ where: { user } });
 
         return toDiscordDto(discordAuth);

@@ -1,0 +1,111 @@
+.card-block {
+    transition: 1s ease;
+    display: flex;
+    transition: 1s ease;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.integration-list-web {
+    display: grid;
+    grid-template-columns: 30em 30em 30em;
+    grid-auto-rows: 60px;
+    grid-gap: 200px 0px;
+    justify-content: center;
+    padding-left: 6em;
+    padding-top: 50px;
+    overflow: auto;
+}
+
+.card-overlay-web {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 373px;
+    height: 215px;
+}
+
+h4.card-title-web {
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    font-family: "roboto";
+    left: 20px;
+    top: 35px;
+    position: relative;
+}
+
+p.card-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: "roboto";
+    padding: 45px 15px 0px 20px
+}
+
+img.card-logo-web {
+    float: right;
+    padding: 20px 30px 0 0;
+}
+
+.logoConnect {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10px;
+}
+
+.card-button {
+    border: solid 5px rgba(111, 184, 238, 1);
+    display: block;
+    padding: 2px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    margin-top: -10px;
+    width: 35%;
+    box-shadow: 0 0 15px;
+}
+
+.card-button:hover {
+    box-shadow: 0 0 25px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.card-overlay-Handset {
+    background-image: url("../../../assets/blueBackground.png");
+    width: 80%;
+    height: 120px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card-block:has(.handset) {
+    width: 100%;
+}
+
+.card-block:has(.web) {
+    width: calc(100%/3);
+}
+
+.card-title {
+    margin-left: 25px;
+    color: white;
+}
+
+.card-button.deskopt {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logoConnect.mobile {
+    padding-left: 77px;
+}
