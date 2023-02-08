@@ -51,7 +51,8 @@ export class ConnexionPage implements OnInit {
 
   postLogin() {
     this.http.post(this.rootURL + "/login", this.bodyLogin, { headers: this.headersLogin })
-      .subscribe((res) => { console.log(res); });
+      .subscribe((res) => { console.log(res);
+       });
   }
 
   ngOnInit(): void {
