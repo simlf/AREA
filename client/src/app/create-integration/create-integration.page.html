@@ -1,6 +1,8 @@
 <div [ngSwitch]="currentBreakpoint">
   <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
-      <img src="../../assets/LogoArea.png" class="logo-web">
+      <a href="/home">
+        <img src="../../assets/LogoArea.png" class="logo-web">
+      </a>
       <img src="../../assets/menuHeader.png" class="background">
       <div class="menuText">
         <p class="menuTitle"><a href="create-integration">Créer</a></p>
@@ -40,14 +42,17 @@
           <ion-button color="light" shape="round">Créer</ion-button>
         </div>
   </div>
-  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
-    <img src="../../assets/LogoAreaBlack.png" class="logo-handset">
+  <div *ngSwitchCase="Breakpoints.HandsetPortrait">
+    <div class="overlay-handset">
+      <img src="../../assets/LogoAreaBlack.png" class="logo-handset">
+    </div>
     <div class="menuHandsetPortrait">
       <a href="home"><img src="../../assets/logoAutomatisation.png" class="iconeMenu"></a>
       <a href="create-integration"><img src="../../assets/logoCreate.png" class="iconeMenu"></a>
       <img src="../../assets/logoLogin.png" class="iconeMenu">
+      <hr class="active">
     </div>
-  </div>
+  </div>  
 </div>
 
 <router-outlet></router-outlet>

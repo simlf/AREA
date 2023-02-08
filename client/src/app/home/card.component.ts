@@ -92,18 +92,6 @@ export class IntegrationListComponent {
                 img: "../../assets/redBackground.png",
                 logo: "../../assets/logoBrawlstar.png"
             },
-            {
-                name: "spotify",
-                description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/redBackground.png",
-                logo: "../../assets/logoBrawlstar.png"
-            },
-            {
-                name: "spotify",
-                description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/redBackground.png",
-                logo: "../../assets/logoBrawlstar.png"
-            },
         ];
     }
 
