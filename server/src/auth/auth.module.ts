@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
 import { UsersService } from 'src/users/users.service';
+import { DiscordStrategy } from './utils/DiscordStrategy';
 
 @Module({
     imports: [
@@ -32,6 +33,7 @@ import { UsersService } from 'src/users/users.service';
     providers: [
         AuthService,
         JwtStrategy,
+        // DiscordStrategy,
     ],
     exports: [
         PassportModule,
