@@ -12,4 +12,4 @@ COPY . .
 
 RUN ionic build
 
-CMD ["ionic", "serve"]
+CMD ["ionic", "serve", "-p 8081"]
