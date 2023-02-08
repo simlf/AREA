@@ -11,26 +11,17 @@ import passport from 'passport';
 export class DiscordController {
     constructor(private readonly discordService: DiscordService) {}
 
-    @Get('login')
+    @Get()
     @UseGuards(DiscordAuthGuard)
     login() {
+        console.info("Login");
         passport.authenticate('discord', { scope: ['identify', 'email'] });
-        console.log("Login");
         return { msg: 'Login' };
     }
 
     @Get('redirect')
     @UseGuards(DiscordAuthGuard)
     redirect() {
-        // This is a dummy function, the actual redirect happens in the DiscordAuthGuard
-        console.log(this.discordService.getDiscordAuth)
         return { msg: 'Redirect' };
-    }
-
-    @Get()
-    // @UseGuards(AuthGuard())
-    async status(@Req() req: any): Promise<DiscordDto> {
-        const user = <UserDto>req.user;
-        return await this.discordService.getDiscordAuth(user);
     }
 }
