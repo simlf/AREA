@@ -10,7 +10,7 @@ export const toUserDto = (data: UserEntity): UserDto => {
 };
 
 export const toDiscordDto = (data: DiscordAuthEntity): DiscordDto => {
-    const { id, userId, accessToken, refreshToken, discordId, user } = data;
-    let discordDto: DiscordDto = { id, userId, accessToken, refreshToken, discordId, user };
+    const { id, accessToken, refreshToken, discordId, userId,  user } = data;
+    let discordDto: DiscordDto = { id, accessToken, refreshToken, discordId, userId, user };
     return discordDto;
 };

@@ -12,7 +12,7 @@ export class DiscordController {
     constructor(private readonly discordService: DiscordService) {}
 
     @Get('login')
-    // @UseGuards(DiscordAuthGuard)
+    @UseGuards(DiscordAuthGuard)
     login() {
         passport.authenticate('discord', { scope: ['identify', 'email'] });
         // passport.authenticate('discord', { failureRedirect: '/login', session: true });
@@ -20,14 +20,14 @@ export class DiscordController {
         // passport.authenticate('discord', { scope: ['identify', 'email'] });
         // this.discordService.validate();
         console.log("Login");
-        // This is a dummy function, the actual redirect happens in the DiscordAuthGuard
         return { msg: 'Login' };
     }
 
     @Get('redirect')
-    @UseGuards(DiscordAuthGuard)
+    // @UseGuards(DiscordAuthGuard)
     redirect() {
         // This is a dummy function, the actual redirect happens in the DiscordAuthGuard
+        console.log(this.discordService.getDiscordAuth)
         return { msg: 'Redirect' };
     }
 
@@ -39,7 +39,7 @@ export class DiscordController {
     // }
 
     @Get()
-    @UseGuards(AuthGuard())
+    // @UseGuards(AuthGuard())
     async status(@Req() req: any): Promise<DiscordDto> {
         const user = <UserDto>req.user;
         return await this.discordService.getDiscordAuth(user);

@@ -19,16 +19,21 @@ export class DiscordService {
     ){}
 
     async findOne(options?: object): Promise<DiscordDto> {
-       const discordUser =  await this.discordAuthRepo.findOne(options);
+        const discordUser =  await this.discordAuthRepo.findOne(options);
+        if (!discordUser)
+            return null;
         return toDiscordDto(discordUser);
     }
 
     async createDiscordAuth(accessToken, refreshToken, discordId): Promise<DiscordDto> {
         console.log("createDiscordAuth");
-        
-
-        // User is not found and we need to create a new user
+        let userId: string = "8e9d76f8-a51b-405d-a17f-b1f071ed35aa"
         let DiscordAuthEntity;
+        const user = await this.userRepo.findOne({where: {id: userId}});
+        DiscordAuthEntity = {accessToken, refreshToken, discordId, userId, user};
+        user.discordAuth = DiscordAuthEntity;
+        console.log("DiscordAuthEntity", DiscordAuthEntity);
+        await this.discordAuthRepo.save(DiscordAuthEntity);
         return toDiscordDto(DiscordAuthEntity);
 
 
