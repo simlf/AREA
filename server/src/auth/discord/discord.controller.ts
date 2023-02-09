@@ -7,7 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { DiscordAuthGuard } from '../utils/Guards';
 import passport from 'passport';
 
-@Controller('discord')
+@Controller('api/discord')
 export class DiscordController {
     constructor(private readonly discordService: DiscordService) {}
 
