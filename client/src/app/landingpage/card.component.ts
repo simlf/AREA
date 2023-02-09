@@ -29,39 +29,45 @@ export class IntegrationListComponent {
             {
                 name: "Brawlstar",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/blueBackground.png",
+                img: "../../assets/1.png",
                 logo: "../../assets/logoBrawlstar.png",
+                url: "lolo"
             },
             {
                 name: "Meteo",
                 description: "super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/blueBackground.png",
-                logo: "../../assets/logoBrawlstar.png"
+                img: "../../assets/1.png",
+                logo: "../../assets/logoBrawlstar.png",
+                url: "lolo"
 
             },
             {
                 name: "Nasa",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/blueBackground.png",
-                logo: "../../assets/logoBrawlstar.png"
+                img: "../../assets/1.png",
+                logo: "../../assets/logoBrawlstar.png",
+                url: "lolo"
             },
             {
                 name: "spotify",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/redBackground.png",
-                logo: "../../assets/logoBrawlstar.png"
+                img: "../../assets/1.png",
+                logo: "../../assets/logoBrawlstar.png",
+                url: "lolo"
             },
             {
                 name: "spotify",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/redBackground.png",
-                logo: "../../assets/logoBrawlstar.png"
+                img: "../../assets/1.png",
+                logo: "../../assets/logoBrawlstar.png",
+                url: "lolo"
             },
             {
                 name: "spotify",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-                img: "../../assets/redBackground.png",
-                logo: "../../assets/logoBrawlstar.png"
+                img: "../../assets/1.png",
+                logo: "../../assets/logoBrawlstar.png",
+                url: "lolo"
             },
         ];
     }

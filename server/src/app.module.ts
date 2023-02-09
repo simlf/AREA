@@ -3,7 +3,7 @@ import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { AppController } from './app.controller';
-import { AppService, AboutService } from './app.service';
+import { AppService, AboutService, IntegrationService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserEntity } from './users/entity/UserEntity';
 import { HttpModule } from '@nestjs/axios';
@@ -35,6 +35,7 @@ dotenv.config();
   providers: [
     AppService,
     AboutService,
+    IntegrationService,
   ],
 })
 export class AppModule {}
