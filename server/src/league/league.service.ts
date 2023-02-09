@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom, map } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
+import * as dotenv from 'dotenv';
 
 let base_url1 = "https://euw1.api.riotgames.com/lol/"
-let key = "RGAPI-3ef14b8a-3f4d-4668-bef7-922e2f771e86"
+let key = process.env.LEAGUE_API
 let base_url2 = "https://europe.api.riotgames.com/lol/"
 
 
