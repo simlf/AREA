@@ -11,7 +11,10 @@ function cast<T>(data: any, model: new (...args: any[]) => T): T {
 }
 
 export class registerRequest {
-    constructor(private http: HttpClient, private succes: string, private message: string) { succes = ""; message = ""; }
+    private succes: string;
+    private message: string;
+
+    constructor(private http: HttpClient) { this.succes = ""; this.message = ""; }
 
     public async postData<T>(url: string, data: any, model: new (...args: any[]) => T): Promise<T> {
         const response = await this.http.post(url, data).toPromise()

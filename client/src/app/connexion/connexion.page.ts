@@ -1,28 +1,34 @@
-import { CommonModule } from '@angular/common';
+/**
+ * @file ConnexionPage
+ * @author [Author Name]
+ * @date [Date]
+ * @brief Component class for ConnexionPage in Angular
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { distinctUntilChanged, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
-import { login } from '../models/login.model';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Console } from 'console';
-import { Response } from 'express'
-import { stat } from 'fs';
-import { promises } from 'dns';
-import { State } from 'ionicons/dist/types/stencil-public-runtime';
-import { rest } from 'lodash';
-import { responseLogin, loginRequest } from '../utils/loginRequest';
+import { tap, distinctUntilChanged } from 'rxjs/operators';
 
+import { loginRequest, responseLogin } from '../utils/loginRequest';
+
+/**
+ * @class ConnexionPage
+ * @brief Component for handling connexion logic in Angular
+ */
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.page.html',
   styleUrls: ['./connexion.page.scss'],
 })
 export class ConnexionPage implements OnInit {
-
   Breakpoints = Breakpoints;
   currentBreakpoint: string = '';
 
+  /**
+   * Observable for breakpoint changes
+   */
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
     .pipe(
@@ -30,8 +36,17 @@ export class ConnexionPage implements OnInit {
       distinctUntilChanged()
     );
 
+  /**
+   * @brief Constructor for ConnexionPage
+   * @param breakpointObserver instance of BreakpointObserver
+   * @param http instance of HttpClient for sending HTTP requests
+   * @param router instance of Router for navigation
+   */
   constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private router: Router) { }
 
+  /**
+   * Body for login request
+   */
   bodyLogin = {
     email: '',
     password: ''
@@ -39,9 +54,13 @@ export class ConnexionPage implements OnInit {
 
   rootURL = 'http://localhost:8080/api/auth';
 
+  /**
+   * @brief Asynchronous function for posting login data
+   * @return boolean indicating success or failure of login
+   */
   async postLogin(): Promise<boolean> {
     let state: boolean = false;
-    const login: loginRequest = new loginRequest(this.http, "", "", "");
+    const login: loginRequest = new loginRequest(this.http);
     const result = await login.postData(this.rootURL + "/login", this.bodyLogin, responseLogin);
     if (result.accessToken != undefined) {
       login.saveData();
@@ -50,6 +69,9 @@ export class ConnexionPage implements OnInit {
     return (state);
   }
 
+  /**
+   * @brief Asynchronous function for checking login status
+   */
   async checkLogin() {
     let response = await this.postLogin()
     console.log("response bool = " + response);
@@ -60,12 +82,21 @@ export class ConnexionPage implements OnInit {
     }
   } 
 
+  /**
+   * @method ngOnInit
+   * @description Method called when component is initialized.
+   */
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
   }
 
+  /**
+   * @method breakpointChanged
+   * @private
+   * @description Method to handle breakpoint changes.
+   */
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
       this.currentBreakpoint = Breakpoints.Web;

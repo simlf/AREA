@@ -41,14 +41,14 @@ export class InscriptionPage implements OnInit {
 
   async postRegister(): Promise<boolean> {
     let state: boolean = false;
-    const register: registerRequest = new registerRequest(this.http, "", "");
+    const register: registerRequest = new registerRequest(this.http);
     const resultRegister = await register.postData(this.rootURL + "/register", this.bodyRegister, responseRegister);
     if (JSON.stringify(resultRegister).includes("400 Bad Request") == false) {
       const bodyLogin = {
         email: this.bodyRegister.email,
         password: this.bodyRegister.password
       };
-      const login: loginRequest = new loginRequest(this.http, "", "", "");
+      const login: loginRequest = new loginRequest(this.http);
       const result = await login.postData(this.rootURL + "/login", bodyLogin, responseLogin);
       if (result.accessToken != undefined) {
         login.saveData();
@@ -66,7 +66,7 @@ export class InscriptionPage implements OnInit {
       this.router.navigate(['/home']);
     }
   }
-  
+
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
