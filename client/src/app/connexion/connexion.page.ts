@@ -1,9 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { distinctUntilChanged, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { login } from '../models/login.model';
+import { Router } from '@angular/router';
+import { Console } from 'console';
+import { Response } from 'express'
+import { stat } from 'fs';
+import { promises } from 'dns';
+import { State } from 'ionicons/dist/types/stencil-public-runtime';
+import { rest } from 'lodash';
+import { responseLogin, loginRequest } from '../utils/loginRequest';
 
 @Component({
   selector: 'app-connexion',
@@ -13,7 +21,7 @@ import { login } from '../models/login.model';
 export class ConnexionPage implements OnInit {
 
   Breakpoints = Breakpoints;
-  currentBreakpoint:string = '';
+  currentBreakpoint: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
@@ -22,38 +30,35 @@ export class ConnexionPage implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient) { }
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private router: Router) { }
 
-  auth_token_login = "";
-  auth_token_whoami = "";
-
-  headersLogin = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.auth_token_login}`
-  });
-
-  headersWhoami = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.auth_token_whoami}`
-  });
-
-  bodyLogin: login = {
+  bodyLogin = {
     email: '',
     password: ''
   };
 
   rootURL = 'http://localhost:8080/api/auth';
 
-  getWhoami() {
-    this.http.get(this.rootURL + "/whoami", { headers: this.headersWhoami })
-      .subscribe((res) => { console.log(res); });
+  async postLogin(): Promise<boolean> {
+    let state: boolean = false;
+    const login: loginRequest = new loginRequest(this.http, "", "", "");
+    const result = await login.postData(this.rootURL + "/login", this.bodyLogin, responseLogin);
+    if (result.accessToken != undefined) {
+      login.saveData();
+      state = true;
+    }
+    return (state);
   }
 
-  postLogin() {
-    this.http.post(this.rootURL + "/login", this.bodyLogin, { headers: this.headersLogin })
-      .subscribe((res) => { console.log(res);
-       });
-  }
+  async checkLogin() {
+    let response = await this.postLogin()
+    console.log("response bool = " + response);
+    if (response == false) {
+      this.router.navigate(['/connexion']);
+    } else {
+      this.router.navigate(['/home']);
+    }
+  } 
 
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
