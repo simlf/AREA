@@ -6,9 +6,9 @@ export class DiscordAuthGuard extends AuthGuard('discord') {
   async canActivate(context: ExecutionContext): Promise<any> {
     console.log("DiscordAuthGuard");
     const activate = (await super.canActivate(context)) as boolean;
-    console.log(activate);
+    // console.log(activate);
     const request = context.switchToHttp().getRequest();
-    console.log(request);
+    // console.log(request);
     await super.logIn(request);
   }
 }

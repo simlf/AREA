@@ -13,8 +13,15 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @OneToOne(() => DiscordAuthEntity, (discordAuth) => discordAuth.user)
-  discordAuth: Relation<DiscordAuthEntity>;
+  @Column({ nullable: true })
+  discordId: string;
+
+  @Column({ nullable: true })
+  discordToken: string;
+
+
+  // @OneToOne(() => DiscordAuthEntity, (discordAuth) => discordAuth.user)
+  // discordAuth: Relation<DiscordAuthEntity>;
 
   @BeforeInsert()
   async hashPassword() {

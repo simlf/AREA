@@ -7,6 +7,7 @@ import * as passport from 'passport';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
+  app.use(passport.initialize());
   app.use(
     session({
       secret: 'asiodasjoddjdoasddasoidjasiodasdjaiodd',
@@ -17,7 +18,6 @@ async function bootstrap() {
       },
     }),
   );
-  app.use(passport.initialize());
   app.use(passport.session());
   app.enableCors();
   await app.listen(8080);

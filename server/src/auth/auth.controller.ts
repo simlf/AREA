@@ -7,6 +7,8 @@ import { CreateUserDto } from 'src/users/dto/user.create.dto';
 import { LoginStatus } from './interfaces/login-status.interface';
 import { LoginUserDto } from 'src/users/dto/user-login.dto';
 import { JwtPayload } from './interfaces/payload.interface';
+import { DiscordAuthGuard } from './utils/Guards';
+import passport from 'passport';
 
 @Controller('auth')
 export class AuthController {
@@ -32,5 +34,19 @@ export class AuthController {
     public async testAuth(@Req() req: any): Promise<JwtPayload> {
         console.log(req.user);
         return req.user;
+    }
+
+    @Get('discord')
+    @UseGuards(DiscordAuthGuard)
+    loginDiscord() {
+        console.info("Login");
+        // passport.authenticate('discord', { scope: ['identify', 'email'] });
+        return { msg: 'Login' };
+    }
+
+    @Get('discord/redirect')
+    @UseGuards(DiscordAuthGuard)
+    redirect() {
+        return { msg: 'Redirect' };
     }
 }

@@ -15,11 +15,19 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    async validate(payload: JwtPayload): Promise<UserDto> {
+    async validate(payload: JwtPayload, done: any) {
         const user = await this.authService.validateUser(payload);
+        console.log('user: ', user);
         if (!user) {
             throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
         }
-        return user;
+        done(null, user);
     }
+    // async validate(payload: JwtPayload, done: any): Promise<UserDto> {
+    //     const user = await this.authService.validateUser(payload);
+    //     if (!user) {
+    //         throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
+    //     }
+    //     return user;
+    // }
 }
