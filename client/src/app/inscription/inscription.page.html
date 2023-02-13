@@ -16,9 +16,8 @@
                   <input type="email" name="email" id="email" class="form-control" placeholder="Email" [(ngModel)]="bodyRegister.email">
                   <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="bodyRegister.password">
                   <input type="confirmPassword" name="confirmPassword" id="password-verifiy" class="form-control" placeholder="Confirmation" [(ngModel)]="confirmPassword">
-                  <p *ngIf="valid == false">Invalid Password, retry !</p>
                   <!-- <button type="submit" class="btn-submit" *ngIf="state == false">S'inscrire</button> -->
-                  <button type="submit" class="btn-submit" (click)="postRegister()">S'inscrire</button>
+                  <button type="submit" class="btn-submit" (click)="checkRegister()">S'inscrire</button>
                 </form>
               </div>
               <strong><a href="connexion"><p class="old">Déjà un compte ? Connectez-vous</p></a></strong>
