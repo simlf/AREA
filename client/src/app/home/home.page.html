@@ -1,6 +1,8 @@
 <div [ngSwitch]="currentBreakpoint">
   <div class="menuWeb" *ngSwitchCase="Breakpoints.Web">
+    <a href="/home">
       <img src="../../assets/LogoArea.png" class="logo-web">
+    </a>
       <img src="../../assets/menuHeader.png" class="background">
       <div class="menuText">
         <p class="menuTitle"><a href="create-integration">Créer</a></p>
@@ -10,17 +12,20 @@
         <p class="menuTitle"><a (click)="logout()">Deconexion</a></p>
       </div>
     </div>
-  <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="overlay-handset">
-    <img src="../../assets/LogoAreaBlack.png" class="logo-handset">
-    <div class="menuHandsetPortrait">
-      <a href="home"><img src="../../assets/logoAutomatisation.png" class="iconeMenu"></a>
-      <a href="create-integration"><img src="../../assets/logoCreate.png" class="iconeMenu"></a>
-      <img src="../../assets/logoLogin.png" class="iconeMenu">
-    </div>
-  </div>
+    <div *ngSwitchCase="Breakpoints.HandsetPortrait">
+      <div class="overlay-handset">
+        <img src="../../assets/LogoAreaBlack.png" class="logo-handset">
+      </div>
+      <integration-list class="integration-list-handset" *ngSwitchCase="Breakpoints.HandsetPortrait"></integration-list>
+      <div class="menuHandsetPortrait">
+        <a href="home"><img src="../../assets/logoAutomatisation.png" class="iconeMenu"></a>
+        <a href="create-integration"><img src="../../assets/logoCreate.png" class="iconeMenu"></a>
+        <img src="../../assets/logoLogin.png" class="iconeMenu">
+        <hr class="active">
+      </div>
+    </div>  
   <div [ngSwitch]="currentBreakpoint">
     <integration-list class="integration-list-web" *ngSwitchCase="Breakpoints.Web"></integration-list>
-    <integration-list class="integration-list-handset" *ngSwitchCase="Breakpoints.HandsetPortrait"></integration-list>
   </div>
 </div>
 

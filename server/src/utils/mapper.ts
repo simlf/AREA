@@ -4,14 +4,14 @@ import { UserDto } from "src/users/dto/user.dto";
 import { UserEntity } from "src/users/entity/UserEntity";
 
 export const toUserDto = (data: UserEntity): UserDto => {
-    const { id, email } = data;
-    let userDto: UserDto = { id, email };
+    const { email } = data;
+    let userDto: UserDto = { email };
 
     return userDto;
 };
 
 export const toDiscordDto = (data: DiscordAuthEntity): DiscordDto => {
-    const { id, accessToken, refreshToken, discordId } = data;
-    let discordDto: DiscordDto = { id, accessToken, refreshToken, discordId };
+    const { id, accessToken, refreshToken, discordId, userId,  user } = data;
+    let discordDto: DiscordDto = { id, accessToken, refreshToken, discordId, userId, user };
     return discordDto;
 };

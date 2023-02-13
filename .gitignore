@@ -1,3 +1,5 @@
+.env
+
 # Logs
 logs
 *.log
@@ -104,3 +106,7 @@ dist
 .tern-port
 
 .angular/
+
+#Client files
+client/www
+client/android

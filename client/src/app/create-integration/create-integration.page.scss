@@ -150,3 +150,22 @@
     left: 55%;
     font-size: 1vw;
   }
+
+  .overlay-handset {
+    text-align: center;
+  }
+
+  .menuHandsetPortrait img.iconeMenu {
+    padding-left: 19%;
+  }
+  
+  .menuHandsetPortrait {
+    position: sticky;
+    background-color: black;
+    width: 100%;
+    height: 65px;
+    left: 0;
+    bottom: 0;
+    border-radius: 10px 10px 0 0;
+    padding: 14px;
+  }
