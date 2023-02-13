@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { AppService } from './home.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -23,15 +23,21 @@ export class HomePage implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private AppService: AppService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private AppService: AppService, private router: Router) { }
+  items = { ...localStorage };
 
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
+    this.router.navigate(['/landingpage']);
+  }
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
-    this.AppService.getWhoami();
+    console.log("store in localStorage: " + JSON.stringify(this.items));
   }
-
 
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
