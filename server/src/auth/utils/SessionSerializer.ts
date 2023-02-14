@@ -7,7 +7,6 @@ import { UserEntity } from 'src/users/entity/UserEntity';
 
 export class SessionSerializer extends PassportSerializer {
   constructor(
-    // @Inject('AUTH_SERVICE') private readonly authService: AuthService,
   ) {
     super();
   }
@@ -20,12 +19,4 @@ export class SessionSerializer extends PassportSerializer {
     console.log('dserializeUser: ', id);
     return cb(null, { id: id });
   }
-
-  // serializeUser(user: UserDto, done: Done) {
-  //   done(null, user);
-  // }
-  // async deserializeUser(user: UserDto, done: Done) {
-  //   const userDB = await this.authService.validateUser(user);
-  //   return userDB ? done(null, userDB) : done(null, null);
-  // }
 }
