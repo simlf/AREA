@@ -21,18 +21,6 @@
                 </form>
               </div>
               <strong><a href="signin"><p class="old">Déjà un compte ? Connectez-vous</p></a></strong>
-              <div class="signup-with-google">
-                <button class="google">
-                  <img src="../../assets/logoGoogle.png" class="icon">
-                  S'inscrire avec Google
-                </button>
-              </div>
-              <div class="signup-with-fb">
-                <button class="facebook">
-                  <img src="../../assets/logoFacebook.png" class="icon2">
-                  S'inscrire avec Facebook
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -52,22 +40,10 @@
             <input type="email" id="email" class="form-control-mob" placeholder="Email" [(ngModel)]="bodyRegister.email">
             <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe" [(ngModel)]="bodyRegister.password">
             <input type="confirmPassword" id="password-verifiy" class="form-control-mob" placeholder="Confirmation" [(ngModel)]="confirmPassword">
-            <button type="submit" class="btn-submit-mob" onclick="location.href='home';">S'inscrire</button>
+            <button type="submit" class="btn-submit-mob" (click)="checkRegister()">S'inscrire</button>
           </form>
         </div>
         <strong><a href="signin"><p class="old-mob">Déjà un compte ? Connectez-vous</p></a></strong>
-        <div class="signup-with-google-mob">
-          <button class="google-mob">
-            <img src="../../assets/logoGoogle.png" class="icon-mob">
-            S'inscrire avec Google
-          </button>
-        </div>
-        <div class="signup-with-fb-mob">
-          <button class="facebook-mob">
-            <img src="../../assets/logoFacebook.png" class="icon2-mob">
-            S'inscrire avec Facebook
-          </button>
-        </div>
       </div>
     </div>
   </div>
