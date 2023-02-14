@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { tap, distinctUntilChanged } from 'rxjs/operators';
 
 import { loginRequest, responseLogin } from '../utils/loginRequest';
+import { whoamiRequest } from '../utils/whoamiRequest';
 
 /**
  * @class ConnexionPage
@@ -76,7 +77,7 @@ export class ConnexionPage implements OnInit {
     let response = await this.postLogin()
     console.log("response bool = " + response);
     if (response == false) {
-      this.router.navigate(['/connexion']);
+      this.router.navigate(['/signin']);
     } else {
       this.router.navigate(['/home']);
     }
@@ -86,10 +87,19 @@ export class ConnexionPage implements OnInit {
    * @method ngOnInit
    * @description Method called when component is initialized.
    */
-  ngOnInit(): void {
+  async ngOnInit() {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
+    if (typeof(localStorage.getItem('auth_token')) === 'string') {
+      const check = new whoamiRequest(this.http);
+      const res = await check.isUser();
+      if (res == true) {
+        this.router.navigate(['home']);
+      } else {
+        localStorage.clear();
+      }
+    }
   }
 
   /**

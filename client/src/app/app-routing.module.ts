@@ -9,23 +9,19 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'landingpage',
+    redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: 'home-log-out',
-    loadChildren: () => import('./home-log-out/home-log-out.module').then( m => m.HomeLogOutPageModule)
   },
   {
     path: 'integration',
     loadChildren: () => import('./integration/integration.module').then( m => m.IntegrationPageModule)
   },
   {
-    path: 'connexion',
+    path: 'signin',
     loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionPageModule)
   },
   {
-    path: 'inscription',
+    path: 'signup',
     loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule)
   },
   {
@@ -35,6 +31,10 @@ const routes: Routes = [
   {
     path: 'landingpage',
     loadChildren: () => import('./landingpage/landingpage.module').then( m => m.LandingpagePageModule)
+  },
+  {
+    path: 'config-integration',
+    loadChildren: () => import('./config-integration/config-integration.module').then( m => m.ConfigIntegrationPageModule)
   },
   {
     path: 'client.apk',

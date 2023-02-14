@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import * as _ from 'lodash';
 
 export class responseRegister {
-    constructor(public succes: string, public message: string) { }
+    constructor(public success: string, public message: string) { }
 }
 
 function cast<T>(data: any, model: new (...args: any[]) => T): T {
@@ -11,21 +11,21 @@ function cast<T>(data: any, model: new (...args: any[]) => T): T {
 }
 
 export class registerRequest {
-    private succes: string;
+    private success: string;
     private message: string;
 
-    constructor(private http: HttpClient) { this.succes = ""; this.message = ""; }
+    constructor(private http: HttpClient) { this.success = ""; this.message = ""; }
 
     public async postData<T>(url: string, data: any, model: new (...args: any[]) => T): Promise<T> {
+        console.log(data)
         const response = await this.http.post(url, data).toPromise()
             .catch((error) => {
                 return error;
             });
         const responseCast = response as responseRegister;
 
-        this.succes = responseCast.succes;
+        this.success = responseCast.success;
         this.message = responseCast.message;
-
         return cast(response, model);
     }
 
@@ -34,6 +34,6 @@ export class registerRequest {
     }
 
     public getSucces(): string {
-        return this.succes;
+        return this.success;
     }
 }

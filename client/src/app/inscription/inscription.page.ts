@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Interface } from 'readline';
 import { loginRequest, responseLogin } from '../utils/loginRequest';
 import { registerRequest, responseRegister } from '../utils/registerRequest';
+import { whoamiRequest } from '../utils/whoamiRequest';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.page.html',
@@ -30,31 +31,35 @@ export class InscriptionPage implements OnInit {
 
   confirmPassword: string = '';
 
-  bodyRegister: register = {
-    username: '',
+  bodyRegister = {
+    email: '',
     password: '',
-    email: ''
   };
 
 
-  rootURL = 'http://localhost:8080/auth';
+  rootURL = 'http://localhost:8080/auth/';
 
   async postRegister(): Promise<boolean> {
     let state: boolean = false;
     const register: registerRequest = new registerRequest(this.http);
-    const resultRegister = await register.postData(this.rootURL + "/register", this.bodyRegister, responseRegister);
+    const resultRegister = await register.postData(this.rootURL + "register", this.bodyRegister, responseRegister);
     if (JSON.stringify(resultRegister).includes("400 Bad Request") == false) {
+      console.log("User not found, creating new user");
       const bodyLogin = {
         email: this.bodyRegister.email,
         password: this.bodyRegister.password
       };
       const login: loginRequest = new loginRequest(this.http);
-      const result = await login.postData(this.rootURL + "/login", bodyLogin, responseLogin);
+      const result = await login.postData(this.rootURL + "login", bodyLogin, responseLogin);
       if (result.accessToken != undefined) {
+        console.log("User successfully created and logged in");
         login.saveData();
         state = true;
       }
     }
+    else 
+      console.log("User already exists");
+
     return state;
   }
 
@@ -67,10 +72,19 @@ export class InscriptionPage implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
+    if (typeof(localStorage.getItem('auth_token')) === 'string') {
+      const check = new whoamiRequest(this.http);
+      const res = await check.isUser();
+      if (res == true) {
+        this.router.navigate(['home']);
+      } else {
+        localStorage.clear();
+      }
+    }
   }
 
   private breakpointChanged() {
