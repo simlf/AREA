@@ -16,4 +16,4 @@ RUN ionic build
 
 EXPOSE 8081
 
-CMD ["ng", "serve"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]
