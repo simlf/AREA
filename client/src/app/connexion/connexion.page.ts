@@ -77,7 +77,7 @@ export class ConnexionPage implements OnInit {
     let response = await this.postLogin()
     console.log("response bool = " + response);
     if (response == false) {
-      this.router.navigate(['/connexion']);
+      this.router.navigate(['/signin']);
     } else {
       this.router.navigate(['/home']);
     }
