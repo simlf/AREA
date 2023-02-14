@@ -17,8 +17,4 @@ export class DiscordAuthEntity {
 
     @Column()
     userId: string;
-
-    @OneToOne(() => UserEntity, (user) => user.discordAuth)
-    @JoinColumn()
-    user: Relation<UserEntity>;
 }

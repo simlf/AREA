@@ -7,14 +7,17 @@ export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true  })
   email: string;
 
   @Column()
   password: string;
 
-  @OneToOne(() => DiscordAuthEntity, (discordAuth) => discordAuth.user)
-  discordAuth: Relation<DiscordAuthEntity>;
+  @Column({ nullable: true })
+  discordId: string;
+
+  @Column({ nullable: true })
+  discordToken: string;
 
   @BeforeInsert()
   async hashPassword() {

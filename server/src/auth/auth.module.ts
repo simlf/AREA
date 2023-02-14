@@ -16,6 +16,7 @@ import { DiscordStrategy } from './utils/DiscordStrategy';
         PassportModule.register({
             defaultStrategy: 'jwt',
             property: 'user',
+            // session: true,
             session: false,
         }),
         JwtModule.register({
