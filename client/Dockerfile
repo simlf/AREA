@@ -14,4 +14,4 @@ COPY . .
 
 RUN ionic build
 
-CMD ["ng", "serve"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]
