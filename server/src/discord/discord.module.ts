@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
-import { DiscordController } from './discord.controller';
+// import { DiscordController } from './discord.controller';
 import { DiscordService } from './discord.service';
 import { UsersModule } from 'src/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DiscordAuthEntity } from '../entities/DiscordAuthEntity';
 import { UserEntity } from 'src/users/entity/UserEntity';
-import { AuthModule } from '../auth.module';
-import { DiscordStrategy } from '../utils/DiscordStrategy';
-import { DiscordAuthGuard } from '../utils/Guards';
+import { AuthModule } from '../auth/auth.module';
+import { DiscordStrategy } from '../auth/utils/DiscordStrategy';
+import { DiscordAuthGuard } from '../auth/utils/Guards';
 
 @Module({
     imports: [
@@ -18,7 +17,7 @@ import { DiscordAuthGuard } from '../utils/Guards';
         ]),
     ],
     controllers: [
-        DiscordController,
+        // DiscordController,
     ],
     providers: [
         DiscordAuthGuard,
