@@ -132,7 +132,7 @@ img.logo-web {
   margin-top: 10%;
   margin-left: 40.5%;
   width: 20%;
-  height: 40%;
+  height: 485px;
   justify-content: center;
 
   background-color: rgba(255, 255, 255, 0.5);
@@ -147,7 +147,7 @@ img.logo-web {
   border-radius: 10px;
   padding: 2% 2% 2% 2%;
   background-color: rgba(255, 255, 255, 0);
-  margin: 5% 0.5% 0.5% 0.5%;
+  margin: 10px;
   align-items: center;
   width: 75%;
 }
@@ -207,6 +207,12 @@ img.logo-web {
   width: 75%;
   height: 10%;
   margin-left: 13%;
+}
+
+.text-danger {
+  font-weight: 500;
+  color: red;
+  opacity: 0.5;
 }
 
 

@@ -11,6 +11,7 @@
             <div class="rectangle">
               <strong><p class="new">Nouveau sur Area ?</p></strong>
               <div class="form-container">
+                <div *ngIf="!userExist" class="text-danger">Email ou mot de passe incorect</div>
                 <form #form="ngForm" (ngSubmit)="postLogin()">
                   <input type="email" name="email" id="email" class="form-control" placeholder="Email" [(ngModel)]="bodyLogin.email">
                   <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="bodyLogin.password">
