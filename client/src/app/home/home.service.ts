@@ -30,7 +30,7 @@ export class AppService {
 
   bodyLogin: login = {
     email: 'email@email.com',
-    password: 'password'
+    token: 'password'
   };
 
   rootURL = 'http://localhost:8080/api/auth';

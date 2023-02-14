@@ -1,20 +1,34 @@
-import { CommonModule } from '@angular/common';
+/**
+ * @file ConnexionPage
+ * @author [Author Name]
+ * @date [Date]
+ * @brief Component class for ConnexionPage in Angular
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { distinctUntilChanged, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { login } from '../models/login.model';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { tap, distinctUntilChanged } from 'rxjs/operators';
 
+import { loginRequest, responseLogin } from '../utils/loginRequest';
+
+/**
+ * @class ConnexionPage
+ * @brief Component for handling connexion logic in Angular
+ */
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.page.html',
   styleUrls: ['./connexion.page.scss'],
 })
 export class ConnexionPage implements OnInit {
-
   Breakpoints = Breakpoints;
-  currentBreakpoint:string = '';
+  currentBreakpoint: string = '';
 
+  /**
+   * Observable for breakpoint changes
+   */
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
     .pipe(
@@ -22,44 +36,67 @@ export class ConnexionPage implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient) { }
+  /**
+   * @brief Constructor for ConnexionPage
+   * @param breakpointObserver instance of BreakpointObserver
+   * @param http instance of HttpClient for sending HTTP requests
+   * @param router instance of Router for navigation
+   */
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private router: Router) { }
 
-  auth_token_login = "";
-  auth_token_whoami = "";
-
-  headersLogin = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.auth_token_login}`
-  });
-
-  headersWhoami = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.auth_token_whoami}`
-  });
-
-  bodyLogin: login = {
+  /**
+   * Body for login request
+   */
+  bodyLogin = {
     email: '',
     password: ''
   };
 
   rootURL = 'http://localhost:8080/api/auth';
 
-  getWhoami() {
-    this.http.get(this.rootURL + "/whoami", { headers: this.headersWhoami })
-      .subscribe((res) => { console.log(res); });
+  /**
+   * @brief Asynchronous function for posting login data
+   * @return boolean indicating success or failure of login
+   */
+  async postLogin(): Promise<boolean> {
+    let state: boolean = false;
+    const login: loginRequest = new loginRequest(this.http);
+    const result = await login.postData(this.rootURL + "/login", this.bodyLogin, responseLogin);
+    if (result.accessToken != undefined) {
+      login.saveData();
+      state = true;
+    }
+    return (state);
   }
 
-  postLogin() {
-    this.http.post(this.rootURL + "/login", this.bodyLogin, { headers: this.headersLogin })
-      .subscribe((res) => { console.log(res); });
-  }
+  /**
+   * @brief Asynchronous function for checking login status
+   */
+  async checkLogin() {
+    let response = await this.postLogin()
+    console.log("response bool = " + response);
+    if (response == false) {
+      this.router.navigate(['/connexion']);
+    } else {
+      this.router.navigate(['/home']);
+    }
+  } 
 
+  /**
+   * @method ngOnInit
+   * @description Method called when component is initialized.
+   */
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
   }
 
+  /**
+   * @method breakpointChanged
+   * @private
+   * @description Method to handle breakpoint changes.
+   */
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
       this.currentBreakpoint = Breakpoints.Web;

@@ -14,7 +14,7 @@
                 <form #form="ngForm" (ngSubmit)="postLogin()">
                   <input type="email" name="email" id="email" class="form-control" placeholder="Email" [(ngModel)]="bodyLogin.email">
                   <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="bodyLogin.password">
-                  <button type="submit" class="btn-submit" onclick="location.href='home';">Se connecter</button>
+                  <button type="submit" class="btn-submit" (click)="checkLogin()">Se connecter</button>
                 </form>
               </div>
               <strong><a href="inscription"><p class="old">Pas de compte ? Inscrivez-vous</p></a></strong>
