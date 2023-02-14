@@ -1,4 +1,4 @@
-import { DiscordDto } from "src/auth/discord/dto/discord.dto";
+import { DiscordDto } from "src/discord/dto/discord.dto";
 
 export class UserDto {
     email: string;
