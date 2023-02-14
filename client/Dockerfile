@@ -1,6 +1,6 @@
 FROM node:14-alpine
 
-RUN npm install -g ionic
+RUN npm install -g @ionic/cli
 
 RUN npm install -g @angular/cli
 
@@ -14,6 +14,4 @@ COPY . .
 
 RUN ionic build
 
-EXPOSE 8081
-
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["ng", "serve"]

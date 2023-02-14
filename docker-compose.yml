@@ -33,14 +33,18 @@ services:
 
   client_web:
     container_name: area_client_web
-    network_mode: host
     restart: always
     build: './client'
     volumes:
       - ./client_web:/client_web
+    ports:
+      - "8081:8081"
+    depends_on:
+      - server
 
 networks:
   server:
+    driver: bridge
 
 volumes:
   area_db_data:
