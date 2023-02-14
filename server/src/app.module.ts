@@ -8,14 +8,11 @@ import { AuthModule } from './auth/auth.module';
 import { UserEntity } from './users/entity/UserEntity';
 import { HttpModule } from '@nestjs/axios';
 import { UsersModule } from './users/users.module';
-import { DiscordAuthEntity } from './auth/entities/DiscordAuthEntity';
-import { DiscordModule } from './auth/discord/discord.module';
+import { DiscordModule } from './discord/discord.module';
 import { GithubService } from './github/github.service';
 import { GithubController } from './github/github.controller';
 import { LeagueService } from './league/league.service';
 import { LeagueController } from './league/league.controller';
-
-
 
 dotenv.config();
 
@@ -30,7 +27,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.MYSQL_ROOT_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [UserEntity, DiscordAuthEntity],
+      entities: [UserEntity],
       synchronize: true,
     }),
     DiscordModule,

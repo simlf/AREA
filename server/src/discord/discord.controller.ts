@@ -4,7 +4,7 @@ import { UserDto } from 'src/users/dto/user.dto';
 import { CreateDiscordDto } from './dto/discord.create.dto';
 import { DiscordDto } from './dto/discord.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { DiscordAuthGuard } from '../utils/Guards';
+import { DiscordAuthGuard } from '../auth/utils/Guards';
 import passport from 'passport';
 
 @Controller('discord')

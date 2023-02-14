@@ -1,13 +1,8 @@
-import { Inject, Injectable, Request } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-discord'
-import { AuthService } from '../auth.service';
-import { DiscordService } from '../discord/discord.service';
-import { request } from 'http';
-import { JwtPayload } from 'jsonwebtoken';
-import { DiscordAuthEntity } from '../entities/DiscordAuthEntity';
+import { DiscordService } from '../../discord/discord.service';
 import { UsersService } from 'src/users/users.service';
-// import { Done } from 'src/utils/types';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/users/entity/UserEntity';
 import { Repository } from 'typeorm';
