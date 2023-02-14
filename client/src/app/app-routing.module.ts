@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'landingpage',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'landingpage',
     loadChildren: () => import('./landingpage/landingpage.module').then( m => m.LandingpagePageModule)
+  },
+  {
+    path: 'config-integration',
+    loadChildren: () => import('./config-integration/config-integration.module').then( m => m.ConfigIntegrationPageModule)
   },
   {
     path: 'client.apk',
