@@ -31,13 +31,13 @@ services:
     volumes:
       - area_db_data:/var/lib/mysql
 
-  client_web:
-    container_name: area_client_web
-    network_mode: host
-    restart: always
-    build: './client'
-    volumes:
-      - ./client_web:/client_web
+  # client_web:
+  #   container_name: area_client_web
+  #   network_mode: host
+  #   restart: always
+  #   build: './client'
+  #   volumes:
+  #     - ./client_web:/client_web
 
 networks:
   server:

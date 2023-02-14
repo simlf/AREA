@@ -1,5 +1,4 @@
 import * as bcryptjs from 'bcryptjs';
-import { DiscordAuthEntity } from 'src/auth/entities/DiscordAuthEntity';
 import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 
 @Entity({ name: 'users' })
