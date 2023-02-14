@@ -23,6 +23,12 @@ export class DiscordController {
 
         console.info("Login");
 
+        const channel = client.channels.cache.get('id');
+        if (channel instanceof TextChannel) {
+            channel.send('Hello world!');
+        }
+
+
         client.on(Events.InteractionCreate, async interaction => {
             if (!interaction.isChatInputCommand()) return;
 
