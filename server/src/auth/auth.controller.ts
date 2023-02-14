@@ -8,8 +8,9 @@ import { LoginStatus } from './interfaces/login-status.interface';
 import { LoginUserDto } from 'src/users/dto/user-login.dto';
 import { JwtPayload } from './interfaces/payload.interface';
 import { DiscordAuthGuard } from './utils/Guards';
-import passport from 'passport';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}

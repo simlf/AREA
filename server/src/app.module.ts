@@ -14,8 +14,6 @@ import { GithubController } from './github/github.controller';
 import { LeagueService } from './league/league.service';
 import { LeagueController } from './league/league.controller';
 
-
-
 dotenv.config();
 
 @Module({
