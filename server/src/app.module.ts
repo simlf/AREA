@@ -13,12 +13,14 @@ import { GithubService } from './github/github.service';
 import { GithubController } from './github/github.controller';
 import { LeagueService } from './league/league.service';
 import { LeagueController } from './league/league.controller';
+import { DiscordController } from './discord/discord.controller';
 
 dotenv.config();
 
 @Module({
   imports: [
     AuthModule,
+    DiscordModule,
     UsersModule,
     HttpModule,
     TypeOrmModule.forRoot({
@@ -34,6 +36,7 @@ dotenv.config();
   ],
   controllers: [
     AppController,
+    DiscordController,
     GithubController,
     LeagueController,
   ],

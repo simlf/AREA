@@ -18,7 +18,8 @@ export class DiscordStrategy extends PassportStrategy(Strategy) {
 			clientID: process.env.DISCORD_CLIENT_ID,
 			clientSecret: process.env.DISCORD_CLIENT_SECRET,
 			callbackURL: process.env.DISCORD_REDIRECT_URI,
-			scope: ['identify', 'email', 'connections', 'bot', 'guilds', 'relationships.read', 'activities.write', 'dm_channels.read', 'messages.read', 'activities.read' ],
+			scope: ['identify', 'email', 'connections', 'bot', 'guilds', 'messages.read' ],
+			//  'relationships.read', 'activities.write', 'dm_channels.read', 'activities.read' ],
 			session: false,
 		});
 	}
