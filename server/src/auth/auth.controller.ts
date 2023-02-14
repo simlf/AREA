@@ -14,7 +14,7 @@ import passport from 'passport';
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
-    @Post('api/register')
+    @Post('register')
     public async register(@Body() createUserDto: CreateUserDto,  ): Promise<RegistrationStatus> {
         const result:
         RegistrationStatus = await this.authService.register(createUserDto,);
@@ -24,12 +24,12 @@ export class AuthController {
         return result;
     }
 
-    @Post('api/login')
+    @Post('login')
     public async login(@Body() loginUserDto: LoginUserDto): Promise<LoginStatus> {
         return await this.authService.login(loginUserDto);
     }
 
-    @Get('api/whoami')
+    @Get('whoami')
     @UseGuards(AuthGuard())
     public async testAuth(@Req() req: any): Promise<JwtPayload> {
         console.log(req.user);

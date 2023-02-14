@@ -37,7 +37,7 @@ export class InscriptionPage implements OnInit {
   };
 
 
-  rootURL = 'http://localhost:8080/api/auth';
+  rootURL = 'http://localhost:8080/auth';
 
   async postRegister(): Promise<boolean> {
     let state: boolean = false;
