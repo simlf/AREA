@@ -33,7 +33,7 @@ export class AppService {
     token: 'password'
   };
 
-  rootURL = 'http://localhost:8080/api/auth';
+  rootURL = 'http://localhost:8080/auth';
 
   postRegister() {
     this.http.post(this.rootURL + "/register", this.bodyRegister)

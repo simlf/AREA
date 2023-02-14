@@ -52,7 +52,7 @@ export class ConnexionPage implements OnInit {
     password: ''
   };
 
-  rootURL = 'http://localhost:8080/api/auth';
+  rootURL = 'http://localhost:8080/auth';
 
   /**
    * @brief Asynchronous function for posting login data

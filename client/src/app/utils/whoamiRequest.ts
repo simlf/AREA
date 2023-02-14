@@ -36,7 +36,7 @@ export class whoamiRequest {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('auth_token'),
         });
-        const response = await this.http.get('http://localhost:8080/api/auth/whoami', { headers: headersBearrer }).toPromise();
+        const response = await this.http.get('http://localhost:8080/auth/whoami', { headers: headersBearrer }).toPromise();
         console.log(response);
         if (JSON.stringify(response).includes("400"))
             console.log("400");
