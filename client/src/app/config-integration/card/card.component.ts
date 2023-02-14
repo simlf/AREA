@@ -55,14 +55,14 @@ export class integrationComponent implements OnInit {
       {
         name: "Brawlstar",
         description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-        img: "../../assets/blueBackground.png",
+        img: "../../assets/1.png",
         logo: "../../assets/logoBrawlstar.png",
         connect: true
       },
       {
         name: "Brawlstar",
         description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-        img: "../../assets/blueBackground.png",
+        img: "../../assets/1.png",
         logo: "../../assets/logoBrawlstar.png",
         connect: false
       },

@@ -36,6 +36,14 @@ export interface About {
   server: Server; 
 }
 
+export interface workflow {
+    name: string;
+    description: string;
+    logo: string;
+    url: string;
+    img: string;
+}
+
 @Injectable()
 export class AboutService {
   getAbout(@Request() Req): About {
@@ -165,5 +173,28 @@ export class AboutService {
       }
     };
     return about;
+  }
+}
+
+@Injectable()
+export class IntegrationService {
+  getWorkflows(): workflow[] {
+    const workflow: workflow[] = [
+      {
+        name: 'Discord',
+        description: 'Discord is a free and secure all-in-one voice+text app designed for gamers that works on your desktop and phone.',
+        logo: 'https://discord.com/assets/2c21aeda16de354ba5334551a883b481.png',
+        url: '/integration',
+        img: '../../assets/1.png'
+      },
+      {
+        name: 'Discord',
+        description: 'Discord is a free and secure all-in-one voice+text app designed for gamers that works on your desktop and phone.',
+        logo: 'https://discord.com/assets/2c21aeda16de354ba5334551a883b481.png',
+        url: '/integration',
+        img: '../../assets/1.png'
+      },
+    ];
+    return workflow;
   }
 }
