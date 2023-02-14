@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
-
+import { whoamiRequest } from '../utils/whoamiRequest';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-landingpage',
   templateUrl: './landingpage.page.html',
@@ -11,7 +13,7 @@ import { distinctUntilChanged, tap } from 'rxjs/operators';
 export class LandingpagePage implements OnInit {
 
   Breakpoints = Breakpoints;
-  currentBreakpoint:string = '';
+  currentBreakpoint: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
@@ -20,12 +22,21 @@ export class LandingpagePage implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
+    if (typeof(localStorage.getItem('auth_token')) === 'string') {
+      const check = new whoamiRequest(this.http);
+      const res = await check.isUser();
+      if (res == true) {
+        this.router.navigate(['home']);
+      } else {
+        localStorage.clear();
+      }
+    }
   }
 
   private breakpointChanged() {
