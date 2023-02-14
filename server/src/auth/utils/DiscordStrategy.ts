@@ -18,14 +18,12 @@ export class DiscordStrategy extends PassportStrategy(Strategy) {
 	private readonly discordService: DiscordService,
 	private readonly usersService: UsersService,
 	@InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,
-
 	) {
 		super({
 			clientID: process.env.DISCORD_CLIENT_ID,
 			clientSecret: process.env.DISCORD_CLIENT_SECRET,
 			callbackURL: process.env.DISCORD_REDIRECT_URI,
-			// callbackURL: "Dhttp://localhost:8080/api/discord/redirect",
-			scope: ['identify', 'email', 'connections', 'guilds', 'relationships.read','gdm.join', 'bot', 'activities.write', 'dm_channels.read', 'applications.builds.read', 'messages.read', 'activities.read'],
+			scope: ['identify', 'email', 'connections', 'bot', 'guilds', 'relationships.read', 'activities.write', 'dm_channels.read', 'messages.read', 'activities.read' ],
 			session: false,
 		});
 	}
@@ -43,10 +41,7 @@ export class DiscordStrategy extends PassportStrategy(Strategy) {
 			const user = await this.userRepo.findOne({ where: { discordId: profile.id } });
 			if (user) {
 				console.log("user found", user);
-				return user;
-				// return cb(null, user);
-				// console.log("efter done");
-				// return user;
+				return cb(null, user);
 			}
 
 			const oldUser = await this.userRepo.findOne({ where: { email: profile.email } });
@@ -56,28 +51,16 @@ export class DiscordStrategy extends PassportStrategy(Strategy) {
 				oldUser.discordId = profile.id;
 				oldUser.discordToken = profile.accessToken;
 				const userRepo = await this.userRepo.update(oldUser.id, oldUser);
-				// const user1Repo = await this.userRepo.update(oldUser.id, oldUser);
 				const newUser = await this.userRepo.findOne({ where: { discordId: profile.id } });
 				console.log("user updated", userRepo);
 				console.log("new user", newUser);
-				return user;
-				// return cb(null, oldUser.email);
+				// return newUser;
+				return cb(null, newUser.email);
 			}
 		}
 		catch (err) {
 			console.error(err);
-			// return done(err, null);
+			return cb(err, null);
 		}
-
-		// let discordId = profile.id;
-
-
-		// if (await this.discordService.findOne({ where: { discordId } }) != null)
-		// 	console.info("User already exists : ", profile.username)
-		// else {
-		// 	// this.discordService.createDiscordAuth(accessToken, refreshToken, profile.id);
-		// 	console.info("User created : ", profile.username);
-		// }
-		// return await this.discordService.findOne({ where: { discordId } });
 	}
 }

@@ -40,7 +40,6 @@ export class AuthController {
     @UseGuards(DiscordAuthGuard)
     loginDiscord() {
         console.info("Login");
-        // passport.authenticate('discord', { scope: ['identify', 'email'] });
         return { msg: 'Login' };
     }
 
