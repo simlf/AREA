@@ -15,15 +15,20 @@ export class AndroidApkComponent implements OnInit {
   }
   downloadApk() {
     const filepath = '../../../android/app/build/outputs/apk/release/client.apk';
-    fetch(filepath)
-      .then(res => res.blob())
-      .then(blob => {
-        const file = new Blob([blob], { type: 'application/vnd.android.package-archive' });
-        const fileUrl = URL.createObjectURL(file);
-        const a = document.createElement('a');
-        a.href = fileUrl;
-        a.download = 'client.apk';
-        a.click();
-      });
+    const req = new XMLHttpRequest();
+    req.open('GET', filepath, true);
+    req.responseType = 'blob';
+  
+    req.onload = () => {
+      const blob = req.response;
+      const file = new Blob([blob], { type: 'application/vnd.android.package-archive' });
+      const fileUrl = URL.createObjectURL(file);
+      const a = document.createElement('a');
+      a.href = fileUrl;
+      a.download = 'client.txt';
+      a.click();
+    };
+  
+    req.send();
   }
 }
