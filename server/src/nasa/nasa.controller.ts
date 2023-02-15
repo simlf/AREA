@@ -8,7 +8,7 @@ export class NasaController {
 
     @Get('')
     getRoutes() {
-        return {routes : ["/imageOfTheDay", "/matches", "/rankone", "/challenges", "/statistics", "/mastery"]}
+        return {routes : ["/imageOfTheDay"]}
     }
 
     @Get('imageOfTheDay')
