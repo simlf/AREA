@@ -12,7 +12,7 @@ export class NasaService {
 
     async getImageOfTheDay() {
         var return_value = { 
-            "url"                   :  null,                  
+            "url" :  null,                  
         }
         const url_tmp = `${base_url1}${process.env.NASA_API}`;
         try {
