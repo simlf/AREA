@@ -223,7 +223,6 @@ img.logo-web {
   position: absolute;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
   margin-top: 30%;
 }
@@ -236,6 +235,7 @@ img.logo-web {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transform: translateY(30%);
 }
 
 .new-mob {
