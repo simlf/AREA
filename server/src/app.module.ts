@@ -13,6 +13,8 @@ import { GithubService } from './github/github.service';
 import { GithubController } from './github/github.controller';
 import { LeagueService } from './league/league.service';
 import { LeagueController } from './league/league.controller';
+import { NasaService } from './nasa/nasa.service';
+import { NasaController } from './nasa/nasa.controller';
 
 dotenv.config();
 
@@ -36,6 +38,7 @@ dotenv.config();
     AppController,
     GithubController,
     LeagueController,
+    NasaController,
   ],
   providers: [
     AppService,
@@ -43,6 +46,7 @@ dotenv.config();
     GithubService,
     LeagueService,
     IntegrationService,
+    NasaService,
   ],
 })
 export class AppModule {}
