@@ -11,8 +11,8 @@ export class SpotifyController {
         return {routes : ["/imageOfTheDay"]}
     }
 
-    @Get('imageOfTheDay')
-    getLevel() {
-        return this.spotifyService.getImageOfTheDay()
+    @Get('users/playlist')
+    getUserPlaylist() {
+        return this.spotifyService.getUserPlaylist()
     }
 }

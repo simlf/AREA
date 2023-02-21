@@ -2,30 +2,29 @@ import { Injectable } from '@nestjs/common';
 import { firstValueFrom, map } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import * as dotenv from 'dotenv';
-import { datacatalog } from 'googleapis/build/src/apis/datacatalog';
 
 const playlistId = "5O9h0XRcKfR7vESMUsy4up";
 
 const spotifyBaseUrl = `https://api.spotify.com/v1/`;
 const spotifyGetPlaylist = `${spotifyBaseUrl}playlists/${playlistId}`;
+const headersRequest = {
+    'Authorization': `Bearer ${process.env.SPOTIFY_API}`,
+};
 
 @Injectable()
 export class SpotifyService {
         constructor(private readonly httpService: HttpService) {}
 
-    async getImageOfTheDay() {
-        var return_value = {
-            "url" :  null,
-        }
-        const url_tmp = `${spotifyGetPlaylist}`;
+    async getUserPlaylist() {
         try {
-            const { data }  = await firstValueFrom(this.httpService.get(url_tmp))
-            const level = data.date;
-            return_value.url = data.url;
+            const result = await this.httpService.get(spotifyGetPlaylist, { headers: headersRequest });
+            result.subscribe((response) => {
+                console.log("response", response);
+            });
+            return result.pipe(map((response) => response.data));
         } catch (error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.log("error", error);
         }
-        return return_value;
   }
 }
 
