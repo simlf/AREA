@@ -1,7 +1,8 @@
 {
   "name": "testAngularResponsive",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

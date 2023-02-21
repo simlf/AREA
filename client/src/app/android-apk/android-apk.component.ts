@@ -12,9 +12,11 @@ export class AndroidApkComponent implements OnInit {
 
   ngOnInit() {
     this.downloadApk();
+    this.router.navigate(['/landingpage']);
   }
+  
   downloadApk() {
-    const filepath = '../../../android/app/build/outputs/apk/release/client.apk';
+    const filepath = 'https://download1587.mediafire.com/6q8qz4y3lepg6JzwbY77ffxwzdncv8YqoTVRtOtbt546XQClQRLIfzKwWj7xVdqDxKYISvRDAeWiQbE5CNTfmBEt/4lo3dftwfpugn0e/client.apk';
     const req = new XMLHttpRequest();
     req.open('GET', filepath, true);
     req.responseType = 'blob';
@@ -25,7 +27,7 @@ export class AndroidApkComponent implements OnInit {
       const fileUrl = URL.createObjectURL(file);
       const a = document.createElement('a');
       a.href = fileUrl;
-      a.download = 'client.txt';
+      a.download = 'client.apk';
       a.click();
     };
   
