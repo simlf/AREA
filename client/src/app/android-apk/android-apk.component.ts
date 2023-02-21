@@ -16,7 +16,7 @@ export class AndroidApkComponent implements OnInit {
   }
   
   downloadApk() {
-    const filepath = 'https://download1505.mediafire.com/d9ql8fz011wgEMpdJJbAAjyQqKtYD-mPLRBfRDtzFzcXRow8CdCgKVzOKtBIZi9Kyl0ImENilZ3g33PzPlcuHuoK/6pnwlewi4aus8pw/client.apk';
+    const filepath = 'https://download1587.mediafire.com/6q8qz4y3lepg6JzwbY77ffxwzdncv8YqoTVRtOtbt546XQClQRLIfzKwWj7xVdqDxKYISvRDAeWiQbE5CNTfmBEt/4lo3dftwfpugn0e/client.apk';
     const req = new XMLHttpRequest();
     req.open('GET', filepath, true);
     req.responseType = 'blob';
