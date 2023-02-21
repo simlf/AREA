@@ -2,18 +2,23 @@ import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
+import { DiscordModule } from '@discord-nestjs/core';
+import { GatewayIntentBits } from 'discord.js';
+
+
 import { AppController } from './app.controller';
 import { AppService, AboutService, IntegrationService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserEntity } from './users/entity/UserEntity';
 import { HttpModule } from '@nestjs/axios';
 import { UsersModule } from './users/users.module';
-import { DiscordModule } from './discord/discord.module';
+// import { DiscordModule } from './discord/discord.module';
 import { GithubService } from './github/github.service';
 import { GithubController } from './github/github.controller';
 import { LeagueService } from './league/league.service';
 import { LeagueController } from './league/league.controller';
 import { DiscordController } from './discord/discord.controller';
+import { DiscordConfigService } from './discord-config.service';
 
 dotenv.config();
 
@@ -32,7 +37,10 @@ dotenv.config();
       entities: [UserEntity],
       synchronize: true,
     }),
-    DiscordModule,
+    DiscordModule.forRootAsync({
+      useClass: DiscordConfigService,
+    }),
+    // DiscordModule,
   ],
   controllers: [
     AppController,
