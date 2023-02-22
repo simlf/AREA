@@ -15,6 +15,7 @@ import { LeagueService } from './league/league.service';
 import { LeagueController } from './league/league.controller';
 import { NasaService } from './nasa/nasa.service';
 import { NasaController } from './nasa/nasa.controller';
+import { SpotifyModule } from './spotify/spotify.module';
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ dotenv.config();
       synchronize: true,
     }),
     DiscordModule,
+    SpotifyModule,
   ],
   controllers: [
     AppController,
