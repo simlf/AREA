@@ -17,6 +17,7 @@ import { NasaService } from './nasa/nasa.service';
 import { NasaController } from './nasa/nasa.controller';
 import { MeteoService } from './meteo/meteo.service';
 import { MeteoController } from './meteo/meteo.controller';
+import { SpotifyModule } from './spotify/spotify.module';
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ dotenv.config();
       synchronize: true,
     }),
     DiscordModule,
+    SpotifyModule,
   ],
   controllers: [
     AppController,

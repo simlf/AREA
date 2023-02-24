@@ -52,7 +52,7 @@ export class ConnexionPage implements OnInit {
     email: '',
     password: ''
   };
-
+  userExist: boolean = true;
   rootURL = 'http://localhost:8080/auth';
 
   /**
@@ -66,6 +66,9 @@ export class ConnexionPage implements OnInit {
     if (result.accessToken != undefined) {
       login.saveData();
       state = true;
+    } else {
+      this.userExist = false;
+      state = false;
     }
     return (state);
   }

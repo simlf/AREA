@@ -13,8 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
-    HttpClientModule,
     CommonModule,
+    HttpClientModule,
     FormsModule,
     IonicModule,
     ConnexionPageRoutingModule
