@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { WorkflowAction } from './workflows.entity';
+import { WorkflowEntity } from './workflows.entity';
 import { UserEntity } from '../users/entity/UserEntity';
 
 @Injectable()
 export class WorkflowService {
-    constructor(@InjectRepository(WorkflowAction) private readonly workflowActionRepository: Repository<WorkflowAction>,) {}
+    constructor(@InjectRepository(WorkflowEntity) private readonly workflowActionRepository: Repository<WorkflowEntity>,) {}
 
     async createWorkflowAction(
       workflowId: number,
@@ -15,8 +15,8 @@ export class WorkflowService {
       user: UserEntity,
       workflowName: string,
       description: string,
-    ): Promise<WorkflowAction> {
-      const workflowAction = new WorkflowAction();
+    ): Promise<WorkflowEntity> {
+      const workflowAction = new WorkflowEntity();
       workflowAction.workflow_id = workflowId;
       workflowAction.action_name = actionName;
       workflowAction.reaction_name = reactionName;
@@ -26,7 +26,7 @@ export class WorkflowService {
       return this.workflowActionRepository.save(workflowAction);
     }
 
-    async getAllWorkflowActions(): Promise<WorkflowAction[]> {
+    async getAllWorkflowActions(): Promise<WorkflowEntity[]> {
       return this.workflowActionRepository.find();
     }
 

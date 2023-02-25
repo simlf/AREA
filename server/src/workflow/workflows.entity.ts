@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserEntity } from '../users/entity/UserEntity';
 
 @Entity()
-export class WorkflowAction {
+export class WorkflowEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

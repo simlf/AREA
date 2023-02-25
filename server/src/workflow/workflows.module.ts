@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { WorkflowAction } from './workflows.entity';
+import { WorkflowEntity } from './workflows.entity';
 import { UserEntity } from '../users/entity/UserEntity';
 import { UsersModule } from 'src/users/users.module';
 import { HttpModule, HttpService } from '@nestjs/axios';
@@ -11,7 +11,7 @@ import { WorkflowService } from './workflows.service';
     imports: [
         UsersModule,
         HttpModule,
-        TypeOrmModule.forFeature([WorkflowAction]),
+        TypeOrmModule.forFeature([WorkflowEntity]),
     ],
     controllers: [
         WorkflowController
@@ -19,5 +19,6 @@ import { WorkflowService } from './workflows.service';
     providers: [
         WorkflowService,
     ],
+    exports: [WorkflowService],
 })
-export class workflowModule {}
+export class WorkflowModule {}

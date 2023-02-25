@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Get } from '@nestjs/common';
 import { WorkflowService } from './workflows.service';
 import { UserEntity } from '../users/entity/UserEntity';
-import { WorkflowAction } from './workflows.entity';
+import { WorkflowEntity } from './workflows.entity';
 import { HttpService } from '@nestjs/axios';
 
 @Controller('workflowsDb')
@@ -28,7 +28,7 @@ export class WorkflowController {
   }
 
   @Get('displayWorkflow')
-  async displayWorkflow(): Promise<WorkflowAction[]> {
+  async displayWorkflow(): Promise<WorkflowEntity[]> {
     return this.workflowService.getAllWorkflowActions();
   }
 
