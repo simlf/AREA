@@ -22,7 +22,8 @@ export class SpotifyService {
         try {
             const result = await this.httpService.get(url, { headers: headersRequest });
             result.subscribe((response) => {
-                console.log("response", response);
+
+                console.log("response", response.data['id']);
             });
             return result.pipe(map((response) => response.data));
         } catch (error) {

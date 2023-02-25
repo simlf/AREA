@@ -34,7 +34,7 @@ dotenv.config();
       synchronize: true,
     }),
     DiscordModule,
-    SpotifyModule,
+    SpotifyModule
   ],
   controllers: [
     AppController,
