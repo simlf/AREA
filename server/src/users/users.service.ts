@@ -10,9 +10,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-    constructor(
-    @InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,
-    ){}
+    constructor(@InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,){}
 
     async findOne(options?: object): Promise<UserDto> {
        const user =  await this.userRepo.findOne(options);

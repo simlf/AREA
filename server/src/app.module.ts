@@ -16,6 +16,10 @@ import { LeagueController } from './league/league.controller';
 import { NasaService } from './nasa/nasa.service';
 import { NasaController } from './nasa/nasa.controller';
 import { SpotifyModule } from './spotify/spotify.module';
+import { WorkflowController } from './workflow/workflows.controller';
+import { WorkflowService } from './workflow/workflows.service';
+import { workflowModule } from './workflow/workflows.module';
+import { WorkflowAction } from './workflow/workflows.entity';
 
 dotenv.config();
 
@@ -23,6 +27,7 @@ dotenv.config();
   imports: [
     AuthModule,
     UsersModule,
+    workflowModule,
     HttpModule,
     TypeOrmModule.forRoot({
       type: process.env.DB_TYPE as any,
@@ -30,7 +35,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.MYSQL_ROOT_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [UserEntity],
+      entities: [UserEntity, WorkflowAction],
       synchronize: true,
     }),
     DiscordModule,
@@ -41,6 +46,8 @@ dotenv.config();
     GithubController,
     LeagueController,
     NasaController,
+    WorkflowController,
+
   ],
   providers: [
     AppService,
@@ -49,6 +56,8 @@ dotenv.config();
     LeagueService,
     IntegrationService,
     NasaService,
+    WorkflowService,
+
   ],
 })
 export class AppModule {}
