@@ -57,4 +57,23 @@ export class UsersService {
         await this.userRepo.save(user);
         return toUserDto(user);
     }
+
+    async updateSpotifyUserId(email: string, spotifyUserId: string) {
+        try {
+            this.userRepo.findOne({ where: { email } })
+                .then((user) => {
+                    // Update the user properties
+                    user.spotifyUserId = spotifyUserId;
+
+                    // Save the changes to the database
+                    return this.userRepo.save(user);
+                })
+                .then((updatedUser) => {
+                    console.log(updatedUser);
+                });
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 }

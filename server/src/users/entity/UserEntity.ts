@@ -18,6 +18,9 @@ export class UserEntity {
   @Column({ nullable: true })
   discordToken: string;
 
+  @Column({ nullable: true })
+  spotifyUserId: string;
+
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcryptjs.hash(this.password, 10);
