@@ -13,14 +13,13 @@ export class MeteoService {
 
     async getTemperature() {
         var date = new Date();
-	    let current_time = (date.getHours() + 1)+":"+date.getMinutes()+":"+ date.getSeconds();
         class return_value {
             longitude;
             latitude;
         }
         let tmp = date.toISOString().split("T");
-        let tmp_date = tmp[0].split("-");
-        let tmp_time = (date.getHours() + 1)+":"+date.getMinutes()+":"+ date.getSeconds();
+        let tmpDate = tmp[0].split("-");
+        let tmpTime = (date.getHours() + 1)+":"+date.getMinutes()+":"+ date.getSeconds();
         let value = new return_value;
         let i = 0;
         const position = "https://geocoding-api.open-meteo.com/v1/search?name=Nantes&language=fr&count=1";
@@ -31,15 +30,15 @@ export class MeteoService {
         } catch (error) {
             return {"Error" : error.code, "Message" : error.message}
         }
-        const url_tmp = `https://api.open-meteo.com/v1/meteofrance?latitude=${value.latitude}&longitude=${value.longitude}&hourly=temperature_2m&start_date=${tmp_date[0]}-${tmp_date[1]}-${tmp_date[2]}&end_date=${tmp_date[0]}-${tmp_date[1]}-${tmp_date[2]}&timezone=Europe%2FLondon`;
+        const urlTmp = `https://api.open-meteo.com/v1/meteofrance?latitude=${value.latitude}&longitude=${value.longitude}&hourly=temperature_2m&start_date=${tmpDate[0]}-${tmpDate[1]}-${tmpDate[2]}&end_date=${tmpDate[0]}-${tmpDate[1]}-${tmpDate[2]}&timezone=Europe%2FLondon`;
         try {
-            const { data }  = await firstValueFrom(this.httpService.get(url_tmp))
-            let check_bool = false;
+            const { data }  = await firstValueFrom(this.httpService.get(urlTmp))
+            let checkBool = false;
             for (let i = 0; data.hourly.temperature_2m[i]; i++) {
                 const myArray = data.hourly.time[i].split("T");
-                const tmp_time2 = myArray[1].split(':');
-                if (data.hourly.temperature_2m[i] >= idealTemperature  && data.hourly.temperature_2m[i] < idealTemperature + 1 && tmp_time2[0] >= tmp_time[0] && check_bool == false) {
-                    check_bool = true;
+                const tmpTime2 = myArray[1].split(':');
+                if (data.hourly.temperature_2m[i] >= idealTemperature  && data.hourly.temperature_2m[i] < idealTemperature + 1 && tmpTime2[0] >= tmpTime[0] && checkBool == false) {
+                    checkBool = true;
                     console.log(data.hourly.time[i]);
                     console.log(myArray[0]);
                     console.log(myArray[1]);

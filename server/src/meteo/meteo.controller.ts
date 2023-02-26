@@ -9,11 +9,11 @@ export class MeteoController {
 
     @Get('')
     getRoutes() {
-        return {routes : ["/SendTemperature"]}
+        return {routes : ["/sendTemperature"]}
     }
 
-    @Get('SendTemperature')
-    getLevel() {
+    @Get('sendTemperature')
+    sendTemperature() {
         return this.meteoService.getTemperature()
     }
 }
