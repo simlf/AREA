@@ -14,9 +14,6 @@ export class MeteoController {
 
     @Get('SendTemperature')
     getLevel() {
-        // var date = Date.UTC;
-        // var current_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
-        // console.log(current_time);
         return this.meteoService.getTemperature()
     }
 }
