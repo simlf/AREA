@@ -3,20 +3,27 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
-import { workflowService } from './workflow/workflow.service';
+import { WorkflowService } from './workflow/workflows.service';
+import { UsersService } from './users/users.service';
 
-const test = () => {
-  setInterval(() => {
-      console.log('test1')
-    },
-    10000 // execute the above code every 10ms
-  )
+class trigger {
+  constructor(private readonly workflowService: WorkflowService, private readonly userService: UsersService) {}
 
-  setInterval(() => {
-      console.log('test2')
-    },
-    10000 // execute the above code every 10ms
-  )
+  async test() {
+    const user = await this.userService.getUserEntityById("1b47b621-a3ab-491a-9b46-ac3bfb02f468");
+    setInterval(() => {
+        this.workflowService.createWorkflowAction('test', 'test', user, 'test', 'test', 'test')
+      },
+      10000 // execute the above code every 10ms
+    )
+  
+    setInterval(() => {
+        console.log(this.workflowService.getWorkflowActionByUser("1b47b621-a3ab-491a-9b46-ac3bfb02f468"))
+      },
+      10000 // execute the above code every 10ms
+    )
+  }
+  
 }
 
 // TODO: Make secret private with .env
@@ -47,7 +54,8 @@ async function bootstrap() {
   app.use(passport.session());
   app.enableCors();
   await app.listen(8080);
-  test();
+  const triggerTest = new trigger(app.get(WorkflowService), app.get(UsersService));
+  // triggerTest.test();
 }
 
 bootstrap();
