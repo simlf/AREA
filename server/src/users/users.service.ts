@@ -58,6 +58,25 @@ export class UsersService {
         return toUserDto(user);
     }
 
+    async updateSpotifyAccessToken(email: string, spotifyAccessToken: string) {
+        try {
+            this.userRepo.findOne({ where: { email } })
+                .then((user) => {
+                    // Update the user properties
+                    user.spotifyAccessToken = spotifyAccessToken;
+
+                    // Save the changes to the database
+                    return this.userRepo.save(user);
+                })
+                .then((updatedUser) => {
+                    console.log(updatedUser);
+                });
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
     async updateSpotifyUserId(email: string, spotifyUserId: string) {
         try {
             this.userRepo.findOne({ where: { email } })
