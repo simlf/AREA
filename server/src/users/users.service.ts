@@ -55,4 +55,31 @@ export class UsersService {
         await this.userRepo.save(user);
         return toUserDto(user);
     }
+
+    async getUserEntityByLogin({ email, password }: LoginUserDto): Promise<UserEntity> {
+        const user = await this.userRepo.findOne({ where: { email } });
+
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+        }
+
+        // compare passwords
+        const areEqual = await comparePasswords(user.password, password);
+
+        if (!areEqual) {
+            throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+        }
+
+        return user;
+    }
+
+    async getUserEntityById(id: string): Promise<UserEntity> {
+        const user = await this.userRepo.findOne({ where: { id } });
+
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+        }
+
+        return user;
+    }
 }

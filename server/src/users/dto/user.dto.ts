@@ -4,5 +4,6 @@ import { ApiProperty } from '@nestjs/swagger';
 export class UserDto {
     @ApiProperty()
     email: string;
+    id: string;
     discordAuth?: DiscordDto;
 }

@@ -7,9 +7,6 @@ export class WorkflowEntity {
   id: number;
 
   @Column()
-  workflow_id: number;
-
-  @Column()
   action_name: string;
 
   @Column()
@@ -17,6 +14,9 @@ export class WorkflowEntity {
 
   @ManyToOne(() => UserEntity)
   user: UserEntity;
+
+  @Column()
+  userId: string;
 
   @Column()
   workflow_name: string;
