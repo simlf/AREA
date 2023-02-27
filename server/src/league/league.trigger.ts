@@ -6,7 +6,7 @@ import { LeagueUser } from "./League.model";
 export class LeagueTrigger {
     constructor(private readonly leagueService: LeagueService) {};
 
-    public userLevel = -1;
+    private userLevel = -1;
 
     // This function is called every 10ms to check if the user level has changed
     // If it has changed, it will log it in the console
@@ -18,11 +18,12 @@ export class LeagueTrigger {
             const user: LeagueUser = await this.leagueService.getLevel(userId);
             if (this.userLevel === -1) {
                 this.userLevel = user.level;
+                this.userLevelTest = user.level;
                 console.log("Set level to actual level : " + this.userLevel);
             } else if (this.userLevel < user.level) {
                 this.userLevel = user.level;
                 console.log("Level up! : " + this.userLevel);
             }
-        }, 10);
+        }, 10000);
     }
 }

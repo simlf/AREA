@@ -8,8 +8,5 @@ export class trigger {
     // This function is just here to centralize all the functions that need to be triggered
     async leagueLevelUp() {
         this.league.levelUp();
-        setInterval(() => {
-            this.league.userLevel++;
-        }, 500);
     }
 }
