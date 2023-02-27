@@ -50,7 +50,7 @@ export class WorkflowController {
       description,
     );
 
-    return 'Workflow added by ' + user.id;
+    return 'Workflow added by ' + user.email;
   }
 
   @Post('displayWorkflow')
@@ -64,13 +64,28 @@ export class WorkflowController {
       required: ['userId'],
     },
   })
-  async displayWorkflow(userId: string): Promise<WorkflowEntity[]> {
-    return this.workflowService.getWorkflowActionByUser(userId);
+  async displayWorkflow(@Body('userId') userId: string,): Promise<WorkflowEntity[]> {
+    return await this.workflowService.getWorkflowActionByUser(userId);
   }
 
   @Get('displayAllWorkflow')
   async displayAllWorkflow(): Promise<WorkflowEntity[]> {
     return this.workflowService.getAllWorkflowActions();
+  }
+
+  @Post('deleteWorkflow')
+  @ApiOperation({ summary: 'Delete a workflow with id' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        workflowId: { type: 'number', description: 'The id of the workflow' },
+      },
+      required: ['workflowId'],
+    },
+  })
+  async deleteWorkflow(@Body('workflowId') workflowId: number,) {
+    this.workflowService.deleteWorkflowAction(workflowId);
   }
 
 }

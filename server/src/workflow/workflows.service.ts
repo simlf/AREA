@@ -3,17 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { WorkflowEntity } from './workflows.entity';
 import { UserEntity } from '../users/entity/UserEntity';
-import { UsersService } from '../users/users.service';
 @Injectable()
 export class WorkflowService {
     constructor(
       @InjectRepository(WorkflowEntity) private readonly workflowActionRepository: Repository<WorkflowEntity>,
-      private usersService: UsersService
     ) {}
-
-    async getWorkflowActionByUser(actualUserId: string): Promise<WorkflowEntity[]> {
-      return await this.workflowActionRepository.find({ where: { userId: actualUserId } });
-    }
 
     async createWorkflowAction(
       actionName: string,
@@ -22,7 +16,7 @@ export class WorkflowService {
       userId: string,
       workflowName: string,
       description: string,
-    ): Promise<WorkflowEntity> {
+      ): Promise<WorkflowEntity> {
       const workflowAction = new WorkflowEntity();
       workflowAction.action_name = actionName;
       workflowAction.reaction_name = reactionName;
@@ -32,12 +26,15 @@ export class WorkflowService {
       workflowAction.description = description;
       return this.workflowActionRepository.save(workflowAction);
     }
-
+    
+    async getWorkflowActionByUser(userId: string): Promise<WorkflowEntity[]> {
+      return await this.workflowActionRepository.findBy({ userId });
+    }
     async getAllWorkflowActions(): Promise<WorkflowEntity[]> {
       return this.workflowActionRepository.find();
     }
 
-    async deleteWorkflowAction(id: number): Promise<void> {
+    async deleteWorkflowAction(id: number) {
       await this.workflowActionRepository.delete(id);
     }
 
