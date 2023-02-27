@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { firstValueFrom, map } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import * as dotenv from 'dotenv';
+import { LeagueUser } from './League.model';
 
 let base_url1 = "https://euw1.api.riotgames.com/lol/"
 let key = process.env.LEAGUE_API
@@ -14,24 +15,19 @@ export class LeagueService {
         constructor(private readonly httpService: HttpService) {}
 
     /// return the current level of a player
-    async getLevel(username : string = "CrossBiwBoyExoPa") {
-        var return_value = { 
-            "username"                  :  username,
-            "icon_id"                   :  null,
-            "level"                     :  null,
-            "revision_date"             :  null,
-            "puuid"                     :  null,                     
-        }
+    async getLevel(username : string = "CrossBiwBoyExoPa"): Promise<LeagueUser> {
+        let return_value: LeagueUser = new LeagueUser();
         const url = `${base_url1}summoner/v4/summoners/by-name/${username}?api_key=${key}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url))
-            const level = data.summonerLevel
-            return_value.icon_id = data.profileIconId
-            return_value.revision_date = data.revisionDate
-            return_value.puuid = data.puuid
-            return_value.level = data.summonerLevel
+            const level = data.summonerLevel;
+            return_value.username = username;
+            return_value.icon_id = data.profileIconId;
+            return_value.revision_date = data.revisionDate;
+            return_value.puuid = data.puuid;
+            return_value.level = data.summonerLevel;
         } catch (error) {            
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message})
         }
         return return_value;
   }
