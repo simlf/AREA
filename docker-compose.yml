@@ -31,16 +31,16 @@ services:
     volumes:
       - area_db_data:/var/lib/mysql
 
-  client_web:
-    container_name: area_client_web
-    restart: always
-    build: './client'
-    volumes:
-      - ./client_web:/client_web
-    ports:
-      - "8081:8081"
-    depends_on:
-      - server
+  # client_web:
+  #   container_name: area_client_web
+  #   restart: always
+  #   build: './client'
+  #   volumes:
+  #     - ./client_web:/client_web
+  #   ports:
+  #     - "8081:8081"
+  #   depends_on:
+  #     - server
 
 networks:
   server:
