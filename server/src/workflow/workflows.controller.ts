@@ -16,21 +16,21 @@ export class WorkflowController {
     schema: {
       type: 'object',
       properties: {
-        action_name: { type: 'string', description: 'The name of the action' },
-        reaction_name: { type: 'string', description: 'The name of the reaction' },
-        workflow_name: { type: 'string', description: 'The name of the workflow' },
+        actionName: { type: 'string', description: 'The name of the action' },
+        reactionName: { type: 'string', description: 'The name of the reaction' },
+        workflowName: { type: 'string', description: 'The name of the workflow' },
         description: { type: 'string', description: 'A description of the workflow' },
         userId: { type: 'string', description: 'The id of the user' },
       },
-      required: ['action_name', 'reaction_name', 'workflow_name', 'description', 'userId'],
+      required: ['actionName', 'reactionName', 'workflowName', 'description', 'userId'],
     },
   })
   @ApiResponse({ status: 201, description: 'Workflow added' })
   @ApiResponse({ status: 401, description: 'No user logged in' })
   async addWorkflow(
-    @Body('action_name') actionName: string,
-    @Body('reaction_name') reactionName: string,
-    @Body('workflow_name') workflowName: string,
+    @Body('actionName') actionName: string,
+    @Body('reactionName') reactionName: string,
+    @Body('workflowName') workflowName: string,
     @Body('description') description: string,
     @Body('userId') userId: string,
   ): Promise<string> {

@@ -7,10 +7,10 @@ export class WorkflowEntity {
   id: number;
 
   @Column()
-  action_name: string;
+  actionName: string;
 
   @Column()
-  reaction_name: string;
+  reactionName: string;
 
   @ManyToOne(() => UserEntity)
   user: UserEntity;
@@ -19,7 +19,7 @@ export class WorkflowEntity {
   userId: string;
 
   @Column()
-  workflow_name: string;
+  workflowName: string;
 
   @Column()
   description: string;

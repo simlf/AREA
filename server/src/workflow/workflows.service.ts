@@ -18,11 +18,11 @@ export class WorkflowService {
       description: string,
       ): Promise<WorkflowEntity> {
       const workflowAction = new WorkflowEntity();
-      workflowAction.action_name = actionName;
-      workflowAction.reaction_name = reactionName;
+      workflowAction.actionName = actionName;
+      workflowAction.reactionName = reactionName;
       workflowAction.user = user;
       workflowAction.userId = userId;
-      workflowAction.workflow_name = workflowName;
+      workflowAction.workflowName = workflowName;
       workflowAction.description = description;
       return this.workflowActionRepository.save(workflowAction);
     }
