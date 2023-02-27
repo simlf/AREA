@@ -10,9 +10,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-    constructor(
-    @InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,
-    ){}
+    constructor(@InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,){}
 
     async findOne(options?: object): Promise<UserDto> {
        const user =  await this.userRepo.findOne(options);
@@ -56,5 +54,32 @@ export class UsersService {
         const user: UserEntity = await this.userRepo.create({ email, password });
         await this.userRepo.save(user);
         return toUserDto(user);
+    }
+
+    async getUserEntityByLogin({ email, password }: LoginUserDto): Promise<UserEntity> {
+        const user = await this.userRepo.findOne({ where: { email } });
+
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+        }
+
+        // compare passwords
+        const areEqual = await comparePasswords(user.password, password);
+
+        if (!areEqual) {
+            throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+        }
+
+        return user;
+    }
+
+    async getUserEntityById(id: string): Promise<UserEntity> {
+        const user = await this.userRepo.findOne({ where: { id } });
+
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+        }
+
+        return user;
     }
 }
