@@ -1,9 +1,10 @@
 import { Controller, Get, Request, Response } from '@nestjs/common';
 import { AppService, AboutService, IntegrationService, workflow } from './app.service';
+import { WorkflowService } from './workflow/workflows.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private readonly aboutService: AboutService, private readonly integrationService: IntegrationService) {}
+  constructor(private readonly appService: AppService, private readonly aboutService: AboutService, private readonly workflowService: WorkflowService) {}
 
   @Get()
   getHello(): string {
@@ -17,8 +18,8 @@ export class AppController {
   }
 
   @Get('workflows')
-  getWorkflows(@Response() Res) {
-    const workflows: workflow[] = this.integrationService.getWorkflows();
+  async getWorkflows(@Response() Res) {
+    const workflows = await this.workflowService.getAllWorkflowActions();
     return Res.json(workflows);
   }
 }
