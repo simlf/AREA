@@ -1,16 +1,22 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Generated, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserEntity } from '../users/entity/UserEntity';
 
 @Entity()
 export class WorkflowEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
-  action_name: string;
+  actionName: string;
+
+  @Generated()
+  actionId: number;
 
   @Column()
-  reaction_name: string;
+  reactionName: string;
+
+  @Generated()
+  reactionId: number;
 
   @ManyToOne(() => UserEntity)
   user: UserEntity;
@@ -19,8 +25,17 @@ export class WorkflowEntity {
   userId: string;
 
   @Column()
-  workflow_name: string;
+  workflowName: string;
 
   @Column()
   description: string;
+
+  @Column()
+  logo: string;
+
+  @Column()
+  url?: string;
+
+  @Column()
+  img: string;
 }
