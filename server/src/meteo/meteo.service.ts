@@ -15,25 +15,22 @@ export class MeteoService {
     async getTemperature() {
         let returnValue: MeteoInfo = new MeteoInfo();
         var date = new Date();
-        class return_value {
-            longitude;
-            latitude;
-        }
+    
+        let longitude;
+        let latitude;
         returnValue.idealTemperature = idealTemperature;
         let tmp = date.toISOString().split("T");
         let tmpDate = tmp[0].split("-");
         let tmpTime = (date.getHours() + 1)+":"+date.getMinutes()+":"+ date.getSeconds();
-        let value = new return_value;
-        let i = 0;
         const position = "https://geocoding-api.open-meteo.com/v1/search?name=Nantes&language=fr&count=1";
         try {
             const { data }  = await firstValueFrom(this.httpService.get(position))
-            value.latitude = data.results[0].latitude;
-            value.longitude = data.results[0].longitude;
+            latitude = data.results[0].latitude;
+            longitude = data.results[0].longitude;
         } catch (error) {
             console.error({"Error" : error.code, "Message" : error.message})
         }
-        const urlTmp = `https://api.open-meteo.com/v1/meteofrance?latitude=${value.latitude}&longitude=${value.longitude}&hourly=temperature_2m&start_date=${tmpDate[0]}-${tmpDate[1]}-${tmpDate[2]}&end_date=${tmpDate[0]}-${tmpDate[1]}-${tmpDate[2]}&timezone=Europe%2FLondon`;
+        const urlTmp = `https://api.open-meteo.com/v1/meteofrance?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&start_date=${tmpDate[0]}-${tmpDate[1]}-${tmpDate[2]}&end_date=${tmpDate[0]}-${tmpDate[1]}-${tmpDate[2]}&timezone=Europe%2FLondon`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(urlTmp))
             let checkBool = false;
