@@ -18,7 +18,6 @@ export class LeagueTrigger {
             const user: LeagueUser = await this.leagueService.getLevel(userId);
             if (this.userLevel === -1) {
                 this.userLevel = user.level;
-                this.userLevelTest = user.level;
                 console.log("Set level to actual level : " + this.userLevel);
             } else if (this.userLevel < user.level) {
                 this.userLevel = user.level;

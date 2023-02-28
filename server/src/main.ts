@@ -6,6 +6,8 @@ import * as passport from 'passport';
 import { trigger } from './app.trigger';
 import { LeagueTrigger } from './league/league.trigger';
 import { LeagueService } from './league/league.service';
+import { MeteoTrigger } from './meteo/meteo.trigger';
+import { MeteoService } from './meteo/meteo.service';
 import { HttpService } from '@nestjs/axios';
 // TODO: Make secret private with .env
 async function bootstrap() {
@@ -35,8 +37,9 @@ async function bootstrap() {
   app.use(passport.session());
   app.enableCors();
   await app.listen(8080);
-  const triggerTest = new trigger(new LeagueTrigger(new LeagueService(new HttpService())));
+  const triggerTest = new trigger(new LeagueTrigger(new LeagueService(new HttpService())), new MeteoTrigger(new MeteoService(new HttpService())));
   triggerTest.leagueLevelUp();
+  triggerTest.temperatureAtDate();
 }
 
 bootstrap();
