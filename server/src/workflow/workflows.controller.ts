@@ -21,8 +21,9 @@ export class WorkflowController {
         workflowName: { type: 'string', description: 'The name of the workflow' },
         description: { type: 'string', description: 'A description of the workflow' },
         userId: { type: 'string', description: 'The id of the user' },
+        logo: { type: 'string', description: 'Logo to display on card' },
       },
-      required: ['actionName', 'reactionName', 'workflowName', 'description', 'userId'],
+      required: ['actionName', 'reactionName', 'workflowName', 'description', 'userId', 'logo'],
     },
   })
   @ApiResponse({ status: 201, description: 'Workflow added' })
@@ -33,6 +34,9 @@ export class WorkflowController {
     @Body('workflowName') workflowName: string,
     @Body('description') description: string,
     @Body('userId') userId: string,
+    @Body('logo') logo: string,
+    @Body('actionId') actionId: number,
+    @Body('reactionId') reactionId: number,
   ): Promise<string> {
     // check id of user
     if (!userId) {
@@ -48,7 +52,10 @@ export class WorkflowController {
       userId,
       workflowName,
       description,
-    );
+      logo,
+      actionId,
+      reactionId,
+      );
 
     return 'Workflow added by ' + user.email;
   }

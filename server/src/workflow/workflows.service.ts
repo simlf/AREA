@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { WorkflowEntity } from './workflows.entity';
 import { UserEntity } from '../users/entity/UserEntity';
+import { Uuid as v4 } from 'uuid';
 @Injectable()
 export class WorkflowService {
     constructor(
@@ -16,14 +17,25 @@ export class WorkflowService {
       userId: string,
       workflowName: string,
       description: string,
+      logo: string,
+      reactionId: number,
+      actionId: number,
       ): Promise<WorkflowEntity> {
+      const randomNumber = Math.floor(Math.random() * 6) + 1;
       const workflowAction = new WorkflowEntity();
       workflowAction.actionName = actionName;
+      workflowAction.actionId = actionId;
       workflowAction.reactionName = reactionName;
+      workflowAction.reactionId = reactionId;
       workflowAction.user = user;
       workflowAction.userId = userId;
       workflowAction.workflowName = workflowName;
       workflowAction.description = description;
+      workflowAction.logo = '../../assets/' + logo;
+      workflowAction.img = '../../assets/' + randomNumber + '.png';
+      workflowAction.url = '';
+      const savedWorkflowAction = await this.workflowActionRepository.save(workflowAction);
+      workflowAction.url = '/integration/' + savedWorkflowAction.id;  
       return this.workflowActionRepository.save(workflowAction);
     }
     
