@@ -35,7 +35,7 @@ export class WorkflowService {
       workflowAction.img = '../../assets/' + randomNumber + '.png';
       workflowAction.url = '';
       const savedWorkflowAction = await this.workflowActionRepository.save(workflowAction);
-      workflowAction.url = '/integration/' + savedWorkflowAction.id;  
+      workflowAction.url = '/config-integration/' + savedWorkflowAction.id;  
       return this.workflowActionRepository.save(workflowAction);
     }
     
@@ -50,4 +50,7 @@ export class WorkflowService {
       await this.workflowActionRepository.delete(id);
     }
 
+    async getWorkflowActionById(id: string): Promise<WorkflowEntity | undefined> {
+      return await this.workflowActionRepository.findOne({where: {id}});
+    }
 }

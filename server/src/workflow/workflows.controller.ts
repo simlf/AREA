@@ -95,4 +95,18 @@ export class WorkflowController {
     this.workflowService.deleteWorkflowAction(workflowId);
   }
 
+  @Post('getWorkflow')
+  @ApiOperation({ summary: 'Get a workflow with id' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        workflowId: { type: 'number', description: 'The id of the workflow' },
+      },
+      required: ['workflowId'],
+    },
+  })
+  async getWorkflow(@Body('workflowId') workflowId: string,) {
+    return this.workflowService.getWorkflowActionById(workflowId);
+  }
 }
