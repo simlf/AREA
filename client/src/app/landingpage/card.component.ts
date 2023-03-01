@@ -27,14 +27,14 @@ export class IntegrationListComponent {
     constructor(private breakpointObserver: BreakpointObserver) {
         this.cards = [
             {
-                name: "Brawlstar",
+                workflowName: "Brawlstar",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
                 img: "../../assets/1.png",
                 logo: "../../assets/logoBrawlstar.png",
                 url: "lolo"
             },
             {
-                name: "Meteo",
+                workflowName: "Meteo",
                 description: "super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
                 img: "../../assets/1.png",
                 logo: "../../assets/logoBrawlstar.png",
@@ -42,28 +42,28 @@ export class IntegrationListComponent {
 
             },
             {
-                name: "Nasa",
+                workflowName: "Nasa",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
                 img: "../../assets/1.png",
                 logo: "../../assets/logoBrawlstar.png",
                 url: "lolo"
             },
             {
-                name: "spotify",
+                workflowName: "spotify",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
                 img: "../../assets/1.png",
                 logo: "../../assets/logoBrawlstar.png",
                 url: "lolo"
             },
             {
-                name: "spotify",
+                workflowName: "spotify",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
                 img: "../../assets/1.png",
                 logo: "../../assets/logoBrawlstar.png",
                 url: "lolo"
             },
             {
-                name: "spotify",
+                workflowName: "spotify",
                 description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
                 img: "../../assets/1.png",
                 logo: "../../assets/logoBrawlstar.png",
