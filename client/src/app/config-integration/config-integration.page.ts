@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-config-integration',
@@ -12,8 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ConfigIntegrationPage implements OnInit {
 
   Breakpoints = Breakpoints;
-  currentBreakpoint:string = '';
-  id: string | null = null;
+  currentBreakpoint: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
@@ -22,15 +20,14 @@ export class ConfigIntegrationPage implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private route: ActivatedRoute) { }
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
-    this.id = this.route.snapshot.paramMap.get('id');
   }
-  
+
   private breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
       this.currentBreakpoint = Breakpoints.Web;

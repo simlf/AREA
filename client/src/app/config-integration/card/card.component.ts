@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { integration } from 'src/app/models/integration.model';
+import { HttpClient } from '@angular/common/http';
+import { ConfigIntegrationPage } from '../config-integration.page';
+import { workflowRequest, responseWorkflows } from 'src/app/utils/workflowRequest';
+import { CardComponent } from 'src/app/integration/card/card.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -39,9 +44,11 @@ import { integration } from 'src/app/models/integration.model';
 })
 export class integrationComponent implements OnInit {
 
-  integration: integration[];
+  integration: integration[] = [];
   Breakpoints = Breakpoints;
   currentBreakpoint: string = '';
+  rootURL = 'http://localhost:8080/';
+  id: string | null = null;
 
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
@@ -50,29 +57,22 @@ export class integrationComponent implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.integration = [
-      {
-        name: "Brawlstar",
-        description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-        img: "../../assets/1.png",
-        logo: "../../assets/logoBrawlstar.png",
-        connect: true
-      },
-      {
-        name: "Brawlstar",
-        description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-        img: "../../assets/1.png",
-        logo: "../../assets/logoBrawlstar.png",
-        connect: false
-      },
-    ];
-  }
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private route: ActivatedRoute) { };
 
-  ngOnInit(): void {
+  async getWorkflow() {
+    const bodyRequest = { "workflowId": this.id };
+    const workflow: workflowRequest = new workflowRequest(this.http);
+    const result = await workflow.postData(this.rootURL + "workflowsDb/getWorkflow", bodyRequest, responseWorkflows);
+    this.integration = [{ name: result.actionName, description: '', img: result.img, logo: result.logo, connect: false}, { name: result.reactionName, description: '', img: result.img, logo: result.logo, connect: false}];
+    console.log(result);
+  };
+
+  async ngOnInit(): Promise<void> {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
+    this.id = this.route.snapshot.paramMap.get('id');
+    await this.getWorkflow();
   }
 
   private breakpointChanged() {
