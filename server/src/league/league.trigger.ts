@@ -31,7 +31,7 @@ export class LeagueTrigger {
     async winRate(userId: string = "CrossBiwBoyExoPa") {
         //SetInterval is used to call the function every 10ms
         setInterval(async () => {
-            const user: LeagueUser = await this.leagueService.getLevel(userId);
+            const user: LeagueUser = await this.leagueService.getMatches(userId);
             if (this.userWinRate === -1) {
                 this.userWinRate = user.winrate;
                 console.log("Set winrate to actual winrate : " + this.userWinRate);
