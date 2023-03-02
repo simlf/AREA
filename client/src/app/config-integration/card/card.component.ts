@@ -51,6 +51,8 @@ export class integrationComponent implements OnInit {
   rootURL = 'http://localhost:8080/';
   id: string | null = null;
   serviceDescription: service[] = [];
+  actionName: string = '';
+  reactionName: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
@@ -65,7 +67,7 @@ export class integrationComponent implements OnInit {
       { name: 'nasa', description: "La NASA propose une API qui permet de récupérer l'image astronomique du jour (APOD) ainsi que les données associées."},
       { name: "meteo", description: "Un service météo peut être utilisé pour déclencher une action lorsque certaines conditions météorologiques sont atteintes."},
       { name: "leagues", description: "L'API de League of Legends permet de récupérer des informations sur les joueurs, les équipes et les matchs."},
-      { name: "reddit", description: "Reddit est un site web communautaire qui permet à ses utilisateurs de poster des liens vers des articles, des images, des vidéos, etc. et de commenter les publications des autres utilisateurs."},
+      { name: "reddit", description: "Reddit est un site web communautaire qui permet à ses utilisateurs de poster des liens et de commenter les publications."},
       ];
     };
 
@@ -75,7 +77,11 @@ export class integrationComponent implements OnInit {
     const result = await workflow.postData(this.rootURL + "workflowsDb/getWorkflow", bodyRequest, responseWorkflows);
     const actiondesc = this.serviceDescription.find(service => service.name === result.actionName)?.description || '';
     const reactiondesc = this.serviceDescription.find(service => service.name === result.reactionName)?.description || '';
-    this.integration = [{ name: result.actionName, description: actiondesc, img: result.img, logo: result.logo, connect: false}, { name: result.reactionName, description: reactiondesc, img: result.img, logo: result.logo, connect: false}];
+    let connectAction = false;
+    let connectReaction = false;
+    if (result.actionName === 'nasa')
+      connectAction = true;
+    this.integration = [{ name: result.actionName, description: actiondesc, img: result.img, logo: result.logo, connect: connectAction}, { name: result.reactionName, description: reactiondesc, img: result.img, logo: result.logo, connect: connectReaction}];
     console.log(result);
   };
 

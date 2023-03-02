@@ -10,6 +10,25 @@
       </div>
     </div>
     <app-card/>
+    <div class="parametre">
+      <div *ngIf="actionName === 'meteo'" class="action">
+        <h1>Parametre pour l'action meteo</h1>
+        <input type="text" placeholder="ville">
+        <input type="number" placeholder="temperature">
+      </div>
+      <div *ngIf="actionName === 'league'" class="action">
+        <h1>Parametre pour l'action League of Legends</h1>
+        <input type="text" placeholder="nom d'utilisateur">
+      </div>
+      <div *ngIf="reactionName === 'reddit'" class="reaction">
+        <h1>Parametre de la reaction Reddit</h1>
+        <input type="text" placeholder="nom d'utilisateur">
+      </div>
+      <div *ngIf="reactionName === 'spotify'" class="reaction">
+        <h1>Parametre de la reaction Spotify</h1>
+        <input type="text" placeholder="id de la playlist">
+      </div>
+    </div>
     <div class="inputElement">
       <div class="saveIntegration">
         <label for="scales">Activer l’integration</label>
