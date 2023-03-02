@@ -34,26 +34,14 @@
       <div class="rectangle-mob">
         <strong><p class="new-mob">Bienvenue dans l'Area</p></strong>
         <div class="form-container-mob">
+          <div *ngIf="!userExist" class="text-danger">Email ou mot de passe incorect</div>
           <form #form="ngForm" (ngSubmit)="postLogin()">
             <input type="email" id="email" class="form-control-mob" placeholder="Email" [(ngModel)]="bodyLogin.email">
             <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe" [(ngModel)]="bodyLogin.email">
-            <input type="password-verify" id="password-verifiy" class="form-control-mob" placeholder="Confirmation">
-            <button type="submit" class="btn-submit-mob">S'inscrire</button>
+            <button type="submit" class="btn-submit-mob">Se connecter</button>
           </form>
         </div>
-        <strong><a href="signin"><p class="old-mob">Pas de compte ? Inscrivez-vous</p></a></strong>
-        <div class="signup-with-google-mob">
-          <button class="google-mob">
-            <img src="../../assets/logoGoogle.png" class="icon-mob">
-            Se connecter avec Google
-          </button>
-        </div>
-        <div class="signup-with-fb-mob">
-          <button class="facebook-mob">
-            <img src="../../assets/logoFacebook.png" class="icon2-mob">
-            Se connecter avec Facebook
-          </button>
-        </div>
+        <strong><a href="signup"><p class="old-mob">Pas de compte ? Inscrivez-vous</p></a></strong>
       </div>
     </div>
   </div>

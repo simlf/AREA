@@ -38,11 +38,15 @@
       <div class="rectangle-mob">
         <strong><p class="new-mob">Nouveau sur Area ?</p></strong>
         <div class="form-container-mob">
-          <form #form="ngForm" (ngSubmit)="postRegister()">
-            <input type="email" id="email" class="form-control-mob" placeholder="Email" [(ngModel)]="email">
-            <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe" [(ngModel)]="password">
-            <input type="confirmPassword" id="password-verifiy" class="form-control-mob" placeholder="Confirmation" [(ngModel)]="confirmPassword">
-            <button type="submit" class="btn-submit-mob" (click)="checkRegister()">S'inscrire</button>
+          <form #inscriptionForm="ngForm" (ngSubmit)="onSubmit(inscriptionForm)">
+            <div *ngIf="userExist" class="text-danger">L'utilisateur existe déjà</div>
+            <input type="email" id="email" class="form-control-mob" placeholder="Email" [(ngModel)]="email" [formControl]="emailFormControl" required>
+            <div *ngIf="emailFormControl.hasError('email')" class="text-danger">L'e-mail n'est pas valide</div>
+            <input type="password" id="password" class="form-control-mob" placeholder="Mot de passe" [(ngModel)]="password" [formControl]="passwordFormControl" required>
+            <div *ngIf="passwordFormControl.hasError('minlength')" class="text-danger">Le mot de passe doit contenir 8 characteres</div>
+            <input type="confirmPassword" id="password-verifiy" class="form-control-mob" placeholder="Confirmation" [(ngModel)]="confirmPassword" required>
+            <div *ngIf="password !== confirmPassword" class="text-danger">Les mots de passe ne correspondent pas</div>
+            <button type="submit" class="btn-submit-mob">S'inscrire</button>
           </form>
         </div>
         <strong><a href="signin"><p class="old-mob">Déjà un compte ? Connectez-vous</p></a></strong>

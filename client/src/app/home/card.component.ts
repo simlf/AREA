@@ -14,11 +14,11 @@ import { distinctUntilChanged, tap } from 'rxjs/operators';
         <a href="{{card.url}}">
             <div *ngSwitchCase="Breakpoints.HandsetPortrait" class="card-overlay-Handset" style="background-image: url({{card.img}});">
                 <img class="card-logo" src="{{card.logo}}" alt="Card logo">
-                <h4 class="card-title">{{card.name}}</h4>
+                <h4 class="card-title">{{card.workflowName}}</h4>
             </div>
             <div *ngSwitchCase="Breakpoints.Web" class="card-overlay-web" style="background-image: url({{card.img}});">
                 <img class="card-logo-web" src="{{card.logo}}" alt="Card logo">
-                <h4 class="card-title-web">{{card.name}}</h4>
+                <h4 class="card-title-web">{{card.workflowName}}</h4>
                 <p class="card-text">{{card.description}}</p>
             </div>
         </a>
