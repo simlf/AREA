@@ -12,7 +12,7 @@ export class nasaImageEntity {
   author : string
 
   @Column()
-  url : string 
+  url : string
 
   @Column() // date
   date : boolean
