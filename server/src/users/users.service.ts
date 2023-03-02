@@ -10,9 +10,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-    constructor(
-    @InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,
-    ){}
+    constructor(@InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,){}
 
     async findOne(options?: object): Promise<UserDto> {
        const user =  await this.userRepo.findOne(options);
@@ -77,9 +75,9 @@ export class UsersService {
         }
     }
 
-    async updateSpotifyUserId(email: string, spotifyUserId: string) {
+    async updateSpotifyUserId(id: string, spotifyUserId: string) {
         try {
-            this.userRepo.findOne({ where: { email } })
+            this.userRepo.findOne({ where: { id } })
                 .then((user) => {
                     // Update the user properties
                     user.spotifyUserId = spotifyUserId;
@@ -94,5 +92,30 @@ export class UsersService {
         catch (err) {
             console.error(err);
         }
+    }
+    async getUserEntityByLogin({ email, password }: LoginUserDto): Promise<UserEntity> {
+        const user = await this.userRepo.findOne({ where: { email } });
+
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+        }
+
+        // compare passwords
+        const areEqual = await comparePasswords(user.password, password);
+
+        if (!areEqual) {
+            throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+        }
+
+        return user;
+    }
+
+    async getUserEntityById(id: string): Promise<UserEntity> {
+        const user = await this.userRepo.findOne({ where: { id } });
+
+        if (!user) {
+            throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+        }
+        return user;
     }
 }

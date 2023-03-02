@@ -1,12 +1,13 @@
 import * as bcryptjs from 'bcryptjs';
-import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
+import { SpotifyEntity } from 'src/spotify/SpotifyEntity';
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true  })
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -23,6 +24,9 @@ export class UserEntity {
 
   @Column({ nullable: true })
   spotifyAccessToken: string;
+
+  // @OneToMany(() => SpotifyEntity, (spotify) => spotify.user)
+  // spotify: SpotifyEntity[];
 
   @BeforeInsert()
   async hashPassword() {

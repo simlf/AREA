@@ -213,6 +213,7 @@ img.logo-web {
   font-weight: 500;
   color: red;
   opacity: 0.5;
+  text-align: center;
 }
 
 
@@ -222,25 +223,24 @@ img.logo-web {
   position: absolute;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
   margin-top: 30%;
 }
 
 .rectangle-mob {
-  margin-top: 10%;
-  margin-left: 25%;
-  width: 50%;
-  height: 50%;
-  justify-content: center;
-
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 3px solid black;
-  border-radius: 35px;
+    width: 370px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 3px solid black;
+    border-radius: 35px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateY(30%);
 }
+
 .new-mob {
-  margin-left: 18%;
-  font-size: 3.5vw;
+  font-size: 1.5em;
+  text-align: center;
 }
 .form-control-mob {
   border: 1px solid black;
@@ -251,6 +251,8 @@ img.logo-web {
   align-items: center;
   justify-content: center;
   width: 75%;
+  font-size: larger;
+
 }
 .form-control::placeholder {
   color: rgb(51, 49, 49);
@@ -268,6 +270,7 @@ img.logo-web {
   color: rgb(51, 49, 49);
   font-size: 2vw;
   transition: background-color 0.5s ease-in-out;
+  font-size: 1.5em;
 }
 
 .btn-submit:hover {
@@ -281,8 +284,9 @@ img.logo-web {
 }
 
 .old-mob {
-  font-size: 1.8vw;
-  margin-left: 20%;
+  font-size: 0.7em;
+  font-weight: 500;
+  text-align: center;
 }
 .google-mob {
   background-color: #ffffff;
