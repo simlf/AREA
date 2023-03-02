@@ -15,4 +15,13 @@ export class LeagueUser {
 
     @ApiProperty()
     puuid:  string;
+
+    @ApiProperty()
+    total_wins:  number;
+
+    @ApiProperty()
+    total_losses:  number;
+
+    @ApiProperty()
+    winrate:  number;
 }

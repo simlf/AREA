@@ -12,7 +12,7 @@ let idealTemperature = 7;
 export class MeteoService {
     constructor(private readonly httpService: HttpService) {}
 
-    async getTemperature() {
+    async getTemperature(): Promise<MeteoInfo> {
         let returnValue: MeteoInfo = new MeteoInfo();
         var date = new Date();
     

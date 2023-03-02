@@ -16,35 +16,31 @@ export class LeagueService {
 
     /// return the current level of a player
     async getLevel(username : string = "CrossBiwBoyExoPa"): Promise<LeagueUser> {
-        let return_value: LeagueUser = new LeagueUser();
+        let returnValue: LeagueUser = new LeagueUser();
         const url = `${base_url1}summoner/v4/summoners/by-name/${username}?api_key=${key}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url))
             const level = data.summonerLevel;
-            return_value.username = username;
-            return_value.icon_id = data.profileIconId;
-            return_value.revision_date = data.revisionDate;
-            return_value.puuid = data.puuid;
-            return_value.level = data.summonerLevel;
+            returnValue.username = username;
+            returnValue.icon_id = data.profileIconId;
+            returnValue.revision_date = data.revisionDate;
+            returnValue.puuid = data.puuid;
+            returnValue.level = data.summonerLevel;
         } catch (error) {            
             console.error({"Error" : error.code, "Message" : error.message})
         }
-        return return_value;
+        return returnValue;
   }
 
     /// Return a win ratio from last 48 hours
-    async getMatches(username : string = "CrossBiwBoyExoPa") {
+    async getMatches(username : string = "CrossBiwBoyExoPa"): Promise<LeagueUser> {
+        let returnValue: LeagueUser = new LeagueUser();
         const url1 = `${base_url1}summoner/v4/summoners/by-name/${username}?api_key=${key}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url1));
             const puuid = data.puuid
-            var return_value = { 
-                "username"                  :  username,
-                "puuid"                     :  puuid,                     
-                "total_wins"                :  null,
-                "total_losses"              :  null,
-                "winrate"                   :  null,
-            }
+            returnValue.username = username;
+            returnValue.puuid = puuid;
             let date = new Date(new Date().getTime() - (48 * 60 * 60 * 1000));
             let newDate = (Math.round(date.getTime() / 1000))
             let url2 = `${base_url2}match/v5/matches/by-puuid/${puuid}/ids?startTime=${((newDate).toString())}&start=0&count=20&api_key=${key}`;
@@ -62,12 +58,12 @@ export class LeagueService {
                     }
                 }
             }
-            return_value.total_wins = win_count
-            return_value.total_losses = total_match - win_count
-            return_value.winrate = (win_count / total_match)
-            return return_value;
+            returnValue.total_wins = win_count
+            returnValue.total_losses = total_match - win_count
+            returnValue.winrate = (win_count / total_match)
+            return returnValue;
         } catch (error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.log({"Error" : error.code, "Message" : error.message});
         }
     }
 

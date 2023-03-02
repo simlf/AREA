@@ -23,6 +23,7 @@ export class MeteoTrigger {
             } else if (this.time != meteoInfo.time) {
                 this.time = meteoInfo.time;
                 this.idealTemperature = meteoInfo.idealTemperature;
+                console.log("The hour has changed !");
                 console.log("Ideal temperature of " + this.idealTemperature + " will be at " + this.time);
             }
         }, 10000);
