@@ -34,6 +34,7 @@ export class WorkflowService {
       workflowAction.logo = '../../assets/' + logo;
       workflowAction.img = '../../assets/' + randomNumber + '.png';
       workflowAction.url = '';
+      workflowAction.active = false;
       const savedWorkflowAction = await this.workflowActionRepository.save(workflowAction);
       workflowAction.url = '/config-integration/' + savedWorkflowAction.id;  
       return this.workflowActionRepository.save(workflowAction);
