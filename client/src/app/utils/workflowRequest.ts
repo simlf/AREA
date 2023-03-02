@@ -9,7 +9,7 @@ export class responseWorkflows {
      * Constructor for responseWorkflow class.
      * @param id The id of the workflow.
      */
-    constructor(public id: string, public actionName: string, public reactionName: string, public userId: string, public workflowName: string, public description: string, public logo: string, public url: string, public img: string) { }
+    constructor(public id: string, public actionName: string, public reactionName: string, public userId: string, public workflowName: string, public description: string, public logo: string, public url: string, public img: string, public active: boolean) { }
 }
 
 /**
@@ -40,6 +40,7 @@ export class workflowRequest {
     private logo: string;
     private url: string;
     private img: string;
+    private active: boolean;
 
     /**
      * Constructor for loginRequest class.
@@ -55,6 +56,7 @@ export class workflowRequest {
         this.logo = "";
         this.url = "";
         this.img = "";
+        this.active = false;
     }
 
     /**
@@ -80,6 +82,7 @@ export class workflowRequest {
         this.logo = responseCast.logo;
         this.url = responseCast.url;
         this.img = responseCast.img;
+        this.active = responseCast.active;
         return cast(response, model);
     }
 
@@ -105,5 +108,13 @@ export class workflowRequest {
     */
     public getReactionName(): string {
         return this.reactionName;
+    }
+
+    /**
+    * Get the state of the workflow.
+    * @returns The state of the workflow.
+    */
+    public getActiveState(): boolean {
+        return this.active;
     }
 }
