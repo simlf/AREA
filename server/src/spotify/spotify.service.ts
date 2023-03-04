@@ -60,7 +60,12 @@ export class SpotifyService {
 
     async updatePlaylist(playlistId: string, updateSpotifyPlaylistDto: UpdateSpotifyPlaylistDto) {
         const url = `${spotifyPlaylistUrl}${playlistId}`;
-
+        const headersRequest = {
+            'Authorization': 'Bearer BQD7KYT9QGw1J0B7i71atirnJ_ebG4k_DLQEit32XgqF_gMkcMKppkVLtcEzVDE1QjHYzf0sgNE7y9qZXU0RJrZhAk9C9Rhz1neuAhdd3FNPrc-Rhji6d59Krtwgd80v4lrdO5iqOarkjkxdhtKEls1XXC3jVZ7tbONq-S7OkbzJ1RH7jHrKIl-tZBo7lGFdK_0U2dDTK51uaV4wBNz1QKcmz8d0O2PlEm-AH5og1FHfbxaIJVUVlNSi8xkZwUIkT5-iQ6dpOxUaXyLATq4RQJVNenTxeKoue_mxG4tkRhH5pqV34NarcvKNu-73KNVBW_JVW2FfNuZ_l66OUnNE8g',
+            'content-type' : 'application/json',
+            'Accept' : 'application/json'
+        };
+        console.log("Changing playlist")
         try {
             const result = await this.httpService.put(url, JSON.stringify(updateSpotifyPlaylistDto), { headers: headersRequest });
             result.subscribe((response) => {
@@ -82,19 +87,30 @@ export class SpotifyService {
           var qs = require('qs');
           var data = qs.stringify({
             // 'redirect_uri': 'http://localhost:8080/spotify/oauth/callback/',
-            'redirect_uri': 'http://localhost:8080/spotify/oauth/callback/',
-            'grant_type': 'client_credentials',
-            // 'grant_type': 'authorization_code',
+            'redirect_uri': 'http://localhost:8080/spotify/oauth/callback',
+            //'grant_type': 'client_credentials',
+            'grant_type': 'authorization_code',
             'code': code
           });
           var config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'https://accounts.spotify.com/api/token',
             headers: {
               // 'Authorization': `Basic ${process.env.SPOTIFY_BASE64}`,
-              'Authorization': `Basic ${process.env.SPOTIFY_APP_TOKEN}`,
+              'Authorization': 'Basic ' + (new Buffer('dca433dbe8a14a68a84a5508e850831c' + ':' + 'c0d9f3c4b8544ff4bd08ca162e01b48a').toString('base64')),
               'Content-Type': 'application/x-www-form-urlencoded',
             },
             data : data
           };
+
+          axios(config)
+          .then(function (response) {
+            console.log("stringyfy refresh", JSON.stringify(response.data));
+          }).catch(function (error) {
+            console.log(error);
+          });
+          return ('end')
           const url = 'https://accounts.spotify.com/api/token';
           const result = await this.httpService.post(url, data, config);
           console.log("result", result);
