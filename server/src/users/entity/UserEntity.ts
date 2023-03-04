@@ -1,5 +1,4 @@
 import * as bcryptjs from 'bcryptjs';
-import { SpotifyEntity } from 'src/spotify/SpotifyEntity';
 import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
