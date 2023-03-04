@@ -46,4 +46,16 @@ export class RedditController {
         // console.log(encodeURIComponent("https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=randomestringhere&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=identity edit flair history read vote wikiread wikiedit"));
         return this.redditService.unsubscribe()
     }
+    
+    @Get('newSubreddit')
+    newSubreddit() {
+        // console.log(encodeURIComponent("https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=randomestringhere&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=identity edit flair history read vote wikiread wikiedit"));
+        return this.redditService.newSubreddit();
+    }
+
+    @Get('mySubreddit')
+    mySubreddit() {
+        // console.log(encodeURIComponent("https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=randomestringhere&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=identity edit flair history read vote wikiread wikiedit"));
+        return this.redditService.mySubreddit();
+    }
 }

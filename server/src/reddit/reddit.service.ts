@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { firstValueFrom, map } from 'rxjs';
+import { firstValueFrom, map, observable, Observable } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import * as dotenv from 'dotenv';
 import { datacatalog } from 'googleapis/build/src/apis/datacatalog';
+import { response } from 'express';
+import { stringify } from 'querystring';
+import { Any } from 'typeorm';
 
 let scopeTmp = ['identity', 'edit', 'flair', 'history', 'modconfig', 'modflair', 'modlog', 'modposts', 'modwiki', 'mysubreddits', 'privatemessages', 'read', 'report', 'save', 'submit', 'subscribe', 'vote', 'wikiedit', 'wikiread'] 
 let base_url1 = `https://www.reddit.com/api/v1/authorize?client_id=UIV4zzlxbYCBkxHZmWqpSw&response_type=TYPE&state=RANDOM_STRING&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=${scopeTmp}`
@@ -15,7 +18,32 @@ const headersRequest = {
 export class RedditService {
     constructor(private readonly httpService: HttpService) {}
 
+    async newSubreddit() {
+        const url = `https://oauth.reddit.com/subreddits/new`;
+        let result: any;
+        try {
+            const { data } = await firstValueFrom(this.httpService.get(url, {headers: headersRequest}));
+            return (data.data.children[0].data.display_name);
+        } catch (error) {
+            console.log("error", error);
+        }
+    }
+
+    async mySubreddit() {
+        const url = `https://oauth.reddit.com/subreddits/mine/subscriber`;
+        let result: any;
+        try {
+            const { data } = await firstValueFrom(this.httpService.get(url, {headers: headersRequest}));
+            console.log(data.data.children)
+            // return (data.data.children[0].data.display_name);
+        } catch (error) {
+            console.log("error", error);
+        }
+    }
+
     async subscribe() {
+        let tmp =  await this.newSubreddit();
+        console.log(tmp);
         const url = `https://oauth.reddit.com/api/subscribe`;
         try {
             const result = await this.httpService.post(url,
@@ -31,7 +59,7 @@ export class RedditService {
                 }
             });
             result.subscribe((response) => {
-                console.log("response", response.data.sr_fullname);
+                // console.log("response", response.data.sr_fullname);
             });
             return result.pipe(map((response) => response.data));
         } catch (error) {
