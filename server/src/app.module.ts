@@ -16,6 +16,8 @@ import { LeagueController } from './league/league.controller';
 import { NasaService } from './nasa/nasa.service';
 import { NasaController } from './nasa/nasa.controller';
 import { SpotifyModule } from './spotify/spotify.module';
+import { RedditController } from './reddit/reddit.controller';
+import { RedditService } from './reddit/reddit.service';
 
 dotenv.config();
 
@@ -41,6 +43,7 @@ dotenv.config();
     GithubController,
     LeagueController,
     NasaController,
+    RedditController,
   ],
   providers: [
     AppService,
@@ -49,6 +52,7 @@ dotenv.config();
     LeagueService,
     IntegrationService,
     NasaService,
+    RedditService,
   ],
 })
 export class AppModule {}

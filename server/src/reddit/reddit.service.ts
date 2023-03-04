@@ -4,24 +4,126 @@ import { HttpService } from '@nestjs/axios';
 import * as dotenv from 'dotenv';
 import { datacatalog } from 'googleapis/build/src/apis/datacatalog';
 
-let base_url1 = "https://www.reddit.com/api/v1/authorize?client_id=UIV4zzlxbYCBkxHZmWqpSw&response_type=TYPE&state=RANDOM_STRING&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=SCOPE_STRING"
+let scopeTmp = ['identity', 'edit', 'flair', 'history', 'modconfig', 'modflair', 'modlog', 'modposts', 'modwiki', 'mysubreddits', 'privatemessages', 'read', 'report', 'save', 'submit', 'subscribe', 'vote', 'wikiedit', 'wikiread'] 
+let base_url1 = `https://www.reddit.com/api/v1/authorize?client_id=UIV4zzlxbYCBkxHZmWqpSw&response_type=TYPE&state=RANDOM_STRING&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=${scopeTmp}`
+
+const headersRequest = {
+    Authorization: `Bearer 13019661919274-1W8I2WAt51n1-VXtNC-on3zYzi00FQ`,
+};
 
 @Injectable()
 export class RedditService {
-        constructor(private readonly httpService: HttpService) {}
+    constructor(private readonly httpService: HttpService) {}
 
-    async getImageOfTheDay() {
-        var return_value = { 
-            "url" :  null,                  
-        }
-        const url_tmp = `${base_url1}`;
+    async subscribe() {
+        const url = `https://oauth.reddit.com/api/subscribe`;
         try {
-            const { data }  = await firstValueFrom(this.httpService.get(url_tmp))
-            console.log(data);
-        } catch (error) {            
-            return {"Error" : error.code, "Message" : error.message}
+            const result = await this.httpService.post(url,
+            {
+                action: 'sub',
+                sr_name: 'france',
+                api_type: 'json',
+            },
+            {
+                headers: {
+                    Authorization: `Bearer 13019661919274-1W8I2WAt51n1-VXtNC-on3zYzi00FQ`,
+                    'Content-Type': 'application/x-www-form-urlencoded', 
+                }
+            });
+            result.subscribe((response) => {
+                console.log("response", response.data.sr_fullname);
+            });
+            return result.pipe(map((response) => response.data));
+        } catch (error) {
+            console.log("error", error);
         }
-        return return_value;
-  }
-}
+    }
+    async unsubscribe() {
+        const url = `https://oauth.reddit.com/api/subscribe`;
+        try {
+            const result = await this.httpService.post(url,
+            {
+                action: 'unsub',
+                sr_name: 'france',
+                api_type: 'json',
+            },
+            {
+                headers: {
+                    Authorization: `Bearer 13019661919274-1W8I2WAt51n1-VXtNC-on3zYzi00FQ`,
+                    'Content-Type': 'application/x-www-form-urlencoded', 
+                }
+            });
+            result.subscribe((response) => {
+                console.log("response", response.data.sr_fullname);
+            });
+            return result.pipe(map((response) => response.data));
+        } catch (error) {
+            console.log("error", error);
+        }
+    }
 
+    async callback(code : string = null) {
+        console.log(`Code is ${code}`)
+        if (code == null) {
+            return "Invalid callback code"
+        }
+        var axios = require('axios');
+        var qs = require('qs');
+        var data = qs.stringify({
+          redirect_uri: 'http://localhost:8080/reddit/oauth/callback',
+          grant_type: 'authorization_code',
+          code: code
+        });
+        let tmp = 'UIV4zzlxbYCBkxHZmWqpSw:I_oGFsqS-j_E_e3G05dZxKu-D8QW-Q';
+        let autHeader = `Basic ${Buffer.from(tmp).toString('base64')}`;
+        var config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: 'https://www.reddit.com/api/v1/access_token',
+          data : data,
+          headers: {
+            Authorization: autHeader, 
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'app/1.0.0'
+          },
+        };
+        axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    async refresh(refresh : string = null) {
+        if (refresh == null) {
+            return "Invalid callback code"
+        }
+        let tmp = 'UIV4zzlxbYCBkxHZmWqpSw:I_oGFsqS-j_E_e3G05dZxKu-D8QW-Q';
+        let autHeader = `Basic ${Buffer.from(tmp).toString('base64')}`;
+        var axios = require('axios');
+        var qs = require('qs');
+        var data = qs.stringify({
+          'grant_type': 'refresh_token',
+          'refresh_token': refresh
+        });
+        var config = {
+          method: 'post',
+        maxBodyLength: Infinity,
+          url: 'https://www.reddit.com/api/v1/access_token',
+          headers: {
+            Authorization: autHeader,
+            'Content-Type': 'application/x-www-form-urlencoded', 
+          },
+          data : data
+        };
+        axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+}
