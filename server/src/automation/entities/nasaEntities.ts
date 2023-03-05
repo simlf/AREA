@@ -1,7 +1,7 @@
 import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 
-@Entity({ name: 'nasaRepo' })
-export class nasaImageEntity {
+@Entity({ name: 'nasaAction' })
+export class NasaAction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -15,7 +15,7 @@ export class nasaImageEntity {
   url : string
 
   @Column() // date
-  date : boolean
+  date : Date
 
   @Column()
   actionEnum : 'date' | 'author'

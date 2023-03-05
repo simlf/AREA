@@ -11,7 +11,7 @@ let idealTemperature = 8;
 export class MeteoService {
     constructor(private readonly httpService: HttpService) {}
 
-    async getTemperature() {
+    async getTemperature(idealTemperature : number = 8) {
         var date = new Date();
         class return_value {
             longitude;
@@ -38,10 +38,12 @@ export class MeteoService {
              console.log(data.hourly.temperature_2m[i] + console.log(data.hourly))
                 const myArray = data.hourly.time[i].split("T");
                 const tmpTime2 = myArray[1].split(':');
-                if (data.hourly.temperature_2m[i] >= idealTemperature  && data.hourly.temperature_2m[i] < idealTemperature + 1 && tmpTime2[0] <= tmpTime + 8 && tmpTime2[0] >= tmpTime && checkBool == false) {;
+                if (data.hourly.temperature_2m[i] >= idealTemperature  && data.hourly.temperature_2m[i] < idealTemperature + 1 && tmpTime2[0] <= tmpTime + 4 && tmpTime2[0] >= tmpTime && checkBool == false) {;
                     checkBool = true;
+                    return true
                 };
             }
+        return false
         } catch (error) {            
             return {"Error" : error.code, "Message" : error.message}
         }

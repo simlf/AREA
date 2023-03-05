@@ -1,7 +1,7 @@
 import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 
-@Entity({ name: 'spotifyEntity' })
-export class nasaReactionEntity {
+@Entity({ name: 'spotifyAction' })
+export class SpotifyAction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

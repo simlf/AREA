@@ -1,6 +1,6 @@
 import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 
-Entity({name : 'leagueAction'})
+@Entity({name : 'leagueAction'})
 export class LeagueAction {
   @PrimaryGeneratedColumn('uuid')
   id: string;

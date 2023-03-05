@@ -35,8 +35,8 @@ export class WorkflowController {
     @Body('description') description: string,
     @Body('userId') userId: string,
     @Body('logo') logo: string,
-    @Body('actionId') actionId: number,
-    @Body('reactionId') reactionId: number,
+    @Body('actionId') actionId: string,
+    @Body('reactionId') reactionId: string,
   ): Promise<string> {
     // check id of user
     if (!userId) {

@@ -10,13 +10,13 @@ export class WorkflowEntity {
   actionName: string;
 
   @Generated()
-  actionId: number;
+  actionId: string;
 
   @Column()
   reactionName: string;
 
   @Generated()
-  reactionId: number;
+  reactionId: string;
 
   @ManyToOne(() => UserEntity)
   user: UserEntity;

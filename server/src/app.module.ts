@@ -21,12 +21,18 @@ import { WorkflowModule } from './workflow/workflows.module';
 import { WorkflowEntity } from './workflow/workflows.entity';
 import { WorkflowService } from './workflow/workflows.service';
 import { LeagueAction } from './automation/entities/leagueEntities';
+import { GithubAction } from './automation/entities/githubEntities';
+import { WeatherAction } from './automation/entities/weatherEntities';
+import { NasaAction } from './automation/entities/nasaEntities';
+import { SpotifyAction } from './automation/entities/spotifyEntities';
+import { SpotifyService } from './spotify/spotify.service';
+import { SpotifyController } from './spotify/spotify.controller';
 
 dotenv.config();
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([WorkflowEntity, LeagueAction]),
+    TypeOrmModule.forFeature([WorkflowEntity, LeagueAction, GithubAction, WeatherAction, NasaAction, SpotifyAction]),
     AuthModule,
     UsersModule,
     HttpModule,
@@ -36,7 +42,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.MYSQL_ROOT_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [UserEntity, WorkflowEntity],
+      entities: [UserEntity, WorkflowEntity, LeagueAction, GithubAction, WeatherAction, NasaAction, SpotifyAction],
       synchronize: true,
     }),
     DiscordModule,
@@ -49,6 +55,7 @@ dotenv.config();
     LeagueController,
     NasaController,
     MeteoController,
+    SpotifyController
   ],
   providers: [
     AppService,
@@ -59,6 +66,7 @@ dotenv.config();
     IntegrationService,
     NasaService,
     MeteoService,
+    SpotifyService
   ],
 })
 

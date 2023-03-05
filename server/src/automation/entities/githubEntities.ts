@@ -1,7 +1,7 @@
 import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 
-@Entity({ name: 'githubRepo' })
-export class githubEntity {
+@Entity({ name: 'githubAction' })
+export class GithubAction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

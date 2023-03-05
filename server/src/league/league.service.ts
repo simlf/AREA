@@ -225,10 +225,8 @@ export class LeagueService {
                 "level7_mastery"            :  0,            
                 "chests_granted"            :  0,
             }
-            console.log(data.id)
             let url2 = `${base_url1}champion-mastery/v4/champion-masteries/by-summoner/${data.id}?api_key=${key}`;
             const a = await firstValueFrom(this.httpService.get(url2));
-            console.log(url2)
             for (let total_champ = 0; total_champ < Object.keys(a.data).length; total_champ++) {
                 if (a.data[total_champ].championLevel == 7)
                     return_value.level7_mastery += 1

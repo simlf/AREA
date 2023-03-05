@@ -47,7 +47,8 @@ export class GithubService {
             "repo_name"                      :  null,
             "repo_id"                        :  null,
             "description"                    :  null,                    
-            "commits"                        : [],            
+            "commits"                        : [],
+            "commitsNumber"                  : 0                   
         }
         try {
             const repo_info = await firstValueFrom(this.httpService.get(`https://api.github.com/repos/${login}/${repo}`, config))
@@ -64,10 +65,11 @@ export class GithubService {
                                             "message"       : commits_info.data[i].commit.author.message,
                                             "date"          : commits_info.data[i].commit.author.date,
                                             "secondsAgo"    : ((now.valueOf() / 1000) - (t.valueOf() / 1000)).toFixed(0) })
+                return_value.commitsNumber += 1
             }
+              
             return return_value
         } catch (error) {            
-            console.log(error)
             return {"Error" : 404, "Message" : error.message}
         }
     }

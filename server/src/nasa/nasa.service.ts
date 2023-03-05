@@ -12,13 +12,14 @@ export class NasaService {
 
     async getImageOfTheDay() {
         var return_value = { 
-            "url" :  null,                  
+            "url" :  null,
+            "date" : null                 
         }
         const url_tmp = `${base_url1}${process.env.NASA_API}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url_tmp))
-            const level = data.date;
             return_value.url = data.url;
+            return_value.date = data.date
             console.log(data)
         } catch (error) {            
             return {"Error" : error.code, "Message" : error.message}
