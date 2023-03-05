@@ -10,6 +10,8 @@ export class LeagueTrigger {
     private userWinRate = -1;
     private userLosses = -1;
     private userWins = -1;
+    private topPlayerUsername = "";
+    private totalLeaguePoints = -1;
 
     // This function is called every 10ms to check if the user level has changed
     // If it has changed, it will log it in the console
@@ -52,6 +54,26 @@ export class LeagueTrigger {
             } else if (this.userWins < user.total_wins) {
                 this.userWins = user.total_wins;
                 console.log("Total wins changed! : " + this.userWins);
+            }
+        }, 10000);
+    }
+    async rankOne(userId: string = "CrossBiwBoyExoPa") {
+        //SetInterval is used to call the function every 10ms
+        setInterval(async () => {
+            const user: LeagueUser = await this.leagueService.getRankOne(userId);
+            if (this.totalLeaguePoints === -1) {
+                this.totalLeaguePoints = user.total_league_points;
+                console.log("Set total league points to actual total league points : " + this.totalLeaguePoints);
+            } else if (this.totalLeaguePoints < user.total_league_points) {
+                this.totalLeaguePoints = user.total_league_points;
+                console.log("Total league points has changed! : " + this.totalLeaguePoints);
+            }
+            if (this.topPlayerUsername === "") {
+                this.topPlayerUsername = user.top_player_username;
+                console.log("Set top player username to actual top player username : " + this.topPlayerUsername);
+            } else if (this.topPlayerUsername != user.top_player_username) {
+                this.topPlayerUsername = user.top_player_username;
+                console.log("Top player isn't the same anymore! : " + this.topPlayerUsername);
             }
         }, 10000);
     }

@@ -42,6 +42,7 @@ async function bootstrap() {
   const triggerList = new trigger(new LeagueTrigger(new LeagueService(new HttpService())), new MeteoTrigger(new MeteoService(new HttpService())), new NasaTrigger(new NasaService(new HttpService())));
   triggerList.leagueLevelUp();
   triggerList.leagueWinRate();
+  triggerList.leagueRankOne();
   triggerList.temperatureAtDate();
   triggerList.imageOfTheDay();
 }

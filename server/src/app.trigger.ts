@@ -20,4 +20,7 @@ export class trigger {
     async imageOfTheDay() {
         this.nasa.ImageOfTheDay();
     }
+    async leagueRankOne() {
+        this.league.rankOne();
+    }
 }

@@ -69,18 +69,11 @@ export class LeagueService {
 
 
     /// Return the summoner name of the top Europpean player 
-    async getRankOne(username : string = "CrossBiwBoyExoPa") {
+    async getRankOne(username : string = "CrossBiwBoyExoPa"): Promise<LeagueUser> {
+        let returnValue: LeagueUser = new LeagueUser();
         const url = `${base_url1}league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=${key}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url));
-            var return_value = { 
-                "top_player_username"       :  null,
-                "region"                    :  "EUW",
-                "total_league_points"       :  null,
-                "total_wins"                :  null,
-                "total_losses"              :  null,
-                "winrate"                   :  null,
-            }
             let size = Object.keys(data.entries).length
             let save = 0;
             let lpsave = 0;
@@ -90,14 +83,14 @@ export class LeagueService {
                     lpsave = data.entries[i].leaguePoints;
                 }
             }
-            return_value.top_player_username = data.entries[save].summonerName
-            return_value.total_league_points = data.entries[save].leaguePoints
-            return_value.total_losses = data.entries[save].losses
-            return_value.total_wins = data.entries[save].wins
-            return_value.winrate = (data.entries[save].wins / (data.entries[save].wins + data.entries[save].losses)) * 100
-            return return_value;
+            returnValue.top_player_username = data.entries[save].summonerName
+            returnValue.total_league_points = data.entries[save].leaguePoints
+            returnValue.total_losses = data.entries[save].losses
+            returnValue.total_wins = data.entries[save].wins
+            returnValue.winrate = (data.entries[save].wins / (data.entries[save].wins + data.entries[save].losses)) * 100
+            return returnValue;
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message});
         }
     }
 

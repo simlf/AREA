@@ -24,4 +24,12 @@ export class LeagueUser {
 
     @ApiProperty()
     winrate:  number;
+
+    @ApiProperty()
+    total_league_points:  number;
+
+    @ApiProperty()
+    top_player_username:  string;
+
+    
 }
