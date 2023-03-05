@@ -3,6 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { integration } from 'src/app/models/integration.model';
+import { HttpClient } from '@angular/common/http';
+import { ConfigIntegrationPage } from '../config-integration.page';
+import { workflowRequest, responseWorkflows } from 'src/app/utils/workflowRequest';
+import { CardComponent } from 'src/app/integration/card/card.component';
+import { ActivatedRoute } from '@angular/router';
+import { service } from 'src/app/models/service.model';
 
 @Component({
   selector: 'app-card',
@@ -39,9 +45,14 @@ import { integration } from 'src/app/models/integration.model';
 })
 export class integrationComponent implements OnInit {
 
-  integration: integration[];
+  public integration: integration[] = [];
   Breakpoints = Breakpoints;
   currentBreakpoint: string = '';
+  rootURL = 'http://localhost:8080/';
+  id: string | null = null;
+  serviceDescription: service[] = [];
+  actionName: string = '';
+  reactionName: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
     .observe([Breakpoints.Web, Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
@@ -50,29 +61,36 @@ export class integrationComponent implements OnInit {
       distinctUntilChanged()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.integration = [
-      {
-        name: "Brawlstar",
-        description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-        img: "../../assets/1.png",
-        logo: "../../assets/logoBrawlstar.png",
-        connect: true
-      },
-      {
-        name: "Brawlstar",
-        description: "Une super integration vous permetant de tweeter automatiquement vos explois sur brawlstar ",
-        img: "../../assets/1.png",
-        logo: "../../assets/logoBrawlstar.png",
-        connect: false
-      },
-    ];
-  }
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private route: ActivatedRoute) {
+    this.serviceDescription = [
+      { name: 'spotify', description: 'Spotify est un service de musique en streaming qui vous permet d\'écouter de la musique sur votre ordinateur, votre téléphone ou votre tablette. Il vous offre un accès à des millions de titres.'},
+      { name: 'nasa', description: "La NASA propose une API qui permet de récupérer l'image astronomique du jour (APOD) ainsi que les données associées."},
+      { name: "meteo", description: "Un service météo peut être utilisé pour déclencher une action lorsque certaines conditions météorologiques sont atteintes."},
+      { name: "leagues", description: "L'API de League of Legends permet de récupérer des informations sur les joueurs, les équipes et les matchs."},
+      { name: "reddit", description: "Reddit est un site web communautaire qui permet à ses utilisateurs de poster des liens et de commenter les publications."},
+      ];
+    };
 
-  ngOnInit(): void {
+  async getWorkflow() {
+    const bodyRequest = { "workflowId": this.id };
+    const workflow: workflowRequest = new workflowRequest(this.http);
+    const result = await workflow.postData(this.rootURL + "workflowsDb/getWorkflow", bodyRequest, responseWorkflows);
+    const actiondesc = this.serviceDescription.find(service => service.name === result.actionName)?.description || '';
+    const reactiondesc = this.serviceDescription.find(service => service.name === result.reactionName)?.description || '';
+    let connectAction = false;
+    let connectReaction = false;
+    if (result.actionName === 'nasa')
+      connectAction = true;
+    this.integration = [{ name: result.actionName, description: actiondesc, img: result.img, logo: result.logo, connect: connectAction}, { name: result.reactionName, description: reactiondesc, img: result.img, logo: result.logo, connect: connectReaction}];
+    console.log(result);
+  };
+
+  async ngOnInit(): Promise<void> {
     this.breakpoint$.subscribe(() =>
       this.breakpointChanged()
     );
+    this.id = this.route.snapshot.paramMap.get('id');
+    await this.getWorkflow();
   }
 
   private breakpointChanged() {

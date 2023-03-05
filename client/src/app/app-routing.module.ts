@@ -33,7 +33,12 @@ const routes: Routes = [
     loadChildren: () => import('./landingpage/landingpage.module').then( m => m.LandingpagePageModule)
   },
   {
+    path: 'config-integration/:id',
+    loadChildren: () => import('./config-integration/config-integration.module').then( m => m.ConfigIntegrationPageModule)
+  },
+  {
     path: 'config-integration',
+    pathMatch: 'full',
     loadChildren: () => import('./config-integration/config-integration.module').then( m => m.ConfigIntegrationPageModule)
   },
   {

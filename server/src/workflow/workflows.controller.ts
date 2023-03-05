@@ -22,8 +22,9 @@ export class WorkflowController {
         description: { type: 'string', description: 'A description of the workflow' },
         userId: { type: 'string', description: 'The id of the user' },
         logo: { type: 'string', description: 'Logo to display on card' },
+        isActive: { type: 'boolean', description: 'if the automatisation is active or not' },
       },
-      required: ['actionName', 'reactionName', 'workflowName', 'description', 'userId', 'logo'],
+      required: ['actionName', 'reactionName', 'workflowName', 'description', 'userId', 'logo', 'isActive'],
     },
   })
   @ApiResponse({ status: 201, description: 'Workflow added' })
@@ -37,6 +38,7 @@ export class WorkflowController {
     @Body('logo') logo: string,
     @Body('actionId') actionId: number,
     @Body('reactionId') reactionId: number,
+    @Body('isActive') isActive: boolean,
   ): Promise<string> {
     // check id of user
     if (!userId) {
@@ -55,6 +57,7 @@ export class WorkflowController {
       logo,
       actionId,
       reactionId,
+      isActive,
       );
 
     return 'Workflow added by ' + user.email;
@@ -95,4 +98,18 @@ export class WorkflowController {
     this.workflowService.deleteWorkflowAction(workflowId);
   }
 
+  @Post('getWorkflow')
+  @ApiOperation({ summary: 'Get a workflow with id' })
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        workflowId: { type: 'number', description: 'The id of the workflow' },
+      },
+      required: ['workflowId'],
+    },
+  })
+  async getWorkflow(@Body('workflowId') workflowId: string,) {
+    return this.workflowService.getWorkflowActionById(workflowId);
+  }
 }
