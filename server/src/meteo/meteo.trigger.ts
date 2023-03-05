@@ -26,6 +26,6 @@ export class MeteoTrigger {
                 console.log("The hour has changed !");
                 console.log("Ideal temperature of " + this.idealTemperature + " will be at " + this.time);
             }
-        }, 10000);
+        }, 5000000);
     }
 }

@@ -28,7 +28,7 @@ export class LeagueTrigger {
                 this.userLevel = user.level;
                 console.log("Level up! : " + this.userLevel);
             }
-        }, 10000);
+        }, 5000000);
     }
     async winRate(userId: string = "CrossBiwBoyExoPa") {
         //SetInterval is used to call the function every 10ms
@@ -55,7 +55,7 @@ export class LeagueTrigger {
                 this.userWins = user.total_wins;
                 console.log("Total wins changed! : " + this.userWins);
             }
-        }, 10000);
+        }, 5000000);
     }
     async rankOne(userId: string = "CrossBiwBoyExoPa") {
         //SetInterval is used to call the function every 10ms
@@ -75,6 +75,6 @@ export class LeagueTrigger {
                 this.topPlayerUsername = user.top_player_username;
                 console.log("Top player isn't the same anymore! : " + this.topPlayerUsername);
             }
-        }, 10000);
+        }, 5000000);
     }
 }

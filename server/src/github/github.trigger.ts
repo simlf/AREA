@@ -41,7 +41,7 @@ export class GithubTrigger {
                 this.repos_name = user.repos_name;
                 console.log("A new repository has been created by this user : " + this.userlogin);
             }
-        }, 10000);
+        }, 5000000);
     }
     async repoInfo(login : string = `torvalds`, repo : string = `linux`) {
         //SetInterval is used to call the function every 10ms
@@ -68,6 +68,6 @@ export class GithubTrigger {
                 this.commits = user.commits;
                 console.log("A new commit has been created by this user : " + this.userlogin + "for the repository " + repo);
             }
-        }, 10000);
+        }, 5000000);
     }
 }

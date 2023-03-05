@@ -30,6 +30,6 @@ export class NasaTrigger {
                 this.url = nasaInfo.url;
                 console.log("This is the new url of the image of the day : " + this.url);
             }
-        }, 10000);
+        }, 5000000);
     }
 }
