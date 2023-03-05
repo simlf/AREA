@@ -43,13 +43,15 @@ export class WorkflowService {
       workflowName: string,
       description: string,
       logo: string,
-
       reactionId: string,
       actionId: string,
       isActive: boolean,
       ): Promise<WorkflowEntity> {
       const randomNumber = Math.floor(Math.random() * 6) + 1;
       const workflowAction = new WorkflowEntity();
+      var actualDate = new Date();
+      actualDate.setDate(actualDate.getDate() + 1);
+      workflowAction.createdAt = actualDate;
       workflowAction.actionName = actionName;
       workflowAction.actionId = actionId;
       workflowAction.reactionName = reactionName;

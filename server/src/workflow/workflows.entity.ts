@@ -9,13 +9,13 @@ export class WorkflowEntity {
   @Column()
   actionName: string;
 
-  @Generated()
+  @Column()
   actionId: string;
 
   @Column()
   reactionName: string;
 
-  @Generated()
+  @Column()
   reactionId: string;
 
   @ManyToOne(() => UserEntity)
@@ -41,4 +41,7 @@ export class WorkflowEntity {
 
   @Column()
   active: boolean;
+
+  @Column()
+  createdAt: Date;
 }
