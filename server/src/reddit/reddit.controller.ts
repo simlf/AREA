@@ -16,7 +16,7 @@ export class RedditController {
     }
 
     @Get('oauth')
-    @Redirect(`https://www.reddit.com/api/v1/authorize?client_id=UIV4zzlxbYCBkxHZmWqpSw&response_type=code&state=randomestringhere&redirect_uri=${encodeURIComponent('http://localhost:8080/reddit/oauth/callback')}&duration=permanent&scope=${scopeTmp}`, 301)
+    @Redirect(`https://www.reddit.com/api/v1/authorize?client_id=${process.env.REDDIT_ID}&response_type=code&state=randomestringhere&redirect_uri=${encodeURIComponent('http://localhost:8080/reddit/oauth/callback')}&duration=permanent&scope=${scopeTmp}`, 301)
     getOauth() {
         // console.log("hello world");
         //return this.spotifyService.getUserPlaylist();
@@ -27,7 +27,6 @@ export class RedditController {
         console.log('code : ' + code)
         console.log("hello world");
         return this.redditService.callback(code)
-        // return 'connected';
     }
 
     @Get('oauth/refresh')
@@ -37,25 +36,26 @@ export class RedditController {
 
     @Get('subscribe')
     subscribeReddit() {
-        // console.log(encodeURIComponent("https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=randomestringhere&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=identity edit flair history read vote wikiread wikiedit"));
         return this.redditService.subscribe()
     }
 
     @Get('unsubscribe')
     unsubscribeReddit() {
-        // console.log(encodeURIComponent("https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=randomestringhere&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=identity edit flair history read vote wikiread wikiedit"));
         return this.redditService.unsubscribe()
     }
     
     @Get('newSubreddit')
     newSubreddit() {
-        // console.log(encodeURIComponent("https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=randomestringhere&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=identity edit flair history read vote wikiread wikiedit"));
         return this.redditService.newSubreddit();
     }
 
     @Get('mySubreddit')
     mySubreddit() {
-        // console.log(encodeURIComponent("https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=randomestringhere&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=identity edit flair history read vote wikiread wikiedit"));
         return this.redditService.mySubreddit();
     }
+
+    // @Get('sendComment')
+    // sendComment() {
+    //     return this.redditService.sendComment();
+    // }
 }
