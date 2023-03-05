@@ -20,6 +20,7 @@ export class WorkflowService {
       logo: string,
       reactionId: number,
       actionId: number,
+      isActive: boolean,
       ): Promise<WorkflowEntity> {
       const randomNumber = Math.floor(Math.random() * 6) + 1;
       const workflowAction = new WorkflowEntity();
@@ -34,7 +35,7 @@ export class WorkflowService {
       workflowAction.logo = '../../assets/' + logo;
       workflowAction.img = '../../assets/' + randomNumber + '.png';
       workflowAction.url = '';
-      workflowAction.active = false;
+      workflowAction.active = isActive;
       const savedWorkflowAction = await this.workflowActionRepository.save(workflowAction);
       workflowAction.url = '/config-integration/' + savedWorkflowAction.id;  
       return this.workflowActionRepository.save(workflowAction);
