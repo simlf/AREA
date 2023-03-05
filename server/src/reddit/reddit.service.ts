@@ -11,7 +11,7 @@ let scopeTmp = ['identity', 'edit', 'flair', 'history', 'modconfig', 'modflair',
 let base_url1 = `https://www.reddit.com/api/v1/authorize?client_id=UIV4zzlxbYCBkxHZmWqpSw&response_type=TYPE&state=RANDOM_STRING&redirect_uri=http://localhost:8081/reddit&duration=permanent&scope=${scopeTmp}`
 
 const headersRequest = {
-    Authorization: `Bearer 13019661919274-1W8I2WAt51n1-VXtNC-on3zYzi00FQ`,
+    Authorization: `Bearer 13019661919274-ziL8slEUBl3TrlCcRED8g6_MqDtUCQ`,
 };
 
 @Injectable()
@@ -34,8 +34,16 @@ export class RedditService {
         let result: any;
         try {
             const { data } = await firstValueFrom(this.httpService.get(url, {headers: headersRequest}));
-            console.log(data.data.children)
-            // return (data.data.children[0].data.display_name);
+            let getSubreddit = '';
+            let boolean = false;
+            for (let i = 0; data.data.children[i]; i++) {
+                let split = data.data.children[i].data.url.split('/');
+                if (split[1] === 'r' && boolean === false) {
+                    getSubreddit = data.data.children[i].data.display_name
+                    boolean = true;
+                }
+            }
+            return (getSubreddit);
         } catch (error) {
             console.log("error", error);
         }
@@ -49,35 +57,38 @@ export class RedditService {
             const result = await this.httpService.post(url,
             {
                 action: 'sub',
-                sr_name: 'france',
+                sr_name: `${tmp}`,
                 api_type: 'json',
             },
             {
                 headers: {
-                    Authorization: `Bearer 13019661919274-1W8I2WAt51n1-VXtNC-on3zYzi00FQ`,
+                    Authorization: `Bearer 13019661919274-ziL8slEUBl3TrlCcRED8g6_MqDtUCQ`,
                     'Content-Type': 'application/x-www-form-urlencoded', 
                 }
             });
             result.subscribe((response) => {
-                // console.log("response", response.data.sr_fullname);
+                console.log("response", response.data.sr_fullname);
             });
             return result.pipe(map((response) => response.data));
         } catch (error) {
             console.log("error", error);
         }
     }
+
     async unsubscribe() {
+        let tmp =  await this.mySubreddit();
+        console.log(tmp);
         const url = `https://oauth.reddit.com/api/subscribe`;
         try {
             const result = await this.httpService.post(url,
             {
                 action: 'unsub',
-                sr_name: 'france',
+                sr_name: `${tmp}`,
                 api_type: 'json',
             },
             {
                 headers: {
-                    Authorization: `Bearer 13019661919274-1W8I2WAt51n1-VXtNC-on3zYzi00FQ`,
+                    Authorization: `Bearer 13019661919274-ziL8slEUBl3TrlCcRED8g6_MqDtUCQ`,
                     'Content-Type': 'application/x-www-form-urlencoded', 
                 }
             });
