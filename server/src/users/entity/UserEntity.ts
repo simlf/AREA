@@ -1,5 +1,5 @@
 import * as bcryptjs from 'bcryptjs';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -17,6 +17,15 @@ export class UserEntity {
 
   @Column({ nullable: true })
   discordToken: string;
+
+  @Column({ nullable: true })
+  spotifyUserId: string;
+
+  @Column({ nullable: true })
+  spotifyAccessToken: string;
+
+  // @OneToMany(() => SpotifyEntity, (spotify) => spotify.user)
+  // spotify: SpotifyEntity[];
 
   @BeforeInsert()
   async hashPassword() {
