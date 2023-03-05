@@ -17,6 +17,7 @@ import { NasaAction } from 'src/automation/entities/nasaEntities';
 import { NasaService } from 'src/nasa/nasa.service';
 import { SpotifyAction } from 'src/automation/entities/spotifyEntities';
 import { SpotifyService } from 'src/spotify/spotify.service';
+import { UpdateSpotifyPlaylistDto } from 'src/spotify/dto/updateSpotifyPlaylist.dto';
 
 @Injectable()
 export class WorkflowService {
@@ -82,8 +83,13 @@ export class WorkflowService {
 
     private async trigger(e : WorkflowEntity) {
       if (e.reactionName == 'spotify') {
-        //const action = await this.spotifyAction.findOne({where : {id : e.actionId}})
-        //this.spotifyService.updatePlaylist(action.playlistId, upda)
+        console.log('T')
+        const action = await this.spotifyAction.findOne({where : {id : e.actionId}})
+        let dto = new UpdateSpotifyPlaylistDto
+        dto.description = action.description
+        dto.name = action.title
+        dto.public = true
+        this.spotifyService.updatePlaylist(action.playlistId, dto)
       }
     }
 
@@ -102,8 +108,10 @@ export class WorkflowService {
                 }
                 case 'level' : {
                   const level = JSON.parse(JSON.stringify(await this.leagueService.getLevel(action.username))).level
-                  if (level > action.currentLevel)
-                    console.log('Trigger !!')
+                  if (level > action.currentLevel) {
+                    console.log('Lol level Trigger !!')
+                    this.trigger(element)
+                  }
                   break;  
                 }
                 case 'mastery' : {

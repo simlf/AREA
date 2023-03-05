@@ -34,6 +34,7 @@ export class SpotifyService {
         const url = `${spotifyPlaylistUrl}${playlistId}`;
 
         try {
+            console.log(url)
             const result = await this.httpService.put(url, JSON.stringify(updateSpotifyPlaylistDto), { headers: headersRequest });
             result.subscribe((response) => {
                 console.log("response", response);
