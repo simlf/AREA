@@ -17,6 +17,8 @@ import { NasaController } from './nasa/nasa.controller';
 import { MeteoService } from './meteo/meteo.service';
 import { MeteoController } from './meteo/meteo.controller';
 import { SpotifyModule } from './spotify/spotify.module';
+import { RedditController } from './reddit/reddit.controller';
+import { RedditService } from './reddit/reddit.service';
 import { WorkflowModule } from './workflow/workflows.module';
 import { WorkflowEntity } from './workflow/workflows.entity';
 
@@ -45,6 +47,7 @@ dotenv.config();
     GithubController,
     LeagueController,
     NasaController,
+    RedditController,
     MeteoController,
   ],
   providers: [
@@ -54,6 +57,7 @@ dotenv.config();
     LeagueService,
     IntegrationService,
     NasaService,
+    RedditService,
     MeteoService,
   ],
 })

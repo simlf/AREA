@@ -150,6 +150,15 @@ export class AboutService {
         },
       ],
     };
+    const Reddit: Service = {
+      name: 'Reddit',
+      reactions: [
+        {
+          name: 'Api Reddit',
+          description: '',
+        },
+      ],
+    };
 
     const allServices: Service[] = [
       Discord,
@@ -161,6 +170,7 @@ export class AboutService {
       Weather,
       Steam,
       Mail,
+      Reddit,
     ];
 
     const about: About = {
