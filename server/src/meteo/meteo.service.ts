@@ -6,7 +6,7 @@ import { datacatalog } from 'googleapis/build/src/apis/datacatalog';
 import { MeteoInfo } from './meteo.model';
 
 // let base_url1 = 
-let idealTemperature = 7;
+let idealTemperature = 8;
 
 @Injectable()
 export class MeteoService {

@@ -10,6 +10,8 @@ import { MeteoTrigger } from './meteo/meteo.trigger';
 import { MeteoService } from './meteo/meteo.service';
 import { NasaTrigger } from './nasa/nasa.trigger';
 import { NasaService } from './nasa/nasa.service';
+import { GithubTrigger } from './github/github.trigger';
+import { GithubService } from './github/github.service';
 import { HttpService } from '@nestjs/axios';
 // TODO: Make secret private with .env
 async function bootstrap() {
@@ -39,12 +41,14 @@ async function bootstrap() {
   app.use(passport.session());
   app.enableCors();
   await app.listen(8080);
-  const triggerList = new trigger(new LeagueTrigger(new LeagueService(new HttpService())), new MeteoTrigger(new MeteoService(new HttpService())), new NasaTrigger(new NasaService(new HttpService())));
+  const triggerList = new trigger(new LeagueTrigger(new LeagueService(new HttpService())),new MeteoTrigger(new MeteoService(new HttpService())),new NasaTrigger(new NasaService(new HttpService())),new GithubTrigger(new GithubService(new HttpService())));
   triggerList.leagueLevelUp();
   triggerList.leagueWinRate();
   triggerList.leagueRankOne();
   triggerList.temperatureAtDate();
   triggerList.imageOfTheDay();
+  triggerList.githubUserInfo();
+  triggerList.githubRepoInfo();
 }
 
 bootstrap();

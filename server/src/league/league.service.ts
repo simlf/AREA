@@ -49,8 +49,7 @@ export class LeagueService {
             let total_match = 0   
             for (; total_match < Object.keys(a.data).length; total_match++) {
                 let url3 = `${base_url2}match/v5/matches/${a.data[total_match]}?api_key=${key}`
-                const b = await firstValueFrom(this.httpService.get(url3));
-                console.log(b.data);
+                const b = await firstValueFrom(this.httpService.get(url3))
                 for (let j = 0; j < Object.keys(b.data.info.participants).length; j++) {
                     if (b.data.info.participants[j].puuid == puuid) {
                         if (b.data.info.participants[j].win == true)
@@ -63,7 +62,7 @@ export class LeagueService {
             returnValue.winrate = (win_count / total_match)
             return returnValue;
         } catch (error) {
-            console.log({"Error" : error.code, "Message" : error.message});
+            console.error({"Error" : error.code, "Message" : error.message});
         }
     }
 
@@ -122,7 +121,6 @@ export class LeagueService {
                     last_save = challenges_list.data.challenges[i].achievedTime;
                 }
             }
-            console.log(challenges_list.data.challenges[save])
             let url3 = `${base_url1}challenges/v1/challenges/${challenges_list.data.challenges[save].challengeId}/config?api_key=${key}`
             const challenges_info = await firstValueFrom(this.httpService.get(url3));
         
@@ -132,10 +130,9 @@ export class LeagueService {
             return_value.last_challenge_id = challenges_info.data.id
             return_value.last_challenge_name = challenges_info.data.localizedNames.en_US.name
             return_value.last_challenge_date = challenges_list.data.challenges[save].achievedTime
-            console.log(return_value)
             return return_value
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message});
         }
     }
 
@@ -191,7 +188,7 @@ export class LeagueService {
             return_value.winrate = (return_value.total_wins / total_match)
             return return_value;
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message})
         }
     }
 
@@ -213,7 +210,6 @@ export class LeagueService {
             console.log(data.id)
             let url2 = `${base_url1}champion-mastery/v4/champion-masteries/by-summoner/${data.id}?api_key=${key}`;
             const a = await firstValueFrom(this.httpService.get(url2));
-            console.log(url2)
             for (let total_champ = 0; total_champ < Object.keys(a.data).length; total_champ++) {
                 if (a.data[total_champ].championLevel == 7)
                     return_value.level7_mastery += 1
@@ -228,7 +224,7 @@ export class LeagueService {
             }
             return return_value;
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message})
         } 
     }
 }
