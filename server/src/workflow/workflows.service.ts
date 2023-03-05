@@ -4,10 +4,14 @@ import { Repository } from 'typeorm';
 import { WorkflowEntity } from './workflows.entity';
 import { UserEntity } from '../users/entity/UserEntity';
 import { Uuid as v4 } from 'uuid';
+import { LeagueAction } from 'src/automation/entities/leagueEntities';
+import * as delay from 'delay';
+
 @Injectable()
 export class WorkflowService {
     constructor(
       @InjectRepository(WorkflowEntity) private readonly workflowActionRepository: Repository<WorkflowEntity>,
+      @InjectRepository(LeagueAction) private readonly leagueAction: Repository<LeagueAction>
     ) {}
 
     async createWorkflowAction(
@@ -50,4 +54,17 @@ export class WorkflowService {
       await this.workflowActionRepository.delete(id);
     }
 
+    async loop () {
+      while (1) {
+        const wfs  = await this.getAllWorkflowActions()
+        wfs.forEach(element => {
+          switch (element.actionName) {
+            case 'league' : {
+
+            }
+          }
+        });
+        await delay(10000)
+      }
+  }  
 }

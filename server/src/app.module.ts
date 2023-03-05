@@ -19,14 +19,16 @@ import { MeteoController } from './meteo/meteo.controller';
 import { SpotifyModule } from './spotify/spotify.module';
 import { WorkflowModule } from './workflow/workflows.module';
 import { WorkflowEntity } from './workflow/workflows.entity';
+import { WorkflowService } from './workflow/workflows.service';
+import { LeagueAction } from './automation/entities/leagueEntities';
 
 dotenv.config();
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([WorkflowEntity]),
     AuthModule,
     UsersModule,
-    WorkflowModule,
     HttpModule,
     TypeOrmModule.forRoot({
       type: process.env.DB_TYPE as any,
@@ -39,6 +41,7 @@ dotenv.config();
     }),
     DiscordModule,
     SpotifyModule,
+    WorkflowModule,
   ],
   controllers: [
     AppController,
@@ -52,6 +55,7 @@ dotenv.config();
     AboutService,
     GithubService,
     LeagueService,
+    WorkflowService,
     IntegrationService,
     NasaService,
     MeteoService,

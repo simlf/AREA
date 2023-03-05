@@ -19,6 +19,7 @@ export class NasaService {
             const { data }  = await firstValueFrom(this.httpService.get(url_tmp))
             const level = data.date;
             return_value.url = data.url;
+            console.log(data)
         } catch (error) {            
             return {"Error" : error.code, "Message" : error.message}
         }

@@ -1,8 +1,14 @@
-import { NestFactory } from '@nestjs/core';
+import { ModuleRef, NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
+import { async } from 'rxjs';
+import { Logic } from './automation/workflowLogicService';
+import { WorkflowService } from './workflow/workflows.service';
+import { Repository } from 'typeorm';
+import { WorkflowEntity } from './workflow/workflows.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 // TODO: Make secret private with .env
 async function bootstrap() {
@@ -31,6 +37,9 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.enableCors();
+  const moduleRef = app.get<ModuleRef>(ModuleRef);
+  const workflowService = await moduleRef.get<WorkflowService>(WorkflowService);
+  workflowService.loop()
   await app.listen(8080);
 }
 bootstrap();

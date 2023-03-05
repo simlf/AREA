@@ -6,12 +6,14 @@ import { UsersModule } from 'src/users/users.module';
 import { HttpModule, HttpService } from '@nestjs/axios';
 import { WorkflowController } from './workflows.controller';
 import { WorkflowService } from './workflows.service';
+import { LeagueAction } from 'src/automation/entities/leagueEntities';
+
 
 @Module({
     imports: [
         UsersModule,
         HttpModule,
-        TypeOrmModule.forFeature([WorkflowEntity]),
+        TypeOrmModule.forFeature([WorkflowEntity, LeagueAction]),
     ],
     controllers: [
         WorkflowController

@@ -36,10 +36,10 @@ export class MeteoService {
             let checkBool = false;
             for (let i = 0; data.hourly.temperature_2m[i]; i++) {
              console.log(data.hourly.temperature_2m[i] + console.log(data.hourly))
-                 const myArray = data.hourly.time[i].split("T");
-                 const tmpTime2 = myArray[1].split(':');
-                 if (data.hourly.temperature_2m[i] >= idealTemperature  && data.hourly.temperature_2m[i] < idealTemperature + 1 && tmpTime2[0] <= tmpTime + 8 && tmpTime2[0] >= tmpTime && checkBool == false) {;
-                   checkBool = true;
+                const myArray = data.hourly.time[i].split("T");
+                const tmpTime2 = myArray[1].split(':');
+                if (data.hourly.temperature_2m[i] >= idealTemperature  && data.hourly.temperature_2m[i] < idealTemperature + 1 && tmpTime2[0] <= tmpTime + 8 && tmpTime2[0] >= tmpTime && checkBool == false) {;
+                    checkBool = true;
                 };
             }
         } catch (error) {            

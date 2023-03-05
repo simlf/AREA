@@ -8,18 +8,15 @@ export class nasaReactionEntity {
   @Column({ unique: true })
   ReactionId: string;
 
-  @Column() // author
-  route : string
-
-  @Column() // author
+  @Column()
   description : string
 
-  @Column() // date
+  @Column()
   title : string
 
-  @Column() // date
+  @Column()
   playlistId : string
 
   @Column()
-  actionEnum : 'date'
+  actionEnum : 'changePlaylist'
 }
