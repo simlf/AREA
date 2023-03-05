@@ -47,11 +47,8 @@ dotenv.config();
     GithubController,
     LeagueController,
     NasaController,
-<<<<<<< HEAD
     RedditController,
-=======
     MeteoController,
->>>>>>> main
   ],
   providers: [
     AppService,
@@ -60,11 +57,8 @@ dotenv.config();
     LeagueService,
     IntegrationService,
     NasaService,
-<<<<<<< HEAD
     RedditService,
-=======
     MeteoService,
->>>>>>> main
   ],
 })
 
