@@ -51,7 +51,6 @@ export class RedditService {
 
     async subscribe() {
         let tmp =  await this.newSubreddit();
-        console.log(tmp);
         const url = `https://oauth.reddit.com/api/subscribe`;
         try {
             const result = await this.httpService.post(url,
@@ -77,7 +76,6 @@ export class RedditService {
 
     async unsubscribe() {
         let tmp =  await this.mySubreddit();
-        console.log(tmp);
         const url = `https://oauth.reddit.com/api/subscribe`;
         try {
             const result = await this.httpService.post(url,
