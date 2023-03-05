@@ -26,7 +26,7 @@ dotenv.config();
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([WorkflowEntity]),
+    TypeOrmModule.forFeature([WorkflowEntity, LeagueAction]),
     AuthModule,
     UsersModule,
     HttpModule,

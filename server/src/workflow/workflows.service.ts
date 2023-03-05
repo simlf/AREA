@@ -11,9 +11,8 @@ import * as delay from 'delay';
 export class WorkflowService {
     constructor(
       @InjectRepository(WorkflowEntity) private readonly workflowActionRepository: Repository<WorkflowEntity>,
-      @InjectRepository(LeagueAction) private readonly leagueAction: Repository<LeagueAction>
-    ) {}
-
+      private readonly leagueActionRepository: LeagueAction
+    ) {}      
     async createWorkflowAction(
       actionName: string,
       reactionName: string,
@@ -60,7 +59,6 @@ export class WorkflowService {
         wfs.forEach(element => {
           switch (element.actionName) {
             case 'league' : {
-
             }
           }
         });

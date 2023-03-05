@@ -4,7 +4,6 @@ import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { async } from 'rxjs';
-import { Logic } from './automation/workflowLogicService';
 import { WorkflowService } from './workflow/workflows.service';
 import { Repository } from 'typeorm';
 import { WorkflowEntity } from './workflow/workflows.entity';

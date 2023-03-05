@@ -8,7 +8,6 @@ export class githubEntity {
   @Column({ unique: true  })
   actionId: string;
 
-  
   @Column()
   name : string 
 
