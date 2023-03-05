@@ -77,8 +77,8 @@ export class WorkflowService {
 
     private async trigger(e : WorkflowEntity) {
       if (e.reactionName == 'spotify') {
-        //const action = await this.spotifyAction.findOne({where : {id : element.actionId}})
-        //this.spotifyService.updatePlaylist()
+        //const action = await this.spotifyAction.findOne({where : {id : e.actionId}})
+        //this.spotifyService.updatePlaylist(action.playlistId, upda)
       }
     }
 
