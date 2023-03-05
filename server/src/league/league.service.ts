@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { firstValueFrom, map } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import * as dotenv from 'dotenv';
+import { LeagueUser } from './League.model';
 
 let base_url1 = "https://euw1.api.riotgames.com/lol/"
 let key = process.env.LEAGUE_API
@@ -14,41 +15,32 @@ export class LeagueService {
         constructor(private readonly httpService: HttpService) {}
 
     /// return the current level of a player
-    async getLevel(username : string = "CrossBiwBoyExoPa") {
-        var return_value = { 
-            "username"                  :  username,
-            "icon_id"                   :  null,
-            "level"                     :  null,
-            "revision_date"             :  null,
-            "puuid"                     :  null,                     
-        }
+    async getLevel(username : string = "CrossBiwBoyExoPa"): Promise<LeagueUser> {
+        let returnValue: LeagueUser = new LeagueUser();
         const url = `${base_url1}summoner/v4/summoners/by-name/${username}?api_key=${key}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url))
-            const level = data.summonerLevel
-            return_value.icon_id = data.profileIconId
-            return_value.revision_date = data.revisionDate
-            return_value.puuid = data.puuid
-            return_value.level = data.summonerLevel
+            const level = data.summonerLevel;
+            returnValue.username = username;
+            returnValue.icon_id = data.profileIconId;
+            returnValue.revision_date = data.revisionDate;
+            returnValue.puuid = data.puuid;
+            returnValue.level = data.summonerLevel;
         } catch (error) {            
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message})
         }
-        return return_value;
+        return returnValue;
   }
 
     /// Return a win ratio from last 48 hours
-    async getMatches(username : string = "CrossBiwBoyExoPa") {
+    async getMatches(username : string = "CrossBiwBoyExoPa"): Promise<LeagueUser> {
+        let returnValue: LeagueUser = new LeagueUser();
         const url1 = `${base_url1}summoner/v4/summoners/by-name/${username}?api_key=${key}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url1));
             const puuid = data.puuid
-            var return_value = { 
-                "username"                  :  username,
-                "puuid"                     :  puuid,                     
-                "total_wins"                :  null,
-                "total_losses"              :  null,
-                "winrate"                   :  null,
-            }
+            returnValue.username = username;
+            returnValue.puuid = puuid;
             let date = new Date(new Date().getTime() - (48 * 60 * 60 * 1000));
             let newDate = (Math.round(date.getTime() / 1000))
             let url2 = `${base_url2}match/v5/matches/by-puuid/${puuid}/ids?startTime=${((newDate).toString())}&start=0&count=20&api_key=${key}`;
@@ -57,8 +49,7 @@ export class LeagueService {
             let total_match = 0   
             for (; total_match < Object.keys(a.data).length; total_match++) {
                 let url3 = `${base_url2}match/v5/matches/${a.data[total_match]}?api_key=${key}`
-                const b = await firstValueFrom(this.httpService.get(url3));
-                console.log(b.data);
+                const b = await firstValueFrom(this.httpService.get(url3))
                 for (let j = 0; j < Object.keys(b.data.info.participants).length; j++) {
                     if (b.data.info.participants[j].puuid == puuid) {
                         if (b.data.info.participants[j].win == true)
@@ -66,29 +57,22 @@ export class LeagueService {
                     }
                 }
             }
-            return_value.total_wins = win_count
-            return_value.total_losses = total_match - win_count
-            return_value.winrate = (win_count / total_match)
-            return return_value;
+            returnValue.total_wins = win_count
+            returnValue.total_losses = total_match - win_count
+            returnValue.winrate = (win_count / total_match)
+            return returnValue;
         } catch (error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message});
         }
     }
 
 
     /// Return the summoner name of the top Europpean player 
-    async getRankOne(username : string = "CrossBiwBoyExoPa") {
+    async getRankOne(username : string = "CrossBiwBoyExoPa"): Promise<LeagueUser> {
+        let returnValue: LeagueUser = new LeagueUser();
         const url = `${base_url1}league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=${key}`;
         try {
             const { data }  = await firstValueFrom(this.httpService.get(url));
-            var return_value = { 
-                "top_player_username"       :  null,
-                "region"                    :  "EUW",
-                "total_league_points"       :  null,
-                "total_wins"                :  null,
-                "total_losses"              :  null,
-                "winrate"                   :  null,
-            }
             let size = Object.keys(data.entries).length
             let save = 0;
             let lpsave = 0;
@@ -98,14 +82,14 @@ export class LeagueService {
                     lpsave = data.entries[i].leaguePoints;
                 }
             }
-            return_value.top_player_username = data.entries[save].summonerName
-            return_value.total_league_points = data.entries[save].leaguePoints
-            return_value.total_losses = data.entries[save].losses
-            return_value.total_wins = data.entries[save].wins
-            return_value.winrate = (data.entries[save].wins / (data.entries[save].wins + data.entries[save].losses)) * 100
-            return return_value;
+            returnValue.top_player_username = data.entries[save].summonerName
+            returnValue.total_league_points = data.entries[save].leaguePoints
+            returnValue.total_losses = data.entries[save].losses
+            returnValue.total_wins = data.entries[save].wins
+            returnValue.winrate = (data.entries[save].wins / (data.entries[save].wins + data.entries[save].losses)) * 100
+            return returnValue;
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message});
         }
     }
 
@@ -137,7 +121,6 @@ export class LeagueService {
                     last_save = challenges_list.data.challenges[i].achievedTime;
                 }
             }
-            console.log(challenges_list.data.challenges[save])
             let url3 = `${base_url1}challenges/v1/challenges/${challenges_list.data.challenges[save].challengeId}/config?api_key=${key}`
             const challenges_info = await firstValueFrom(this.httpService.get(url3));
         
@@ -147,10 +130,9 @@ export class LeagueService {
             return_value.last_challenge_id = challenges_info.data.id
             return_value.last_challenge_name = challenges_info.data.localizedNames.en_US.name
             return_value.last_challenge_date = challenges_list.data.challenges[save].achievedTime
-            console.log(return_value)
             return return_value
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message});
         }
     }
 
@@ -206,7 +188,7 @@ export class LeagueService {
             return_value.winrate = (return_value.total_wins / total_match)
             return return_value;
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message})
         }
     }
 
@@ -228,7 +210,6 @@ export class LeagueService {
             console.log(data.id)
             let url2 = `${base_url1}champion-mastery/v4/champion-masteries/by-summoner/${data.id}?api_key=${key}`;
             const a = await firstValueFrom(this.httpService.get(url2));
-            console.log(url2)
             for (let total_champ = 0; total_champ < Object.keys(a.data).length; total_champ++) {
                 if (a.data[total_champ].championLevel == 7)
                     return_value.level7_mastery += 1
@@ -243,7 +224,7 @@ export class LeagueService {
             }
             return return_value;
         } catch(error) {
-            return {"Error" : error.code, "Message" : error.message}
+            console.error({"Error" : error.code, "Message" : error.message})
         } 
     }
 }
