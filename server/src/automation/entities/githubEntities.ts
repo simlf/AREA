@@ -1,6 +1,6 @@
 import { BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Relation } from 'typeorm';
 
-@Entity({ name: 'githubUser' })
+@Entity({ name: 'githubRepo' })
 export class githubEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -8,33 +8,24 @@ export class githubEntity {
   @Column({ unique: true  })
   actionId: string;
 
-  @Column() // hireable
-  hireable : boolean
-
-  @Column() // ? -> reposName seprated by ;
-  repos : string
-
-  @Column()
-  actionEnum : 'hireable'
-}
-
-@Entity({ name: 'githubRepo' })
-export class githubRepoEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ unique: true  })
-  actionId: string;
-
+  
   @Column()
   name : string 
 
   @Column()
   description : string 
 
-  @Column() // commits
+  @Column({nullable: true}) // commits
   commitsNumber : boolean
 
+  @Column({nullable: true}) // hireable
+  hireable : boolean
+
+  @Column({nullable: true}) // ? -> reposName seprated by ;
+  repos : string
+
   @Column()
-  actionEnum : 'commits'
+  actionEnum : 'hireable' | 'commits'
+
 }
+

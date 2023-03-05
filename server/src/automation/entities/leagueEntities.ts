@@ -8,18 +8,22 @@ export class LeagueAction {
   @Column()
   username: string;
 
-  @Column()
+  @Column({nullable: true})
   lastGameId: string
 
-  @Column()
+  @Column({nullable: true})
   currentLevel : number
 
-  @Column()
+  @Column({nullable: true})
   mastery7 : number
  
-  @Column()
+  @Column({nullable: true})
   winrate : number
 
-  @Column()
+  @Column({nullable: true})
   rankOne: string
+
+  @Column()
+  actionEnum : 'penta' | 'level' | 'mastery' | 'winrate' | 'rankone'
+
 }
