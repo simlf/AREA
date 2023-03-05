@@ -13,33 +13,27 @@
         <div class="crea-auto">
           <strong><p class="text-crea-integration">Créer votre propre automatisation</p></strong>
           <strong><p class="text-lorsque">Lorsque</p></strong>
-          <select name="lorsque" class='lorsque-box' >
-            <option value="Choix 1" >Choix 1</option>
-            <option value="Choix 2" >Choix 2</option>
-            <option value="Choix 3" >Choix 3</option>
-            <option value="Choix 4" >Choix 4</option>
+          <select [(ngModel)]="selectAction" class='lorsque-box' >
+            <option value="meteo">meteo</option>
+            <option value="league">league</option>
+            <option value="nasa">nasa</option>
           </select>
-          <select name="alors" class='alors-box' >
-            <option value="Alors 1" >Alors 1</option>
-            <option value="Alors 2" >Alors 2</option>
-            <option value="Alors 3" >Alors 3</option>
-            <option value="Alors 4" >Alors 4</option>
+          <select  [(ngModel)]="selectReaction" name="alors" class='alors-box' >
+            <option value="reddit">reddit</option>
+            <option value="spotify">spotify</option>
+            <option value="github">github</option>
           </select>
           <strong><p class="text-alors">Alors</p></strong>
         </div>
         <div class="perso-auto">
           <strong><p class="text-crea-integration">Personnaliser votre automatisation</p></strong>
-          <select name="couleur" class='color-box' >
-            <option value="Couleur 1" >Couleur 1</option>
-            <option value="Couleur 2" >Couleur 2</option>
-            <option value="Couleur 3" >Couleur 3</option>
-            <option value="Couleur 4" >Couleur 4</option>
-          </select>
-          <input type="text" class="name-box" placeholder="Nom">
-          <input type="file" class="img-box" placeholder="Image" accept="image/png, image/jpg, image/jpeg">
+          <input type="text-area" class="color-box" placeholder="description"[(ngModel)]="description">
+          <input type="text" class="name-box" placeholder="Nom" [(ngModel)]="workflowName">
+          <label>Activer l'automatisation a la creation (si vous etes connectez au different service)</label>
+          <input type="checkbox" class="img-box" [(ngModel)]="isActive">
         </div>
         <div class="validate-integration">
-          <ion-button color="light" shape="round">Créer</ion-button>
+          <ion-button color="light" shape="round" (click)="sendWorkflow()">Créer</ion-button>
         </div>
   </div>
   <div *ngSwitchCase="Breakpoints.HandsetPortrait">

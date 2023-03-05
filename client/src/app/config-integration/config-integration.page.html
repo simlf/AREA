@@ -10,13 +10,36 @@
       </div>
     </div>
     <app-card/>
+    <div class="parametre">
+      <div *ngIf="actionName === 'meteo'" class="action">
+        <h1>Parametre pour l'action meteo</h1>
+        <input type="text" placeholder="ville" [(ngModel)]="ville">
+        <input type="number" placeholder="temperature" [(ngModel)]="temperature">
+      </div>
+      <div *ngIf="actionName === 'league'" class="action">
+        <h1>Parametre pour l'action League of Legends</h1>
+        <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="leagueUsername">
+      </div>
+      <div *ngIf="reactionName === 'reddit'" class="reaction">
+        <h1>Parametre de la reaction Reddit</h1>
+        <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="redditUsername">
+      </div>
+      <div *ngIf="reactionName === 'spotify'" class="reaction">
+        <h1>Parametre de la reaction Spotify</h1>
+        <input type="text" placeholder="id de la playlist" [(ngModel)]="playlistId">
+      </div>
+    </div>
     <div class="inputElement">
-      <div class="saveIntegration">
+      <div *ngIf="active === true" class="saveIntegration">
         <label for="scales">Activer l’integration</label>
-        <input type="checkbox" id="scales" name="scales">
+        <input type="checkbox" id="scales" name="scales" checked [(ngModel)]="isActiveTrue">
+      </div>
+      <div *ngIf="active === false" class="saveIntegration">
+        <label for="scales">Activer l’integration</label>
+        <input type="checkbox" id="scales" name="scales" [(ngModel)]="isActiveFalse">
       </div>
       <div class="save-button">
-        <a href="#"> enregistrez </a>
+        <a href="/home" (click)="sendInput()"> enregistrez </a>
       </div>
     </div>
   </div>

@@ -109,3 +109,15 @@ label {
     margin-right: auto;
     margin-top: 50px;
 }
+
+.parametre {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action, .reaction {
+    margin-top: 50px;
+    width: 33%;
+    text-align: center;
+}

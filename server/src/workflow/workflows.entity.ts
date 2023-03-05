@@ -38,4 +38,7 @@ export class WorkflowEntity {
 
   @Column()
   img: string;
+
+  @Column()
+  active: boolean;
 }

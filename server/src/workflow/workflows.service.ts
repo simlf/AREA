@@ -43,8 +43,10 @@ export class WorkflowService {
       workflowName: string,
       description: string,
       logo: string,
+
       reactionId: string,
       actionId: string,
+      isActive: boolean,
       ): Promise<WorkflowEntity> {
       const randomNumber = Math.floor(Math.random() * 6) + 1;
       const workflowAction = new WorkflowEntity();
@@ -59,8 +61,9 @@ export class WorkflowService {
       workflowAction.logo = '../../assets/' + logo;
       workflowAction.img = '../../assets/' + randomNumber + '.png';
       workflowAction.url = '';
+      workflowAction.active = isActive;
       const savedWorkflowAction = await this.workflowActionRepository.save(workflowAction);
-      workflowAction.url = '/integration/' + savedWorkflowAction.id;  
+      workflowAction.url = '/config-integration/' + savedWorkflowAction.id;  
       return this.workflowActionRepository.save(workflowAction);
     }
     
@@ -155,4 +158,7 @@ export class WorkflowService {
         await delay(10000)
       }
   }  
+    async getWorkflowActionById(id: string): Promise<WorkflowEntity | undefined> {
+      return await this.workflowActionRepository.findOne({where: {id}});
+    }
 }
