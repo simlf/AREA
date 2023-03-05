@@ -29,7 +29,7 @@ export interface action {
   }
 
 export interface Card {
-    name: string;
+    workflowName: string;
     description: string;
     img: string;
     logo: string;

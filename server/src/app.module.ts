@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { AppController } from './app.controller';
@@ -15,9 +14,13 @@ import { LeagueService } from './league/league.service';
 import { LeagueController } from './league/league.controller';
 import { NasaService } from './nasa/nasa.service';
 import { NasaController } from './nasa/nasa.controller';
+import { MeteoService } from './meteo/meteo.service';
+import { MeteoController } from './meteo/meteo.controller';
 import { SpotifyModule } from './spotify/spotify.module';
 import { RedditController } from './reddit/reddit.controller';
 import { RedditService } from './reddit/reddit.service';
+import { WorkflowModule } from './workflow/workflows.module';
+import { WorkflowEntity } from './workflow/workflows.entity';
 
 dotenv.config();
 
@@ -25,6 +28,7 @@ dotenv.config();
   imports: [
     AuthModule,
     UsersModule,
+    WorkflowModule,
     HttpModule,
     TypeOrmModule.forRoot({
       type: process.env.DB_TYPE as any,
@@ -32,7 +36,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.MYSQL_ROOT_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [UserEntity],
+      entities: [UserEntity, WorkflowEntity],
       synchronize: true,
     }),
     DiscordModule,
@@ -43,7 +47,11 @@ dotenv.config();
     GithubController,
     LeagueController,
     NasaController,
+<<<<<<< HEAD
     RedditController,
+=======
+    MeteoController,
+>>>>>>> main
   ],
   providers: [
     AppService,
@@ -52,7 +60,12 @@ dotenv.config();
     LeagueService,
     IntegrationService,
     NasaService,
+<<<<<<< HEAD
     RedditService,
+=======
+    MeteoService,
+>>>>>>> main
   ],
 })
+
 export class AppModule {}

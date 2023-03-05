@@ -69,6 +69,63 @@ Make sure you have the correct version of Node installed, check the `.nvmrc` or 
 -   Send a text message to your phone when an email from a specific sender arrives in your inbox
 -   Automatically save attachments from specific emails to your cloud storage account
 
+## API Documentation
+
+You can find the documentation when the project is running at this address [http://localhost:8080/swagger](http://localhost:8080/swagger).
+
+Here are the routes:
+
+/, GET route
+/about.json, GET route
+
+### Auth
+
+/auth/register, POST route
+/auth/login, POST route
+/auth/whoami, GET route
+/auth/discord, GET route
+/auth/discord/redirect, GET route
+
+### Workflows
+
+/workflows, GET route
+/workflowsDb/addWorkflow, POST route
+/workflowsDb/displayWorkflow, POST route
+/workflowsDb/displayAllWorkflow, GET route
+/workflowsDb/deleteWorkflow, POST route
+
+### GitHub
+
+/github, GET route
+/github/user, GET route
+/github/repo, GET route
+
+### League
+
+/league, GET route
+/league/profile, GET route
+/league/matches, GET route
+/league/rankone, GET route
+/league/challenges, GET route
+/league/statistics, GET route
+/league/mastery, GET route
+
+### Nasa
+
+/nasa, GET route
+/nasa/imageOfTheDay, GET route
+
+### Meteo
+
+/meteo, GET route
+/meteo/sendTemperature, GET route
+
+### Spotify
+
+/spotify, GET route
+/spotify/users/playlist, GET route
+/spotify/users/playlist/:playlistId, PUT route
+
 ## License
 
 This project is licensed under the MIT License.
