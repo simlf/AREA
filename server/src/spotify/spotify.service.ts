@@ -59,9 +59,10 @@ export class SpotifyService {
     }
 
     async updatePlaylist(playlistId: string, updateSpotifyPlaylistDto: UpdateSpotifyPlaylistDto) {
+        
         const url = `${spotifyPlaylistUrl}${playlistId}`;
         const headersRequest = {
-            'Authorization': 'Bearer BQD7KYT9QGw1J0B7i71atirnJ_ebG4k_DLQEit32XgqF_gMkcMKppkVLtcEzVDE1QjHYzf0sgNE7y9qZXU0RJrZhAk9C9Rhz1neuAhdd3FNPrc-Rhji6d59Krtwgd80v4lrdO5iqOarkjkxdhtKEls1XXC3jVZ7tbONq-S7OkbzJ1RH7jHrKIl-tZBo7lGFdK_0U2dDTK51uaV4wBNz1QKcmz8d0O2PlEm-AH5og1FHfbxaIJVUVlNSi8xkZwUIkT5-iQ6dpOxUaXyLATq4RQJVNenTxeKoue_mxG4tkRhH5pqV34NarcvKNu-73KNVBW_JVW2FfNuZ_l66OUnNE8g',
+            'Authorization': 'Bearer BQAHo0M4pbPsNOsCZHMXIMku_Q0-ByGzIbVYtJDM5tr6Enm1KogeBEc98x-aQ_QHGeuA4AD95A5ETZeBh67W42sF__TDm5bPnNXbbRr9QNO9LI77W875c-UJ5D_eGBaBDE7qqX4zUA5DXhce6192yYHP-K1L_ZZ7Y4jwZwUa6M8nFblPkMsEb_ffzAO0LWdiJpWaUuSomiTm7K8M68TBM-wVXHih83TlhRK-lKt4kISsh5VfmrvjFFmm7mZHfVFtXG0-O3GV10r5gYcSj8ZyvgXmmUcRe_qvR3cDNbAxi8qQTNErL9AN-wrijGwUXP26VRCV-s9ZzIiqkdDr2BzH6g',
             'content-type' : 'application/json',
             'Accept' : 'application/json'
         };
@@ -78,6 +79,7 @@ export class SpotifyService {
         }
     }
 
+        
     // async callback(code : string, email : string) {
     async callback(code : string, email : string) {
         try {

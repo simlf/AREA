@@ -10,7 +10,9 @@ import { callbackify } from 'util';
 @ApiBearerAuth()
 @Controller('spotify')
 export class SpotifyController {
-    constructor(private spotifyService: SpotifyService, private httpService: HttpService, private readonly authService: AuthService) {}
+    constructor(private spotifyService: SpotifyService,
+    private httpService: HttpService,
+    private readonly authService: AuthService) {}
 
     @Get('')
     getRoutes() {

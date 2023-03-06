@@ -27,6 +27,7 @@ import { NasaAction } from './automation/entities/nasaEntities';
 import { SpotifyAction } from './automation/entities/spotifyEntities';
 import { SpotifyService } from './spotify/spotify.service';
 import { SpotifyController } from './spotify/spotify.controller';
+import { AuthService } from './auth/auth.service';
 
 dotenv.config();
 
@@ -66,7 +67,8 @@ dotenv.config();
     IntegrationService,
     NasaService,
     MeteoService,
-    SpotifyService
+    SpotifyService,
+    AuthService 
   ],
 })
 

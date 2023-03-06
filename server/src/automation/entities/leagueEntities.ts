@@ -15,8 +15,26 @@ export class LeagueAction {
   currentLevel : number
 
   @Column({nullable: true})
-  mastery7 : number
- 
+  mastery1 : number  
+  
+  @Column({nullable: true})
+  mastery2 : number
+
+  @Column({nullable: true})
+  mastery3 : number
+
+  @Column({nullable: true})
+  mastery4 : number
+
+  @Column({nullable: true})
+  mastery5 : number
+
+  @Column({nullable: true})
+  mastery6 : number
+
+  @Column({nullable: true})
+  mastery7 : number 
+
   @Column({nullable: true})
   winrate : number
 
@@ -24,6 +42,6 @@ export class LeagueAction {
   rankOne: string
 
   @Column()
-  actionEnum : 'penta' | 'level' | 'mastery' | 'winrate' | 'rankone'
+  actionEnum : 'penta' | 'level' | 'mastery1' | 'mastery2' | 'mastery3' | 'mastery4' | 'mastery5' | 'mastery6' | 'mastery7' | 'winrate' | 'rankone'
 
 }

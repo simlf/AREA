@@ -83,7 +83,6 @@ export class WorkflowService {
 
     private async trigger(e : WorkflowEntity) {
       if (e.reactionName == 'spotify') {
-        console.log('T')
         const action = await this.spotifyAction.findOne({where : {id : e.actionId}})
         let dto = new UpdateSpotifyPlaylistDto
         dto.description = action.description
@@ -103,35 +102,68 @@ export class WorkflowService {
               case 'penta' : {
                 const penta = JSON.parse(JSON.stringify(await this.leagueService.getSeasonStatistics(action.username, 1))).pentakills
                 if (penta > 1)
-                  console.log('Trigger !')
+                  this.trigger(element)
                 break;
                 }
                 case 'level' : {
                   const level = JSON.parse(JSON.stringify(await this.leagueService.getLevel(action.username))).level
                   if (level > action.currentLevel) {
-                    console.log('Lol level Trigger !!')
                     this.trigger(element)
                   }
                   break;  
                 }
-                case 'mastery' : {
+                case 'mastery1' : {
+                  const mastery = JSON.parse(JSON.stringify(await this.leagueService.getChampionMastery(action.username))).level1_mastery
+                  if ( mastery > action.mastery1)
+                    this.trigger(element)
+                  break;
+                }
+                case 'mastery2' : {
+                  const mastery = JSON.parse(JSON.stringify(await this.leagueService.getChampionMastery(action.username))).level2_mastery
+                  if ( mastery > action.mastery2)
+                    this.trigger(element)
+                  break;
+                }
+                case 'mastery3' : {
+                  const mastery = JSON.parse(JSON.stringify(await this.leagueService.getChampionMastery(action.username))).level3_mastery
+                  if ( mastery > action.mastery3)
+                    this.trigger(element)
+                  break;
+                }
+                case 'mastery4' : {
+                  const mastery = JSON.parse(JSON.stringify(await this.leagueService.getChampionMastery(action.username))).level4_mastery
+                  if ( mastery > action.mastery4)
+                    this.trigger(element)
+                  break;
+                }
+                case 'mastery5' : {
+                  const mastery = JSON.parse(JSON.stringify(await this.leagueService.getChampionMastery(action.username))).level5_mastery
+                  if ( mastery > action.mastery5)
+                    this.trigger(element)
+                  break;
+                }
+                case 'mastery6' : {
+                  const mastery = JSON.parse(JSON.stringify(await this.leagueService.getChampionMastery(action.username))).level6_mastery
+                  if ( mastery > action.mastery6)
+                    this.trigger(element)
+                  break;
+                }
+                case 'mastery7' : {
                   const mastery = JSON.parse(JSON.stringify(await this.leagueService.getChampionMastery(action.username))).level7_mastery
-                  console.log('mastery')
-                  console.log(action.mastery7)
                   if ( mastery > action.mastery7)
-                    console.log('Trigger !!!!')
+                    this.trigger(element)
                   break;
                 }
                 case 'winrate' : {
                   const level = JSON.parse(JSON.stringify(await this.leagueService.getLevel(action.username))).level
                   if (level > action.currentLevel)
-                    console.log('Trigger !!!!!')
+                    this.trigger(element)
                   break;
                 }
                 case 'rankone' : {
                   const rankone = JSON.parse(JSON.stringify(await this.leagueService.getRankOne(action.username))).top_player_username
                   if (rankone === action.username)
-                    console.log('Trigger !!!!!!')
+                    this.trigger(element)
                   break;
                 }
               }
@@ -142,13 +174,13 @@ export class WorkflowService {
               case 'commits' : {
                 const hire = JSON.parse(JSON.stringify(await this.githubService.userInfo(action.name))).hireable
                 if (action.hireable != hire)
-                  console.log('Trigger comm')
+                  this.trigger(element)
                 break;  
                 }
               case 'hireable' : {
                 const commits = JSON.parse(JSON.stringify(await this.githubService.repoInfo(action.name)))
                 if (commits > action.commitsNumber)
-                  console.log('Trigger !')
+                  this.trigger(element)
                 break;
               }
             }
@@ -156,12 +188,12 @@ export class WorkflowService {
           if (element.actionName == 'weather') {
             const action = await this.weatherAction.findOne({where : {id : element.actionId}})
             if (await this.meteoService.getTemperature(action.temperature) != true)
-              console.log('Trigger')
+              this.trigger(element)
           }
           if (element.actionName == 'nasa') {
             const action = await this.nasaAction.findOne({where : {id : element.actionId}})
             if (action.date == JSON.parse(JSON.stringify(await this.nasaService.getImageOfTheDay())).date)
-              console.log('Trigger')
+              this.trigger(element)
           }
 
         });
